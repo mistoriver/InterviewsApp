@@ -1,8 +1,8 @@
-﻿using InterviewsApp.Data.Abstractions.Interfaces;
-using InterviewsApp.Data.Models.Entities;
+﻿using InterviewsApp.Core.DTOs;
+using InterviewsApp.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System;
 
 namespace InterviewsApp.WebAPI.Controllers
 {
@@ -10,17 +10,18 @@ namespace InterviewsApp.WebAPI.Controllers
     [ApiController]
     public class InterviewController : Controller
     {
-        private readonly IRepository<InterviewEntity> _repository;
+        private readonly IInterviewService _service;
 
-        public InterviewController(IRepository<InterviewEntity> repository)
+        public InterviewController(IInterviewService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         [HttpGet]
-        public IEnumerable<InterviewEntity> TestAction()
+        public IActionResult GetIntervews(Guid id)
         {
-            return _repository.GetByPredicate(entity => true);
+            _service.Get(id);
+            return Ok();
         }
 
         /*[HttpGet]
@@ -34,13 +35,13 @@ namespace InterviewsApp.WebAPI.Controllers
                         return Ok(InterviewHelper.GetInterviewsByUserAndPosition(intReq.UserId, intReq.PositionId));
                 else Ok(InterviewHelper.GetInterview(intReq.InterviewId));
             return BadRequest("Невозможно запросить список встреч без указания идентификатора пользователя!");
-        }
+        }*/
 
         [HttpPost]
-        public IActionResult AddInterview(InterviewEntity newInterview)
+        public IActionResult AddInterview(CreateInterviewDto newInterview)
         {
-            InterviewHelper.CreateInterview(newInterview);
+            _service.CreateInterview(newInterview);
             return Ok();
-        }*/
+        }
     }
 }

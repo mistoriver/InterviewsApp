@@ -343,6 +343,19 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "InterviewsApp.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "InterviewsApp.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/InterviewsApp.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InterviewsApp.Core.dll": {}
+        }
+      },
       "InterviewsApp.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -924,6 +937,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "InterviewsApp.Core/1.0.0": {
+      "type": "project",
+      "path": "../InterviewsApp.Core/InterviewsApp.Core.csproj",
+      "msbuildProject": "../InterviewsApp.Core/InterviewsApp.Core.csproj"
+    },
     "InterviewsApp.Data/1.0.0": {
       "type": "project",
       "path": "../InterviewsApp.Data/InterviewsApp.Data.csproj",
@@ -937,6 +955,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "InterviewsApp.Core >= 1.0.0",
       "InterviewsApp.Data >= 1.0.0",
       "InterviewsApp.WebApp >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.6",
@@ -970,6 +989,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\mRiver\\source\\repos\\mistoriver\\InterviewsApp\\InterviewsApp\\InterviewsApp.Core\\InterviewsApp.Core.csproj": {
+              "projectPath": "C:\\Users\\mRiver\\source\\repos\\mistoriver\\InterviewsApp\\InterviewsApp\\InterviewsApp.Core\\InterviewsApp.Core.csproj"
+            },
             "C:\\Users\\mRiver\\source\\repos\\mistoriver\\InterviewsApp\\InterviewsApp\\InterviewsApp.Data\\InterviewsApp.Data.csproj": {
               "projectPath": "C:\\Users\\mRiver\\source\\repos\\mistoriver\\InterviewsApp\\InterviewsApp\\InterviewsApp.Data\\InterviewsApp.Data.csproj"
             },

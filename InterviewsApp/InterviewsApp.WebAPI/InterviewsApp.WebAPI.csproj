@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InterviewsApp.Core\InterviewsApp.Core.csproj" />
     <ProjectReference Include="..\InterviewsApp.Data\InterviewsApp.Data.csproj" />
     <ProjectReference Include="..\InterviewsApp.WebApp\InterviewsApp.WebApp.csproj" />
   </ItemGroup>
