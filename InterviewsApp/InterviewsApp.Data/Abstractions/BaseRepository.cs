@@ -25,7 +25,7 @@ namespace InterviewsApp.Data.Abstractions
             return AppContext.Set<TEntity>().Find(entityId);
         }
 
-        public IEnumerable<TEntity> GetByPredicate(Expression<Func<TEntity, bool>> predicate)
+        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
             return AppContext.Set<TEntity>().Where(predicate).ToList();
         }
@@ -45,6 +45,15 @@ namespace InterviewsApp.Data.Abstractions
         public void Delete(TEntity entity)
         {
             AppContext.Remove(entity);
+            AppContext.SaveChanges();
+        }
+        public bool Exists(Expression<Func<TEntity, bool>> predicate)
+        {
+            return AppContext.Set<TEntity>().Any(predicate);
+        }
+        [Obsolete]
+        public void SaveChanges()
+        {
             AppContext.SaveChanges();
         }
     }

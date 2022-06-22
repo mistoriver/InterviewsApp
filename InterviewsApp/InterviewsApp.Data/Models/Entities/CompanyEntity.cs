@@ -10,16 +10,16 @@ namespace InterviewsApp.Data.Models.Entities
         /// <summary>
         /// Название
         /// </summary>
-        public string Name { get; init; } = null!;
+        public string Name { get; set; } = null!;
 
         /// <summary>
         /// Рейтинг
         /// </summary>
-        public short Rating { get; init; }
+        public short Rating { get; set; }
 
         /// <summary>
         /// Навигационное свойство для связи с сущностью <see cref="PositionEntity"/>
         /// </summary>
-        public List<PositionEntity> Positions { get; init; } = new();
+        public List<PositionEntity> Positions { get; set; } = new();
     }
 }

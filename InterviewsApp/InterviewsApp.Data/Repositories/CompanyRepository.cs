@@ -13,7 +13,7 @@ namespace InterviewsApp.Data.Repositories
         public CompanyRepository(InterviewsContext context) : base(context)
         { }
 
-        public bool CompanyExists(string companyId)
+        public bool Exists(string companyId)
         {
             if (Guid.TryParse(companyId, out var comIdConv))
                 return AppContext.Companies.Any(c => c.Id == comIdConv);

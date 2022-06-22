@@ -14,26 +14,26 @@ namespace InterviewsApp.Data.Models.Entities
         /// <summary>
         /// Название
         /// </summary>
-        public string Name { get; init; } = null!;
+        public string Name { get; set; } = null!;
 
         /// <summary>
         /// Дата проведения
         /// </summary>
-        public DateTime Date { get; init; }
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// Путь к комментарию
         /// </summary>
-        public string? PathToComment { get; init; }
+        public string? PathToComment { get; set; }
 
         /// <summary>
         /// Уникальный идентификатор вакансии
         /// </summary>
-        public Guid PositionId { get; init; }
+        public Guid PositionId { get; set; }
 
         /// <summary>
         /// Навигационное свойство для связи с сущностью <see cref="PositionEntity"/>
         /// </summary>
-        public PositionEntity Position { get; init; } = new();
+        public PositionEntity Position { get; set; } = new();
     }
 }

@@ -5,30 +5,23 @@ using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Services
 {
-    public class UserService :IUserService
+    public class UserService : BaseDbService<UserEntity>, IUserService
     {
-        private readonly IRepository<UserEntity> _repository;
+        private readonly IPasswordService _passwordService;
 
-        public UserService(IRepository<UserEntity> repository)
+        public UserService(IRepository<UserEntity> repository, IPasswordService passwordService) :base(repository)
         {
-            _repository = repository;
-        }
-
-        public IEnumerable<UserEntity> Get(Guid id)
-        {
-            if (id != Guid.Empty)
-                return _repository.GetByPredicate(entity => entity.Id.Equals(id));
-            return _repository.GetByPredicate(e => true);
+            _passwordService = passwordService;
         }
 
         public void CreateUser(CreateUserDto dto)
         {
-            _repository.Create(new UserEntity() { Id = new Guid(), Login = dto.Login, Password = dto.Password, Name = dto.Name, IsActive = true }) ;
+            if (!IsUnique(dto))
+                _repository.Create(new UserEntity() { Id = new Guid(), Login = dto.Login, Password = _passwordService.HashPassword(dto.Password), Name = dto.Name, IsActive = true }) ;
         }
+        public bool IsUnique(CreateUserDto dto) => _repository.Get(user => user.Login.Equals(dto.Login)).Any();
     }
 }

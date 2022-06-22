@@ -15,6 +15,9 @@ namespace InterviewsApp.Core
         {
             services.AddScoped<IInterviewService, InterviewService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPasswordService, PasswordService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IPositionService, PositionService>();
         }
     }
 }

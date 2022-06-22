@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Interfaces
 {
-    public interface IUserService
+    public interface IUserService : IDbService<UserEntity>
     {
-        public IEnumerable<UserEntity> Get(Guid id);
+        /// <summary>
+        /// Создать пользователя в системе
+        /// </summary>
+        /// <param name="dto"></param>
         public void CreateUser(CreateUserDto dto);
     }
 }

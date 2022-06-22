@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.DTOs
 {
+    /// <summary>
+    /// Транспортный объект для создания собеседования
+    /// </summary>
     public class CreateInterviewDto
     {
         /// <summary>

@@ -8,7 +8,7 @@ namespace InterviewsApp.WebAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class InterviewController : Controller
+    public class InterviewController : ControllerBase
     {
         private readonly IInterviewService _service;
 
@@ -17,26 +17,33 @@ namespace InterviewsApp.WebAPI.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Получить данные конкретного собеседования
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор собеседования</param>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult GetIntervews(Guid id)
+        public IActionResult Get(Guid id)
         {
             _service.Get(id);
             return Ok();
         }
-
-        /*[HttpGet]
-        public IActionResult Get(InterviewRequest intReq)
+        /// <summary>
+        /// Получить список собеседований пользователя
+        /// </summary>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetInterviewsByUser(Guid userId)
         {
-            if (!string.IsNullOrWhiteSpace(intReq.UserId))
-                if (string.IsNullOrWhiteSpace(intReq.InterviewId))
-                    if (string.IsNullOrWhiteSpace(intReq.PositionId))
-                        return Ok(_repository.GetInterviewsByUser(intReq.UserId));
-                    else
-                        return Ok(InterviewHelper.GetInterviewsByUserAndPosition(intReq.UserId, intReq.PositionId));
-                else Ok(InterviewHelper.GetInterview(intReq.InterviewId));
-            return BadRequest("Невозможно запросить список встреч без указания идентификатора пользователя!");
-        }*/
-
+            _service.GetByUserId(userId);
+            return Ok();
+        }
+        /// <summary>
+        /// Добавить в систему новое собеседование
+        /// </summary>
+        /// <param name="newInterview"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult AddInterview(CreateInterviewDto newInterview)
         {

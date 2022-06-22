@@ -23,7 +23,7 @@ namespace InterviewsApp.Data.Abstractions.Interfaces
         /// </summary>
         /// <param name="predicate">Предикат, содержащий условие для отбора</param>
         /// <returns>Коллекция экземпляров сущности <see cref="TEntity"/></returns>
-        IEnumerable<TEntity> GetByPredicate(Expression<Func<TEntity, bool>> predicate);
+        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
         /// Обновить данные сущности
