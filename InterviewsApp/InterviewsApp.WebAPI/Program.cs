@@ -1,3 +1,9 @@
+using InterviewsApp.Core;
+using InterviewsApp.Data.Extensions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace InterviewsApp.WebAPI
 {
     public class Program
@@ -7,6 +13,8 @@ namespace InterviewsApp.WebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddPostgresDatabase(builder.Configuration);
+            builder.Services.AddCoreServices();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
