@@ -1,5 +1,7 @@
 ﻿using InterviewsApp.Core.Interfaces;
 using InterviewsApp.Core.Services;
+using InterviewsApp.Data.Extensions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -7,8 +9,9 @@ namespace InterviewsApp.Core
 {
     public static class ServiceCollectionExtention
     {
-        public static void AddCoreServices(this IServiceCollection services)
+        public static void AddCoreServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddPostgresDatabase(configuration);
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IInterviewService, InterviewService>();

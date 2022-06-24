@@ -13,6 +13,7 @@ namespace InterviewsApp.Core.Interfaces
     /// </summary>
     /// <typeparam name="TEntity">Сущность БД</typeparam>
     public interface IDbService<TEntity, TExternalDto> 
+        //TODO: Возможно, заменить прямую привязку к классам на интерфейсы
         where TEntity : BaseEntity
         where TExternalDto : BaseExternalDto
     {
