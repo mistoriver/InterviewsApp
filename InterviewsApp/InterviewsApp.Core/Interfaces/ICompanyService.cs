@@ -1,4 +1,5 @@
-﻿using InterviewsApp.Data.Models.Entities;
+﻿using InterviewsApp.Core.DTOs.External;
+using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace InterviewsApp.Core.Interfaces
     /// <summary>
     /// Интерфейс для работы с компаниями
     /// </summary>
-    public interface ICompanyService : IDbService<CompanyEntity>
+    public interface ICompanyService : IDbService<CompanyEntity, CompanyDto>
     {
         /// <summary>
         /// Создать компанию в системе
@@ -22,6 +23,7 @@ namespace InterviewsApp.Core.Interfaces
         /// </summary>
         /// <param name="id">Уникальный идентификатор компании</param>
         /// <param name="newRate">Новая оценка пользователя</param>
-        public void RateCompany(Guid id, short newRate);
+        /// <returns>Новое значение рейтинга</returns>
+        public short RateCompany(Guid id, short newRate);
     }
 }

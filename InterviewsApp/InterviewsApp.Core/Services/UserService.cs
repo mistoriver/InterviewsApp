@@ -1,4 +1,6 @@
-﻿using InterviewsApp.Core.DTOs;
+﻿using AutoMapper;
+using InterviewsApp.Core.DTOs;
+using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Core.Interfaces;
 using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
@@ -8,11 +10,11 @@ using System.Linq;
 
 namespace InterviewsApp.Core.Services
 {
-    public class UserService : BaseDbService<UserEntity>, IUserService
+    public class UserService : BaseDbService<UserEntity, UserDto>, IUserService
     {
         private readonly IPasswordService _passwordService;
 
-        public UserService(IRepository<UserEntity> repository, IPasswordService passwordService) :base(repository)
+        public UserService(IRepository<UserEntity> repository, IPasswordService passwordService, IMapper mapper) : base(repository, mapper)
         {
             _passwordService = passwordService;
         }
@@ -20,7 +22,12 @@ namespace InterviewsApp.Core.Services
         public void CreateUser(CreateUserDto dto)
         {
             if (!IsUnique(dto))
-                _repository.Create(new UserEntity() { Id = new Guid(), Login = dto.Login, Password = _passwordService.HashPassword(dto.Password), Name = dto.Name, IsActive = true }) ;
+            {
+                var user = _mapper.Map<UserEntity>(dto);
+                user.Password = _passwordService.HashPassword(user.Password);
+                user.IsActive = true;
+                _repository.Create(user);
+            }
         }
         public bool IsUnique(CreateUserDto dto) => _repository.Get(user => user.Login.Equals(dto.Login)).Any();
     }

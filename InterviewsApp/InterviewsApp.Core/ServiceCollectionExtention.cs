@@ -1,11 +1,7 @@
 ﻿using InterviewsApp.Core.Interfaces;
 using InterviewsApp.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace InterviewsApp.Core
 {
@@ -13,6 +9,8 @@ namespace InterviewsApp.Core
     {
         public static void AddCoreServices(this IServiceCollection services)
         {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddScoped<IInterviewService, InterviewService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPasswordService, PasswordService>();

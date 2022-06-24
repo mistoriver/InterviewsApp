@@ -1,4 +1,5 @@
-﻿using InterviewsApp.Data.Models.Entities;
+﻿using InterviewsApp.Core.DTOs.External;
+using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,21 @@ namespace InterviewsApp.Core.Interfaces
     /// Общий интерфейс для сервиса работы с БД
     /// </summary>
     /// <typeparam name="TEntity">Сущность БД</typeparam>
-    public interface IDbService<TEntity> where TEntity : BaseEntity
+    public interface IDbService<TEntity, TExternalDto> 
+        where TEntity : BaseEntity
+        where TExternalDto : BaseExternalDto
     {
         /// <summary>
         /// Получить данные конкретной сущности
         /// </summary>
         /// <param name="id">Уникальный идентификатор</param>
         /// <returns>Данные сущности</returns>
-        public TEntity Get(Guid id);
+        public TExternalDto Get(Guid id);
         /// <summary>
         /// Получить все сущности в системе
         /// </summary>
         /// <returns>Список всех сущностей</returns>
-        public IEnumerable<TEntity> Get();
+        public IEnumerable<TExternalDto> Get();
 
         /// <summary>
         /// Удалить сущность из системы

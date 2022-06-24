@@ -25,8 +25,7 @@ namespace InterviewsApp.WebAPI.Controllers
         [HttpGet]
         public IActionResult Get(Guid id)
         {
-            _service.Get(id);
-            return Ok();
+            return Ok(_service.Get(id));
         }
         /// <summary>
         /// Получить список всех вакансий в системе
@@ -38,6 +37,17 @@ namespace InterviewsApp.WebAPI.Controllers
             return Ok(_service.Get());
         }
         /// <summary>
+        /// Получить список вакансий пользователя
+        /// </summary>
+        /// <returns>Список вакансий пользователя</returns>
+        [HttpGet]
+        public IActionResult GetPositionsByUser(Guid userId)
+        {
+            if (userId == Guid.Empty)
+                return BadRequest();
+            return Ok(_service.GetByUserId(userId));
+        }
+        /// <summary>
         /// Создать новую вакансию в системе
         /// </summary>
         /// <param name="position">Данные вакансии</param>
@@ -46,6 +56,17 @@ namespace InterviewsApp.WebAPI.Controllers
         public IActionResult CreatePosition(CreatePositionDto position)
         {
             _service.CreatePosition(position);
+            return Ok();
+        }
+        /// <summary>
+        /// Удалить вакансию из системы
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансию</param>
+        /// <returns></returns>
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            _service.Delete(id);
             return Ok();
         }
     }

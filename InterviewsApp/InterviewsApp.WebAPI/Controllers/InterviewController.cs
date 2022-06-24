@@ -25,8 +25,8 @@ namespace InterviewsApp.WebAPI.Controllers
         [HttpGet]
         public IActionResult Get(Guid id)
         {
-            _service.Get(id);
-            return Ok();
+            
+            return Ok(_service.Get(id));
         }
         /// <summary>
         /// Получить список собеседований пользователя
@@ -36,8 +36,8 @@ namespace InterviewsApp.WebAPI.Controllers
         [HttpGet]
         public IActionResult GetInterviewsByUser(Guid userId)
         {
-            _service.GetByUserId(userId);
-            return Ok();
+            
+            return Ok(_service.GetByUserId(userId));
         }
         /// <summary>
         /// Добавить в систему новое собеседование
@@ -48,6 +48,17 @@ namespace InterviewsApp.WebAPI.Controllers
         public IActionResult AddInterview(CreateInterviewDto newInterview)
         {
             _service.CreateInterview(newInterview);
+            return Ok();
+        }
+        /// <summary>
+        /// Удалить собеседование из системы
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор собеседования</param>
+        /// <returns></returns>
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            _service.Delete(id);
             return Ok();
         }
     }

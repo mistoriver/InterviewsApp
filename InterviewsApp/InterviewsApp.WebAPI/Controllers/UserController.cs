@@ -26,7 +26,7 @@ namespace InterviewsApp.WebAPI.Controllers
         public IActionResult GetById(Guid id)
         {
             if (id == Guid.Empty)
-                return Ok(_service.Get());
+                return BadRequest();
             return Ok(_service.Get(id));
         }
         /// <summary>

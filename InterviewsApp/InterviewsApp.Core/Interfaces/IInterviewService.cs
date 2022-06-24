@@ -1,4 +1,5 @@
 ﻿using InterviewsApp.Core.DTOs;
+using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,14 +9,14 @@ namespace InterviewsApp.Core.Interfaces
     /// <summary>
     /// Интерфейс сервиса работы с собеседованиями
     /// </summary>
-    public interface IInterviewService : IDbService<InterviewEntity>
+    public interface IInterviewService : IDbService<InterviewEntity, InterviewDto>
     {
         /// <summary>
-        /// Получить все собеседования
+        /// Получить собеседования пользователя
         /// </summary>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns>Коллекция собеседований пользователя</returns>
-        public IEnumerable<InterviewEntity> GetByUserId(Guid userId);
+        public IEnumerable<InterviewDto> GetByUserId(Guid userId);
         /// <summary>
         /// Создать собеседование в системе
         /// </summary>

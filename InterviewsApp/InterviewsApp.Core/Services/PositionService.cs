@@ -1,35 +1,36 @@
-﻿using InterviewsApp.Core.DTOs;
+﻿using AutoMapper;
+using InterviewsApp.Core.DTOs;
+using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Core.Interfaces;
 using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace InterviewsApp.Core.Services
 {
-    public class PositionService : BaseDbService<PositionEntity>, IPositionService
+    public class PositionService : BaseDbService<PositionEntity, PositionDto>, IPositionService
     {
         protected readonly IRepository<UserEntity> _userRepository;
         protected readonly IRepository<CompanyEntity> _companyRepository;
-        public PositionService(IRepository<PositionEntity> repository, IRepository<UserEntity> userRepository, IRepository<CompanyEntity> companyRepository) : base(repository)
+        public PositionService(IRepository<PositionEntity> repository, IRepository<UserEntity> userRepository, IRepository<CompanyEntity> companyRepository, IMapper mapper) : base(repository, mapper)
         {
             _userRepository = userRepository;
             _companyRepository = companyRepository;
+        }
+        public IEnumerable<PositionDto> GetByUserId(Guid userId)
+        {
+            var positions = _repository.Get(p => p.UserId == userId).Select(p => _mapper.Map<PositionDto>(p));
+            return positions;
         }
         public void CreatePosition(CreatePositionDto dto)
         {
             var user = _userRepository.GetByIdOrDefault(dto.UserId);
             var company = _companyRepository.GetByIdOrDefault(dto.CompanyId);
-            var position = new PositionEntity()
-            {
-                Id = Guid.NewGuid(),
-                Name = dto.Name,
-                MoneyLower = 0,
-                MoneyUpper = 0,
-                City = dto.City,
-                CompanyId = dto.CompanyId,
-                UserId = dto.UserId
-            };
+            var position = _mapper.Map<PositionEntity>(dto);
+            position.MoneyLower = 0;
+            position.MoneyUpper = 0;
             position.User = user;
             position.Company = company;
             _repository.Create(position);

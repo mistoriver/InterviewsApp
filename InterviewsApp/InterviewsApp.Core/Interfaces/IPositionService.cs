@@ -1,4 +1,5 @@
 ﻿using InterviewsApp.Core.DTOs;
+using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,14 @@ namespace InterviewsApp.Core.Interfaces
     /// <summary>
     /// Интерфейс для работы с вакансиями
     /// </summary>
-    public interface IPositionService : IDbService<PositionEntity>
+    public interface IPositionService : IDbService<PositionEntity, PositionDto>
     {
+        /// <summary>
+        /// Получить вакансии пользователя
+        /// </summary>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns>Коллекция вакансий пользователя</returns>
+        public IEnumerable<PositionDto> GetByUserId(Guid userId);
         /// <summary>
         /// Создать вакансию в системе
         /// </summary>

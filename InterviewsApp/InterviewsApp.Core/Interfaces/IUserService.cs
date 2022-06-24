@@ -1,4 +1,5 @@
 ﻿using InterviewsApp.Core.DTOs;
+using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Interfaces
 {
-    public interface IUserService : IDbService<UserEntity>
+    public interface IUserService : IDbService<UserEntity, UserDto>
     {
         /// <summary>
         /// Создать пользователя в системе

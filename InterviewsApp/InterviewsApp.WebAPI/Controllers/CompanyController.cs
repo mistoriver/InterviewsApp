@@ -25,8 +25,7 @@ namespace InterviewsApp.WebAPI.Controllers
         [HttpGet]
         public IActionResult Get(Guid id)
         {
-            _service.Get(id);
-            return Ok();
+            return Ok(_service.Get(id));
         }
         /// <summary>
         /// Получить список всех компаний в системе
@@ -57,7 +56,17 @@ namespace InterviewsApp.WebAPI.Controllers
         [HttpPut]
         public IActionResult RateCompany(Guid id, short rate)
         {
-            _service.RateCompany(id, rate);
+            return Ok(_service.RateCompany(id, rate));
+        }
+        /// <summary>
+        /// Удалить компанию из системы
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор компании</param>
+        /// <returns></returns>
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            _service.Delete(id);
             return Ok();
         }
     }
