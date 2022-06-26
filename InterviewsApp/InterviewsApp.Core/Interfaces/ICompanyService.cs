@@ -1,10 +1,7 @@
-﻿using InterviewsApp.Core.DTOs.External;
+﻿using InterviewsApp.Core.DTOs;
+using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Data.Models.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Interfaces
 {
@@ -16,8 +13,8 @@ namespace InterviewsApp.Core.Interfaces
         /// <summary>
         /// Создать компанию в системе
         /// </summary>
-        /// <param name="name">Название компании</param>
-        public void CreateCompany(string name);
+        /// <param name="dto">Параметры компании</param>
+        public void CreateCompany(CreateCompanyDto dto);
         /// <summary>
         /// Оценить компанию
         /// </summary>

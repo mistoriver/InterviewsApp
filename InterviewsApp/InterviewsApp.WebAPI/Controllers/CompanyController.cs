@@ -46,10 +46,14 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult CreateCompany(string newCompanyName)
+        public IActionResult CreateCompany(CreateCompanyDto dto)
         {
-            _service.CreateCompany(newCompanyName);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                _service.CreateCompany(dto);
+                return Ok();
+            }
+            return BadRequest();
         }
         /// <summary>
         /// Оценить компанию

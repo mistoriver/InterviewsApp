@@ -60,8 +60,12 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult CreatePosition(CreatePositionDto position)
         {
-            _service.CreatePosition(position);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                _service.CreatePosition(position);
+                return Ok();
+            }
+            return BadRequest();
         }
         /// <summary>
         /// Удалить вакансию из системы

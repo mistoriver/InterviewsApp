@@ -51,8 +51,12 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult AddInterview(CreateInterviewDto newInterview)
         {
-            _service.CreateInterview(newInterview);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                _service.CreateInterview(newInterview);
+                return Ok();
+            }
+            return BadRequest();
         }
         /// <summary>
         /// Удалить собеседование из системы

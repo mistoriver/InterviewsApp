@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InterviewsApp.Core.DTOs;
 using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Core.Interfaces;
 using InterviewsApp.Data.Abstractions.Interfaces;
@@ -18,9 +19,10 @@ namespace InterviewsApp.Core.Services
         {
         }
 
-        public void CreateCompany(string name)
+        public void CreateCompany(CreateCompanyDto dto)
         {
-            var company = new CompanyEntity() { Id = Guid.NewGuid(), Name = name, Rating = 50 };
+            var company = _mapper.Map<CompanyEntity>(dto);
+            company.Rating = 50;
             _repository.Create(company);
         }
         public short RateCompany(Guid id, short newRate)
