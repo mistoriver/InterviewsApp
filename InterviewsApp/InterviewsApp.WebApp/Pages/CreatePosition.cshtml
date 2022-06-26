@@ -1,0 +1,33 @@
+﻿@page
+@model InterviewsApp.WebApp.Pages.CreatePositionModel
+@{
+}
+<style>
+    td {
+        padding:10px;
+    }
+</style>
+<div>
+    <p>Форма добавления вакансии.</p>
+
+    <table>
+        <tr>
+            <td>Название вакансии</td>
+            <td><input type="text" /></td>
+        </tr>
+        <tr>
+            <td>Город вакансии (или "Удалёнка")</td>
+            <td><input type="datetime-local" /></td>
+        </tr>
+        <tr>
+            <td>Компания</td>
+            <td><select id="company-select"></select></td>
+            <td id="hidden-button-cell"><button onclick="location.assign('/CreateCompany')">Нужной компании нет в списке</button></td>
+        </tr>
+    </table>
+    
+    <button id="create-button" onclick="createPosition()">Добавить вакансию</button>
+</div>
+
+<script src="~/js/create-position-page.js"></script>
+<script>getCompanies()</script>

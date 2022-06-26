@@ -2,6 +2,11 @@
 @model InterviewsApp.WebApp.Pages.CreateInterviewModel
 @{
 }
+<style>
+    td {
+        padding:10px;
+    }
+</style>
 <div>
     <p>Форма создания собеседований.</p>
 
@@ -16,7 +21,13 @@
         </tr>
         <tr>
             <td>Вакансия</td>
-            <td><input type="text" /></td>
+            <td><select id="position-select"></select></td>
+            <td id="hidden-button-cell" style="display:none"><button onclick="location.assign('/CreatePosition')">Добавить вакансию</button></td>
         </tr>
     </table>
+    
+    <button id="create-button" onclick="createInterview()">Создать собеседование</button>
 </div>
+
+<script src="~/js/create-interview-page.js"></script>
+<script>getPositions()</script>
