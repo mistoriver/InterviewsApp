@@ -1,8 +1,12 @@
 ﻿var tokenKey = "AccessToken";
 var currentUserId = "userId";
 function init() {
-    if (!sessionStorage.getItem(currentUserId) && location.pathname != "/LoginPage")
-        location.assign("/LoginPage");
+    let authorized = sessionStorage.getItem(currentUserId);
+    if (!authorized) {
+        document.getElementById("logout-button").style = "visibility:hidden";
+        if (location.pathname != "/LoginPage" && location.pathname != "/RegisterPage")
+            location.assign("/LoginPage");
+    }
 }
 
 function logout() {

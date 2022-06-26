@@ -18,5 +18,7 @@
             });
         }
     })
-    
+}
+function register() {
+    location.assign("/RegisterPage");
 }

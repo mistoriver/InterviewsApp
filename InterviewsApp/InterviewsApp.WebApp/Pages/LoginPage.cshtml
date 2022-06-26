@@ -2,9 +2,14 @@
 @model InterviewsApp.WebApp.Pages.LoginPageModel
 @{
 }
+<style>
+    td {
+        padding:10px;
+    }
+</style>
 <script src="~/js/login-page.js"></script>
 <div class="text-center">
-    <table>
+    <table style="margin:auto">
         <tr>
             <td>Логин: </td> 
             <td><input id="login" type="text"/></td>
@@ -15,4 +20,5 @@
         </tr>
     </table>
     <button onclick="login()">Войти</button>
+    <button onclick="register()">Зарегистрироваться</button>
 </div>

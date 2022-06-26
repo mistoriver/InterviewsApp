@@ -50,8 +50,12 @@ namespace InterviewsApp.WebAPI.Controllers
         [HttpPost]
         public IActionResult Register(CreateUserDto newUser)
         {
-            _service.CreateUser(newUser);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                _service.CreateUser(newUser);
+                return Ok();
+            }
+            return BadRequest();
         }
         /// <summary>
         /// Аутентифицировать пользователя в системе
@@ -62,12 +66,16 @@ namespace InterviewsApp.WebAPI.Controllers
         [HttpPost]
         public IActionResult Login(LoginUserDto loginDto)
         {
-            var userInfo = _service.Login(loginDto);
-            if (userInfo != null)
+            if (ModelState.IsValid)
             {
-                return Ok(userInfo);
+                var userInfo = _service.Login(loginDto);
+                if (userInfo != null)
+                {
+                    return Ok(userInfo);
+                }
+                return Unauthorized();
             }
-            return Unauthorized();
+            return BadRequest();
         }
         /// <summary>
         /// Удалить пользователя из системы
