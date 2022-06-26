@@ -1,5 +1,6 @@
 ﻿using InterviewsApp.Core.DTOs;
 using InterviewsApp.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,6 +24,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="id">Уникальный идентификатор компании</param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Get(Guid id)
         {
             return Ok(_service.Get(id));
@@ -32,6 +34,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// </summary>
         /// <returns>Список компаний в системе</returns>
         [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetCompanies()
         {
             return Ok(_service.Get());
@@ -42,6 +45,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="newCompanyName">Название компании</param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult CreateCompany(string newCompanyName)
         {
             _service.CreateCompany(newCompanyName);
@@ -54,6 +58,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="rate">Новая оценка</param>
         /// <returns></returns>
         [HttpPut]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult RateCompany(Guid id, short rate)
         {
             return Ok(_service.RateCompany(id, rate));
@@ -64,6 +69,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="id">Уникальный идентификатор компании</param>
         /// <returns></returns>
         [HttpDelete]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Delete(Guid id)
         {
             _service.Delete(id);

@@ -1,5 +1,6 @@
 ﻿using InterviewsApp.Core.DTOs;
 using InterviewsApp.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,6 +24,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="id">Уникальный идентификатор вакансии</param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Get(Guid id)
         {
             return Ok(_service.Get(id));
@@ -32,6 +34,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// </summary>
         /// <returns>Список вакансий в системе</returns>
         [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetPositions()
         {
             return Ok(_service.Get());
@@ -41,6 +44,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// </summary>
         /// <returns>Список вакансий пользователя</returns>
         [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetPositionsByUser(Guid userId)
         {
             if (userId == Guid.Empty)
@@ -53,6 +57,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="position">Данные вакансии</param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult CreatePosition(CreatePositionDto position)
         {
             _service.CreatePosition(position);
@@ -64,6 +69,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="id">Уникальный идентификатор вакансию</param>
         /// <returns></returns>
         [HttpDelete]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Delete(Guid id)
         {
             _service.Delete(id);

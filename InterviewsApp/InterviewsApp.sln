@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewsApp.WebAPI", "Int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewsApp.Data", "InterviewsApp.Data\InterviewsApp.Data.csproj", "{8392EEA5-D9A1-4E8F-9928-DCB9DC7B64DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewsApp.Core", "InterviewsApp.Core\InterviewsApp.Core.csproj", "{C41EACE1-35F4-4F9C-9F5F-79876822CDEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewsApp.Core", "InterviewsApp.Core\InterviewsApp.Core.csproj", "{C41EACE1-35F4-4F9C-9F5F-79876822CDEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

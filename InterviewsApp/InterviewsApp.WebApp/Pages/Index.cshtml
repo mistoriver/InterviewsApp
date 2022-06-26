@@ -1,10 +1,19 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Собеседования";
 }
-
+<script type="text/javascript" src="js/main-page.js"> </script>
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 id="welcome-text" class="display-4">Добро пожаловать!</h1>
+    <p>Здесь отображаются собеседования, которые вам предстоят.</p>
 </div>
+<button id="add-interview-button" onclick="location.assign('/CreateInterview');">Добавить новое собеседование</button>
+<table data-toggle="table" data-ajax="getInterviews">
+  <thead>
+    <tr>
+      <th data-field="name">Название собеседования</th>
+      <th data-field="date" data-formatter="dateFormatter">Дата собеседования</th>
+    </tr>
+  </thead>
+</table>

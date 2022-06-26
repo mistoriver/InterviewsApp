@@ -8,7 +8,7 @@ namespace InterviewsApp.Core.Mappings
     {
         public UserMapping() : base()
         { 
-            CreateMap<UserEntity, CreateUserDto>();
+            CreateMap<CreateUserDto,UserEntity>();
         }
     }
 }
