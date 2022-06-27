@@ -43,6 +43,18 @@ namespace InterviewsApp.WebAPI.Controllers
             return Ok(_service.GetByUserId(userId));
         }
         /// <summary>
+        /// Получить список собеседований пользователя c названием вакансии и компании
+        /// </summary>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetInterviewsByUserForUi(Guid userId)
+        {
+
+            return Ok(_service.GetByUserIdForUi(userId));
+        }
+        /// <summary>
         /// Добавить в систему новое собеседование
         /// </summary>
         /// <param name="newInterview"></param>

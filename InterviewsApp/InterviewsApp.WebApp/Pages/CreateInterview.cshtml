@@ -1,6 +1,7 @@
 ﻿@page
 @model InterviewsApp.WebApp.Pages.CreateInterviewModel
 @{
+    ViewData["Title"] = "Создание собеседования";
 }
 <style>
     td {
@@ -13,11 +14,11 @@
     <table>
         <tr>
             <td>Название собеседования</td>
-            <td><input type="text" /></td>
+            <td><input id="interviewName" type="text" /></td>
         </tr>
         <tr>
             <td>Время собеседования</td>
-            <td><input type="datetime-local" /></td>
+            <td><input id="interviewTime" type="datetime-local" /></td>
         </tr>
         <tr>
             <td>Вакансия</td>
@@ -27,7 +28,10 @@
     </table>
     
     <button id="create-button" onclick="createInterview()">Создать собеседование</button>
-</div>
 
-<script src="~/js/create-interview-page.js"></script>
-<script>getPositions()</script>
+    
+    <p id="message"></p>
+    <a id="manual-redirect" style="visibility:hidden" href="/" >Вернуться на главную страницу</a>
+</div>
+<script src="/js/create-interview-page.js"></script>
+<script>getPositions('@Model.CreatedPosition')</script>

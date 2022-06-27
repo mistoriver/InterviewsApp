@@ -24,7 +24,20 @@ namespace InterviewsApp.Core.Services
             var positions = _repository.Get(p => p.UserId == userId).Select(p => _mapper.Map<PositionDto>(p));
             return positions;
         }
-        public void CreatePosition(CreatePositionDto dto)
+
+        public IEnumerable<PositionUiDto> GetByUserIdForUi(Guid userId)
+        {
+            var positionDtos = GetByUserId(userId);
+            var res = new List<PositionUiDto>();
+            positionDtos.ToList().ForEach(dto =>
+            {
+                var _uiDto = _mapper.Map<PositionUiDto>(dto);
+                _uiDto.CompanyName = _repository.GetByIdOrDefault(dto.CompanyId).Name;
+                res.Add(_uiDto);
+            });
+            return res;
+        }
+        public Guid CreatePosition(CreatePositionDto dto)
         {
             var user = _userRepository.GetByIdOrDefault(dto.UserId);
             var company = _companyRepository.GetByIdOrDefault(dto.CompanyId);
@@ -33,7 +46,7 @@ namespace InterviewsApp.Core.Services
             position.MoneyUpper = 0;
             position.User = user;
             position.Company = company;
-            _repository.Create(position);
+            return _repository.Create(position);
         }
         public void UpdateMoney(UpdatePositionDto dto)
         {

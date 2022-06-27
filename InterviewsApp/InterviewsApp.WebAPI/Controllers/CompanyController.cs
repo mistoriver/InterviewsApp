@@ -50,8 +50,7 @@ namespace InterviewsApp.WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _service.CreateCompany(dto);
-                return Ok();
+                return Ok(_service.CreateCompany(dto));
             }
             return BadRequest();
         }

@@ -13,10 +13,12 @@ namespace InterviewsApp.Core.Services
     public class InterviewService : BaseDbService<InterviewEntity, InterviewDto>, IInterviewService
     {
         private readonly IRepository<PositionEntity> _positionRepository;
+        private readonly IRepository<CompanyEntity> _companyRepository;
 
-        public InterviewService(IRepository<InterviewEntity> repository, IRepository<PositionEntity> positionRepository, IMapper mapper) :base(repository, mapper)
+        public InterviewService(IRepository<InterviewEntity> repository, IRepository<PositionEntity> positionRepository, IRepository<CompanyEntity> companyRepository, IMapper mapper) :base(repository, mapper)
         {
             _positionRepository = positionRepository;
+            _companyRepository = companyRepository;
         }
         public override IEnumerable<InterviewDto> Get()
         {
@@ -30,12 +32,28 @@ namespace InterviewsApp.Core.Services
             ints.ToList().ForEach(i => res.Add(_mapper.Map<InterviewDto>(i)));
             return res;
         }
+        public IEnumerable<InterviewUiDto> GetByUserIdForUi(Guid userId)
+        {
+            var dtoList = GetByUserId(userId);
+            var res = new List<InterviewUiDto>();
+            dtoList.ToList().ForEach(dto =>
+            {
+                var _uiDto = _mapper.Map<InterviewUiDto>(dto);
+                var position = _positionRepository.GetByIdOrDefault(dto.PositionId);
+                _uiDto.PositionName = position.Name;
+                _uiDto.CompanyName = _companyRepository.GetByIdOrDefault(position.CompanyId).Name;
+                res.Add(_uiDto);
+            });
+            return res;
+        }
 
         public void CreateInterview(CreateInterviewDto dto)
         {
             var position = _positionRepository.GetByIdOrDefault(dto.PositionId);
             var interview = _mapper.Map<InterviewEntity>(dto);
             interview.Position = position;
+            if (interview.Date.Kind == DateTimeKind.Unspecified)
+                interview.Date = new DateTime(dto.Date.Ticks, DateTimeKind.Utc);
             _repository.Create(interview);
         }
     }

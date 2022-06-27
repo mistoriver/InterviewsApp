@@ -21,10 +21,17 @@ namespace InterviewsApp.Core.Interfaces
         /// <returns>Коллекция вакансий пользователя</returns>
         public IEnumerable<PositionDto> GetByUserId(Guid userId);
         /// <summary>
+        /// Получить вакансии пользователя с названиями компаний
+        /// </summary>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns>Коллекция вакансий пользователя с названиями компаний</returns>
+        public IEnumerable<PositionUiDto> GetByUserIdForUi(Guid userId);
+        /// <summary>
         /// Создать вакансию в системе
         /// </summary>
         /// <param name="dto">Параметры вакансии</param>
-        public void CreatePosition(CreatePositionDto dto);
+        /// <returns>Уникальный идентификатор созданной вакансии</returns>
+        public Guid CreatePosition(CreatePositionDto dto);
         /// <summary>
         /// Обновить информацию о зарплатной вилке
         /// </summary>

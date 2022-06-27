@@ -5,10 +5,6 @@ using InterviewsApp.Core.Interfaces;
 using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Services
 {
@@ -19,11 +15,11 @@ namespace InterviewsApp.Core.Services
         {
         }
 
-        public void CreateCompany(CreateCompanyDto dto)
+        public Guid CreateCompany(CreateCompanyDto dto)
         {
             var company = _mapper.Map<CompanyEntity>(dto);
             company.Rating = 50;
-            _repository.Create(company);
+            return _repository.Create(company);
         }
         public short RateCompany(Guid id, short newRate)
         {

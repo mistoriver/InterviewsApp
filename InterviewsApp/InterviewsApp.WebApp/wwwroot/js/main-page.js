@@ -5,7 +5,7 @@
 function getInterviews(params) {
     let token = sessionStorage.getItem(tokenKey);
     $('#interviews-table').bootstrapTable("showLoading");
-    fetch("https://localhost:7262/api/Interview/GetInterviewsByUser?userId=" + sessionStorage.getItem(currentUserId), {
+    fetch("https://localhost:7262/api/Interview/GetInterviewsByUserForUi?userId=" + sessionStorage.getItem(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
             "Authorization": "Bearer " + token
@@ -19,7 +19,8 @@ function getInterviews(params) {
     });
 }
 function dateFormatter(value) {
-    return '<input type="datetime-local" value="' + value.replace('Z', '') + '" disabled/>'
+    value = value.split('.')[0].replace('Z', '');
+    return '<input type="datetime-local" value="' + value + '" disabled/>'
 }
 
 function getInterviewData(id) {

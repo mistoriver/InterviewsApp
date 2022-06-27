@@ -35,7 +35,7 @@ namespace InterviewsApp.Data.Abstractions.Interfaces
         /// Создать новый экземпляр сущности в бд
         /// </summary>
         /// <param name="entity">Экземпляр сущности</param>
-        void Create(TEntity entity);
+        Guid Create(TEntity entity);
 
         /// <summary>
         /// Удалить сущность из бд

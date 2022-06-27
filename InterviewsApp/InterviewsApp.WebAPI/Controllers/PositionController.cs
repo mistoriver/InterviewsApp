@@ -52,6 +52,18 @@ namespace InterviewsApp.WebAPI.Controllers
             return Ok(_service.GetByUserId(userId));
         }
         /// <summary>
+        /// Получить список вакансий пользователя c названиями компаний
+        /// </summary>
+        /// <returns>Список вакансий пользователя</returns>
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetPositionsByUserForUi(Guid userId)
+        {
+            if (userId == Guid.Empty)
+                return BadRequest();
+            return Ok(_service.GetByUserIdForUi(userId));
+        }
+        /// <summary>
         /// Создать новую вакансию в системе
         /// </summary>
         /// <param name="position">Данные вакансии</param>
@@ -62,8 +74,7 @@ namespace InterviewsApp.WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _service.CreatePosition(position);
-                return Ok();
+                return Ok(_service.CreatePosition(position));
             }
             return BadRequest();
         }

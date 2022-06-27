@@ -1,12 +1,6 @@
 ﻿function checkPass(firstpass, secondpass) {
     return firstpass === secondpass;
 }
-function checkEmpty() {
-    for (let i = 0; i < arguments.length; i++) {
-        if (arguments[i] === "") return true;
-    }
-    return false;
-}
 
 let redirectTimeoutToken = "";
 let messageElement = ""

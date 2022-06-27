@@ -14,7 +14,8 @@ namespace InterviewsApp.Core.Interfaces
         /// Создать компанию в системе
         /// </summary>
         /// <param name="dto">Параметры компании</param>
-        public void CreateCompany(CreateCompanyDto dto);
+        /// <returns>Уникальный идентификатор созданной компании</returns>
+        public Guid CreateCompany(CreateCompanyDto dto);
         /// <summary>
         /// Оценить компанию
         /// </summary>

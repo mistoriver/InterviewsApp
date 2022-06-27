@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Собеседования";
+    ViewData["Title"] = "Мои собеседования";
 }
 <script type="text/javascript" src="js/main-page.js"> </script>
 <div class="text-center">
@@ -9,11 +9,13 @@
     <p>Здесь отображаются собеседования, которые вам предстоят.</p>
 </div>
 <button id="add-interview-button" onclick="location.assign('/CreateInterview');" style="margin-bottom:15px">Добавить новое собеседование</button>
-<table data-toggle="table" data-ajax="getInterviews">
+<table data-toggle="table" data-ajax="getInterviews" data-sort-name = "date" data-sort-order="asc">
   <thead>
     <tr>
-      <th data-field="name">Название собеседования</th>
-      <th data-field="date" data-formatter="dateFormatter">Дата собеседования</th>
+      <th data-field="name" data-sortable="true">Название собеседования</th>
+      <th data-field="date" data-sortable="true" data-formatter="dateFormatter">Дата собеседования</th>
+      <th data-field="positionName" data-sortable="true">Вакансия</th>
+      <th data-field="companyName" data-sortable="true">Компания</th>
     </tr>
   </thead>
 </table>
