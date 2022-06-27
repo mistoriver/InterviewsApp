@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace InterviewsApp.WebApp.Pages
 {
-    public class LoginPageModel : PageModel
+    public class RegisterModel : PageModel
     {
         public void OnGet()
         {

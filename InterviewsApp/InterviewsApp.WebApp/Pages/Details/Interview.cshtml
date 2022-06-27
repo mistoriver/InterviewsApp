@@ -1,0 +1,24 @@
+﻿@page
+@model InterviewsApp.WebApp.Pages.Details.InterviewModel
+@{
+    ViewData["Title"] = "Просмотр собеседования";
+}
+<style>
+    td {
+        padding:10px;
+    }
+</style>
+<div>
+    <h3>Просмотр собеседования</h3>
+
+    <table>
+        <tr>
+            <td>Название собеседования</td>
+            <td><input id="interview-name" type="text" /></td>
+        </tr>
+    </table>
+    
+    <button id="edit-button" onclick="editInterview()">Редактировать</button>
+    
+    <p id="message"></p>
+</div>

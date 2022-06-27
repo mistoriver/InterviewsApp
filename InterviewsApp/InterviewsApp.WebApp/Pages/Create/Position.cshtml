@@ -1,5 +1,5 @@
 ﻿@page
-@model InterviewsApp.WebApp.Pages.CreatePositionModel
+@model InterviewsApp.WebApp.Pages.Create.PositionModel
 @{
     ViewData["Title"] = "Добавление вакансии";
 }
@@ -9,7 +9,7 @@
     }
 </style>
 <div>
-    <p>Форма добавления вакансии.</p>
+    <h3>Добавление вакансии</h3>
 
     <table>
         <tr>
@@ -23,7 +23,7 @@
         <tr>
             <td>Компания</td>
             <td><select id="company-select"></select></td>
-            <td id="hidden-button-cell"><button onclick="location.assign('/CreateCompany')">Нужной компании нет в списке</button></td>
+            <td id="hidden-button-cell"><button onclick="location.assign('/Create/Company')">Нужной компании нет в списке</button></td>
         </tr>
     </table>
     
@@ -32,5 +32,5 @@
     <a id="manual-redirect" style="visibility:hidden" href="/" >Вернуться на главную страницу</a>
 </div>
 
-<script src="/js/create-position-page.js"></script>
+<script src="/js/creation-pages/create-position-page.js"></script>
 <script>getCompanies('@Model.CreatedCompany')</script>

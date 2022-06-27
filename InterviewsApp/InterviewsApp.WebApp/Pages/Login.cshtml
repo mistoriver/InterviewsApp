@@ -1,5 +1,5 @@
 ﻿@page
-@model InterviewsApp.WebApp.Pages.LoginPageModel
+@model InterviewsApp.WebApp.Pages.LoginModel
 @{
     ViewData["Title"] = "Вход";
 }
@@ -20,6 +20,8 @@
             <td><input id="password" type="password" /></td>
         </tr>
     </table>
-    <button onclick="login()">Войти</button>
-    <button onclick="register()">Зарегистрироваться</button>
+    <button id="login-button" onclick="login()">Войти</button>
+    <button id="register-button" onclick="location.assign('/Register')">Зарегистрироваться</button>
+    
+    <p id="message" style="margin:20px;"></p>
 </div>

@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace InterviewsApp.WebApp.Pages
+namespace InterviewsApp.WebApp.Pages.Create
 {
-    public class RegisterPageModel : PageModel
+    public class CompanyModel : PageModel
     {
         public void OnGet()
         {

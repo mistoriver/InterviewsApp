@@ -29,19 +29,14 @@ function register() {
                         document.getElementById("manual-redirect").style = "";
                         setMessage("Пользователь успешно зарегистрирован. Переадресация на страницу входа через 5 секунд...");
                         redirectTimeoutToken = setTimeout(() => {
-                            location.assign("/LoginPage");
+                            location.assign("/Login");
                         }, 5000);
                     }
                     else {
                         try {
                             response.json().then((data) => {
                                 setMessage("");
-                                if (data.errors.Name)
-                                    addMultipleMessageHtml(data.errors.Name);
-                                if (data.errors.Login)
-                                    addMultipleMessageHtml(data.errors.Login);
-                                if (data.errors.Password)
-                                    addMultipleMessageHtml(data.errors.Password);
+                                addRequestErrorsToMessage(data)
                                 document.getElementById("register-button").disabled = false;
                             })
                         }
@@ -54,25 +49,4 @@ function register() {
         else {
             setMessage("Пароль и подтверждение пароля должны совпадать!");
         }
-}
-
-function setMessage(message) {
-    if (messageElement === "")
-        messageElement = document.getElementById("message");
-    messageElement.innerText = message;
-}
-function setMessageHtml(messageHtml) {
-    if (messageElement === "")
-        messageElement = document.getElementById("message");
-    messageElement.innerHTML = messageHtml;
-}
-function addMessageHtml(messageHtml) {
-    if (messageElement === "")
-        messageElement = document.getElementById("message");
-    messageElement.innerHTML += messageHtml + "<br/>";
-}
-function addMultipleMessageHtml(msgArray) {
-    for (let i = 0; i < msgArray.length; i++) {
-        addMessageHtml(msgArray[i])
-    }
 }

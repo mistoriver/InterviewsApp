@@ -59,19 +59,15 @@ function createInterview() {
                     try {
                         response.json().then((data) => {
                             setMessage("");
-                            if (data.errors.Name)
-                                addMultipleMessageHtml(data.errors.Name);
-                            if (data.errors.Login)
-                                addMultipleMessageHtml(data.errors.Login);
-                            if (data.errors.Password)
-                                addMultipleMessageHtml(data.errors.Password);
-                            document.getElementById("register-button").disabled = false;
+                            addRequestErrorsToMessage(data);
                         })
                     }
                     catch (e) {
                         setMessage("Добавление неуспешно. Код ошибки: " + response.status);
                     }
                 }
-            })
+            }).then(() => {
+                document.getElementById("create-button").disabled = false;
+            });
     }
 }

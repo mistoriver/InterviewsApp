@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace InterviewsApp.WebApp.Pages
+namespace InterviewsApp.WebApp.Pages.Details
 {
-    public class CreateInterviewModel : PageModel
+    public class PositionModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
-        public string CreatedPosition { get; set; }
+        public string PositionId { get; set; }
         public void OnGet()
         {
         }

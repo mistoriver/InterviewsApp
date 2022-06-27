@@ -1,0 +1,25 @@
+﻿@page
+@model InterviewsApp.WebApp.Pages.Details.PositionModel
+@{
+    ViewData["Title"] = "Просмотр вакансии";
+}
+<style>
+    td {
+        padding:10px;
+    }
+</style>
+<div>
+    <h3>Просмотр вакансии</h3>
+
+    <table>
+        <tr>
+            <td>Название вакансии</td>
+            <td><input id="position-name" type="text" /></td>
+        </tr>
+    </table>
+    
+    <button id="edit-button" onclick="editPosition()">Редактировать</button>
+    
+    <p id="message"></p>
+</div>
+

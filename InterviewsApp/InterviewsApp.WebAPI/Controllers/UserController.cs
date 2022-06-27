@@ -73,7 +73,7 @@ namespace InterviewsApp.WebAPI.Controllers
                 {
                     return Ok(userInfo);
                 }
-                return Unauthorized();
+                return Unauthorized(new { error = "Неверный логин и/или пароль" });
             }
             return BadRequest();
         }

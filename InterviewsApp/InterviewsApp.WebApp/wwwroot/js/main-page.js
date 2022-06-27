@@ -22,6 +22,15 @@ function dateFormatter(value) {
     value = value.split('.')[0].replace('Z', '');
     return '<input type="datetime-local" value="' + value + '" disabled/>'
 }
+function interviewFormatter(value, row) {
+    return '<a  href="/Details/Interview?InterviewId=' + row.interviewId + '">' + value + ' <a/>'
+}
+function positionFormatter(value, row) {
+    return '<a  href="/Details/Position?PositionId=' + row.positionId + '">' + value + ' <a/>'
+}
+function companyFormatter(value, row) {
+    return '<a  href="/Details/Company?CompanyId=' + row.companyId + '">' + value + ' <a/>'
+}
 
 function getInterviewData(id) {
     fetch('https://localhost:7262/api/Interview/Get?id=' + id)

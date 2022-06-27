@@ -4,8 +4,8 @@ function init() {
     let authorized = sessionStorage.getItem(currentUserId);
     if (!authorized) {
         document.getElementById("logout-button").style = "visibility:hidden";
-        if (location.pathname != "/LoginPage" && location.pathname != "/RegisterPage")
-            location.assign("/LoginPage");
+        if (location.pathname != "/Login" && location.pathname != "/Register")
+            location.assign("/Login");
     }
 }
 
@@ -21,23 +21,34 @@ function checkEmpty() {
     return false;
 }
 
-function setMessage(message, messageElement = null) {
+function setMessage(message, messageElement) {
     if (messageElement === "" || !messageElement)
         messageElement = document.getElementById("message");
-    messageElement.innerText = message;
+    if (messageElement)
+        messageElement.innerText = message;
 }
-function setMessageHtml(messageHtml, messageElement = null) {
+function setMessageHtml(messageHtml, messageElement) {
     if (messageElement === "")
         messageElement = document.getElementById("message");
-    messageElement.innerHTML = messageHtml;
+    if (messageElement)
+        messageElement.innerHTML = messageHtml;
 }
-function addMessageHtml(messageHtml, messageElement = null) {
+function addMessageHtml(messageHtml, messageElement) {
     if (messageElement === "")
         messageElement = document.getElementById("message");
-    messageElement.innerHTML += messageHtml + "<br/>";
+    if (messageElement)
+        messageElement.innerHTML += messageHtml + "<br/>";
 }
-function addMultipleMessageHtml(msgArray) {
+function addMultipleMessageHtml(msgArray, messageElement) {
     for (let i = 0; i < msgArray.length; i++) {
-        addMessageHtml(msgArray[i])
+        if (messageElement)
+            addMessageHtml(msgArray[i], messageElement)
     }
+}
+function addRequestErrorsToMessage(requestData, messageElement) {
+    let errorArr = Object.values(requestData.errors);
+    if (messageElement === "" || !messageElement)
+        messageElement = document.getElementById("message");
+    if (messageElement)
+        addMultipleMessageHtml(errorArr, messageElement);
 }
