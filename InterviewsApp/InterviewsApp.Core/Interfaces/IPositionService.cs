@@ -15,6 +15,13 @@ namespace InterviewsApp.Core.Interfaces
     public interface IPositionService : IDbService<PositionEntity, PositionDto>
     {
         /// <summary>
+        /// Получить конкретную вакансию пользователя с названием компании
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        public PositionUiDto GetForUi(Guid id, Guid userId);
+        /// <summary>
         /// Получить вакансии пользователя
         /// </summary>
         /// <param name="userId">Уникальный идентификатор пользователя</param>

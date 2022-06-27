@@ -14,7 +14,11 @@
     <table>
         <tr>
             <td>Название компании</td>
-            <td><input id="company-name" type="text" /></td>
+            <td id="company-name"></td>
+        </tr>
+        <tr>
+            <td>Рейтинг компании</td>
+            <td id="company-rating"></td>
         </tr>
     </table>
     
@@ -22,3 +26,5 @@
     
     <p id="message"></p>
 </div>
+<script src="/js/details-pages/company-details.js"></script>
+<script>getCompanyInfo('@Model.CompanyId')</script>

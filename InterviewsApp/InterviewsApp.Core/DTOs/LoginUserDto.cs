@@ -11,7 +11,7 @@ namespace InterviewsApp.Core.DTOs
         /// <summary>
         /// Логин
         /// </summary>
-        [Required (ErrorMessage = "Не указан логин")]
+        [Required(ErrorMessage = "Не указан логин")]
         public string Login { get; set; }
 
         /// <summary>

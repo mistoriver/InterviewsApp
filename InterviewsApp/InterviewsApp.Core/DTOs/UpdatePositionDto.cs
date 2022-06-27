@@ -19,7 +19,7 @@ namespace InterviewsApp.Core.DTOs
         /// <summary>
         /// Нижняя вилка
         /// </summary>
-        [Range(1000,10000000, ErrorMessage = "Нижняя граница зарплатной вилки должна быть в пределах от 1 тысячи до 10 миллионов.")]
+        [Range(1000, 10000000, ErrorMessage = "Нижняя граница зарплатной вилки должна быть в пределах от 1 тысячи до 10 миллионов.")]
         public int MoneyLower { get; set; }
 
         /// <summary>

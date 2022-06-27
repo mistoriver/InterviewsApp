@@ -14,7 +14,15 @@
     <table>
         <tr>
             <td>Название вакансии</td>
-            <td><input id="position-name" type="text" /></td>
+            <td id="position-name"></td>
+        </tr>
+        <tr>
+            <td>Город вакансии</td>
+            <td id="city-name"></td>
+        </tr>
+        <tr>
+            <td>Компания</td>
+            <td id="company-name"></td>
         </tr>
     </table>
     
@@ -22,4 +30,5 @@
     
     <p id="message"></p>
 </div>
-
+<script src="/js/details-pages/position-details.js"></script>
+<script>getPositionInfo('@Model.PositionId')</script>

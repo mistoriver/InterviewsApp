@@ -19,6 +19,10 @@ namespace InterviewsApp.Core.Services
             _userRepository = userRepository;
             _companyRepository = companyRepository;
         }
+        public PositionUiDto GetForUi(Guid id, Guid userId)
+        {
+            return GetByUserIdForUi(userId)?.FirstOrDefault(i => i.Id == id);
+        }
         public IEnumerable<PositionDto> GetByUserId(Guid userId)
         {
             var positions = _repository.Get(p => p.UserId == userId).Select(p => _mapper.Map<PositionDto>(p));
@@ -32,7 +36,7 @@ namespace InterviewsApp.Core.Services
             positionDtos.ToList().ForEach(dto =>
             {
                 var _uiDto = _mapper.Map<PositionUiDto>(dto);
-                _uiDto.CompanyName = _repository.GetByIdOrDefault(dto.CompanyId).Name;
+                _uiDto.CompanyName = _companyRepository.GetByIdOrDefault(dto.CompanyId).Name;
                 res.Add(_uiDto);
             });
             return res;

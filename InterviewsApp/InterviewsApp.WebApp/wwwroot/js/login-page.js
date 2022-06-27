@@ -28,7 +28,9 @@
                                 addRequestErrorsToMessage(data);
                             }
                             else
-                                setMessage("Аутентификация неуспешна. Код ошибки: " + response.status);
+                                if (response.status === 401)
+                                    setMessage(data.error);
+                                else setMessage("Аутентификация неуспешна. Код ошибки: " + response.status);
                         });
                     }
                     catch (e) {

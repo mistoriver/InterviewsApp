@@ -30,6 +30,17 @@ namespace InterviewsApp.WebAPI.Controllers
             return Ok(_service.Get(id));
         }
         /// <summary>
+        /// Получить данные вакансии
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetForUi(Guid id, Guid userId)
+        {
+            return Ok(_service.GetForUi(id, userId));
+        }
+        /// <summary>
         /// Получить список всех вакансий в системе
         /// </summary>
         /// <returns>Список вакансий в системе</returns>

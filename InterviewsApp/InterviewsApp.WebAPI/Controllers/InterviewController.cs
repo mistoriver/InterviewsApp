@@ -25,10 +25,20 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult Get(Guid id)
+        public IActionResult Get(Guid id, Guid userId)
         {
-            
-            return Ok(_service.Get(id));
+            return Ok(_service.Get(id, userId));
+        }
+        /// <summary>
+        /// Получить данные конкретного собеседования c названием вакансии и компании
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор собеседования</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetForUi(Guid id, Guid userId)
+        {
+            return Ok(_service.GetForUi(id, userId));
         }
         /// <summary>
         /// Получить список собеседований пользователя

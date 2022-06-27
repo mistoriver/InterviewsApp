@@ -24,6 +24,18 @@ namespace InterviewsApp.Core.Services
         {
             return new List<InterviewDto>();
         }
+        public override InterviewDto Get(Guid id)
+        {
+            return new InterviewDto();
+        }
+        public InterviewDto Get(Guid id, Guid userId)
+        {
+            return GetByUserId(userId)?.FirstOrDefault(i => i.Id == id);
+        }
+        public InterviewUiDto GetForUi(Guid id, Guid userId)
+        {
+            return GetByUserIdForUi(userId)?.FirstOrDefault(i => i.Id == id);
+        }
         public IEnumerable<InterviewDto> GetByUserId(Guid userId)
         {
             var positions = _positionRepository.Get(p => p.UserId == userId)?.Select(p => p.Id);
@@ -41,7 +53,9 @@ namespace InterviewsApp.Core.Services
                 var _uiDto = _mapper.Map<InterviewUiDto>(dto);
                 var position = _positionRepository.GetByIdOrDefault(dto.PositionId);
                 _uiDto.PositionName = position.Name;
-                _uiDto.CompanyName = _companyRepository.GetByIdOrDefault(position.CompanyId).Name;
+                var company = _companyRepository.GetByIdOrDefault(position.CompanyId);
+                _uiDto.CompanyName = company.Name;
+                _uiDto.CompanyId = company.Id;
                 res.Add(_uiDto);
             });
             return res;

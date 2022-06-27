@@ -31,7 +31,7 @@
 
 function createPosition() {
     let name = document.getElementById("position-name").value;
-    let cityName = document.getElementById("city-name").value + "Z";
+    let cityName = document.getElementById("city-name").value;
     let company = document.getElementById("company-select").value;
     if (!checkEmpty(name, cityName, company)) {
         document.getElementById("create-button").disabled = true;

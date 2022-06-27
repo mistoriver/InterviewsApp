@@ -12,6 +12,20 @@ namespace InterviewsApp.Core.Interfaces
     public interface IInterviewService : IDbService<InterviewEntity, InterviewDto>
     {
         /// <summary>
+        /// Получить конкретное собеседование пользователя
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор собеседования</param>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        public InterviewDto Get(Guid id, Guid userId);
+        /// <summary>
+        /// Получить конкретное собеседование пользователя с названиями связанных сущностей
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор собеседования</param>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        public InterviewUiDto GetForUi(Guid id, Guid userId);
+        /// <summary>
         /// Получить собеседования пользователя
         /// </summary>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
