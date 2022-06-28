@@ -32,9 +32,9 @@ namespace InterviewsApp.Data.Models.Entities
         public string City { get; set; } = null!;
 
         /// <summary>
-        /// Путь к комментарию
+        /// Комментарий
         /// </summary>
-        public string? PathToComment { get; set; }
+        public string Comment { get; set; }
 
         /// <summary>
         /// Флаг получения оффера

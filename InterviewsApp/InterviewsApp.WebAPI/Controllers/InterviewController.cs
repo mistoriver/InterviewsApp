@@ -69,5 +69,12 @@ namespace InterviewsApp.WebAPI.Controllers
             _service.Delete(id);
             return Ok();
         }
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UpdateComment(UpdateCommentDto commentInfo)
+        {
+            _service.UpdateComment(commentInfo);
+            return Ok();
+        }
     }
 }

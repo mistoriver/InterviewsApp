@@ -59,5 +59,15 @@ namespace InterviewsApp.Core.Services
                 interview.Date = new DateTime(dto.Date.Ticks, DateTimeKind.Utc);
             _repository.Create(interview);
         }
+        public void UpdateComment(UpdateCommentDto dto)
+        {
+            var positionIds = _positionRepository.Get(p => p.UserId == dto.UserId).Select(p => p.Id);
+            var interview = _repository.Get(e => e.Id == dto.Id && positionIds.Contains(e.PositionId)).FirstOrDefault();
+            if (interview != null)
+            {
+                interview.Comment = dto.Comment;
+                _repository.Update(interview);
+            }
+        }
     }
 }

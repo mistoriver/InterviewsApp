@@ -35,11 +35,6 @@ namespace InterviewsApp.Core.DTOs
         public string City { get; set; }
 
         /// <summary>
-        /// Путь к комментарию
-        /// </summary>
-        public string PathToComment { get; set; }
-
-        /// <summary>
         /// Флаг получения оффера
         /// </summary>
         public bool OfferReceived { get; set; }

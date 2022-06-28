@@ -29,5 +29,7 @@ namespace InterviewsApp.Core.Interfaces
         /// </summary>
         /// <param name="dto">Данные для создания собеседование</param>
         public void CreateInterview(CreateInterviewDto dto);
+
+        public void UpdateComment(UpdateCommentDto dto);
     }
 }

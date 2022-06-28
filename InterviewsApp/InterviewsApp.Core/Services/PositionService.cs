@@ -71,5 +71,14 @@ namespace InterviewsApp.Core.Services
                 _repository.Update(position);
             }
         }
+        public void UpdateComment(UpdateCommentDto dto)
+        {
+            var position = _repository.Get(e => e.Id == dto.Id && e.UserId == dto.UserId).FirstOrDefault();
+            if (position != null)
+            {
+                position.Comment = dto.Comment;
+                _repository.Update(position);
+            }
+        }
     }
 }

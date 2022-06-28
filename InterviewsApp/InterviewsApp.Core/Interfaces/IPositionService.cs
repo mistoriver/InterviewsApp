@@ -49,5 +49,7 @@ namespace InterviewsApp.Core.Interfaces
         /// <param name="id">Уникальный идентификатор вакансии</param>
         public void UpdateSetOffered(Guid id);
 
+        public void UpdateComment(UpdateCommentDto dto);
+
     }
 }
