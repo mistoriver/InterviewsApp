@@ -23,10 +23,22 @@ namespace InterviewsApp.Core.DTOs.External
         /// Путь к комментарию
         /// </summary>
         public string PathToComment { get; set; }
+        /// <summary>
+        /// Название позиции
+        /// </summary>
+        public string PositionName { get; set; }
 
         /// <summary>
         /// Уникальный идентификатор вакансии
         /// </summary>
         public Guid PositionId { get; set; }
+        /// <summary>
+        /// Название компании
+        /// </summary>
+        public string CompanyName { get; set; }
+        /// <summary>
+        /// Уникальный идентификатор компании
+        /// </summary>
+        public Guid CompanyId { get; set; }
     }
 }

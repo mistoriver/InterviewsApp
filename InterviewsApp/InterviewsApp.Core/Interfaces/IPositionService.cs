@@ -20,19 +20,13 @@ namespace InterviewsApp.Core.Interfaces
         /// <param name="id">Уникальный идентификатор вакансии</param>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns></returns>
-        public PositionUiDto GetForUi(Guid id, Guid userId);
+        public PositionDto Get(Guid id, Guid userId);
         /// <summary>
         /// Получить вакансии пользователя
         /// </summary>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns>Коллекция вакансий пользователя</returns>
         public IEnumerable<PositionDto> GetByUserId(Guid userId);
-        /// <summary>
-        /// Получить вакансии пользователя с названиями компаний
-        /// </summary>
-        /// <param name="userId">Уникальный идентификатор пользователя</param>
-        /// <returns>Коллекция вакансий пользователя с названиями компаний</returns>
-        public IEnumerable<PositionUiDto> GetByUserIdForUi(Guid userId);
         /// <summary>
         /// Создать вакансию в системе
         /// </summary>

@@ -36,9 +36,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetForUi(Guid id, Guid userId)
+        public IActionResult GetByUser(Guid id, Guid userId)
         {
-            return Ok(_service.GetForUi(id, userId));
+            return Ok(_service.Get(id, userId));
         }
         /// <summary>
         /// Получить список всех вакансий в системе
@@ -46,7 +46,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns>Список вакансий в системе</returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetPositions()
+        public IActionResult GetMultiplePositions()
         {
             return Ok(_service.Get());
         }
@@ -56,23 +56,11 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns>Список вакансий пользователя</returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetPositionsByUser(Guid userId)
+        public IActionResult GetMultiplePositionsByUser(Guid userId)
         {
             if (userId == Guid.Empty)
                 return BadRequest();
             return Ok(_service.GetByUserId(userId));
-        }
-        /// <summary>
-        /// Получить список вакансий пользователя c названиями компаний
-        /// </summary>
-        /// <returns>Список вакансий пользователя</returns>
-        [HttpGet]
-        [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetPositionsByUserForUi(Guid userId)
-        {
-            if (userId == Guid.Empty)
-                return BadRequest();
-            return Ok(_service.GetByUserIdForUi(userId));
         }
         /// <summary>
         /// Создать новую вакансию в системе

@@ -1,5 +1,5 @@
 ﻿function getPositions(createdPosition) {
-    fetch(apihost + "/Position/GetPositionsByUser?userId=" + sessionStorage.getItem("userId"), {
+    fetch(apihost + "/Position/GetMultipleByUser?userId=" + sessionStorage.getItem("userId"), {
         method: "GET", headers: {
             "Accept": "application/json",
             "Authorization": "Bearer " + sessionStorage.getItem("AccessToken")

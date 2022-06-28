@@ -19,26 +19,15 @@ namespace InterviewsApp.Core.Services
             _userRepository = userRepository;
             _companyRepository = companyRepository;
         }
-        public PositionUiDto GetForUi(Guid id, Guid userId)
+        public PositionDto Get(Guid id, Guid userId)
         {
-            return GetByUserIdForUi(userId)?.FirstOrDefault(i => i.Id == id);
+            return GetByUserId(userId)?.FirstOrDefault(i => i.Id == id);
         }
         public IEnumerable<PositionDto> GetByUserId(Guid userId)
         {
             var positions = _repository.Get(p => p.UserId == userId).Select(p => _mapper.Map<PositionDto>(p));
-            return positions;
-        }
-
-        public IEnumerable<PositionUiDto> GetByUserIdForUi(Guid userId)
-        {
-            var positionDtos = GetByUserId(userId);
-            var res = new List<PositionUiDto>();
-            positionDtos.ToList().ForEach(dto =>
-            {
-                var _uiDto = _mapper.Map<PositionUiDto>(dto);
-                _uiDto.CompanyName = _companyRepository.GetByIdOrDefault(dto.CompanyId).Name;
-                res.Add(_uiDto);
-            });
+            var res = positions.ToList();
+            res.ForEach(p => p.CompanyName = _companyRepository.GetByIdOrDefault(p.CompanyId).Name);
             return res;
         }
         public Guid CreatePosition(CreatePositionDto dto)

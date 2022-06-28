@@ -32,31 +32,20 @@ namespace InterviewsApp.Core.Services
         {
             return GetByUserId(userId)?.FirstOrDefault(i => i.Id == id);
         }
-        public InterviewUiDto GetForUi(Guid id, Guid userId)
-        {
-            return GetByUserIdForUi(userId)?.FirstOrDefault(i => i.Id == id);
-        }
         public IEnumerable<InterviewDto> GetByUserId(Guid userId)
         {
             var positions = _positionRepository.Get(p => p.UserId == userId)?.Select(p => p.Id);
             var ints = _repository.Get(i => positions.Any(p => i.PositionId == p));
             var res = new List<InterviewDto>();
-            ints.ToList().ForEach(i => res.Add(_mapper.Map<InterviewDto>(i)));
-            return res;
-        }
-        public IEnumerable<InterviewUiDto> GetByUserIdForUi(Guid userId)
-        {
-            var dtoList = GetByUserId(userId);
-            var res = new List<InterviewUiDto>();
-            dtoList.ToList().ForEach(dto =>
+            ints.ToList().ForEach(i => 
             {
-                var _uiDto = _mapper.Map<InterviewUiDto>(dto);
-                var position = _positionRepository.GetByIdOrDefault(dto.PositionId);
-                _uiDto.PositionName = position.Name;
+                var interview = _mapper.Map<InterviewDto>(i);
+                var position = _positionRepository.GetByIdOrDefault(i.PositionId);
+                interview.PositionName = position.Name;
                 var company = _companyRepository.GetByIdOrDefault(position.CompanyId);
-                _uiDto.CompanyName = company.Name;
-                _uiDto.CompanyId = company.Id;
-                res.Add(_uiDto);
+                interview.CompanyName = company.Name;
+                interview.CompanyId = company.Id;
+                res.Add(interview);
             });
             return res;
         }

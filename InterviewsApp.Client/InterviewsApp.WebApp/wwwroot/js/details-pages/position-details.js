@@ -1,5 +1,5 @@
 ﻿function getPositionInfo(id) {
-    fetch(apihost + "/Position/GetForUi?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId), {
+    fetch(apihost + "/Position/GetByUser?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
             "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)

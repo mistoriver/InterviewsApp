@@ -19,24 +19,11 @@ namespace InterviewsApp.Core.Interfaces
         /// <returns></returns>
         public InterviewDto Get(Guid id, Guid userId);
         /// <summary>
-        /// Получить конкретное собеседование пользователя с названиями связанных сущностей
-        /// </summary>
-        /// <param name="id">Уникальный идентификатор собеседования</param>
-        /// <param name="userId">Уникальный идентификатор пользователя</param>
-        /// <returns></returns>
-        public InterviewUiDto GetForUi(Guid id, Guid userId);
-        /// <summary>
         /// Получить собеседования пользователя
         /// </summary>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns>Коллекция собеседований пользователя</returns>
         public IEnumerable<InterviewDto> GetByUserId(Guid userId);
-        /// <summary>
-        /// Получить собеседования пользователя c названиями вакансий и компаний
-        /// </summary>
-        /// <param name="userId">Уникальный идентификатор пользователя</param>
-        /// <returns>Коллекция собеседований пользователя c названиями вакансий и компаний</returns>
-        public IEnumerable<InterviewUiDto> GetByUserIdForUi(Guid userId);
         /// <summary>
         /// Создать собеседование в системе
         /// </summary>

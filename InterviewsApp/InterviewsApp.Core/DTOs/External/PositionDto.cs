@@ -42,6 +42,10 @@ namespace InterviewsApp.Core.DTOs.External
         /// Флаг получения отказа
         /// </summary>
         public bool DenialReceived { get; set; }
+        /// <summary>
+        /// Название компании
+        /// </summary>
+        public string CompanyName { get; set; }
 
         /// <summary>
         /// Уникальный идентификатор компании
