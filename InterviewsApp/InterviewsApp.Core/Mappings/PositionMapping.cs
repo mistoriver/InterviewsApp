@@ -9,7 +9,6 @@ namespace InterviewsApp.Core.Mappings
         public PositionMapping() : base()
         {
             CreateMap<CreatePositionDto, PositionEntity>();
-            CreateMap<PositionDto, PositionUiDto>();
         }
     }
 }
