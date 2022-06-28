@@ -1,5 +1,5 @@
 ﻿function getCompanyInfo(id) {
-    fetch("https://localhost:7262/api/Company/Get?id=" + id, {
+    fetch(apihost + "/Company/Get?id=" + id, {
         method: "GET", headers: {
             "Accept": "application/json",
             "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)

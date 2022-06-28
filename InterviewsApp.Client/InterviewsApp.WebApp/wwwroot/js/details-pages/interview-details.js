@@ -1,5 +1,5 @@
 ﻿function getInterviewInfo(id) {
-    fetch("https://localhost:7262/api/Interview/GetForUi?id="+ id +"&userId=" + sessionStorage.getItem(currentUserId), {
+    fetch(apihost + "/Interview/GetForUi?id="+ id +"&userId=" + sessionStorage.getItem(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
             "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)

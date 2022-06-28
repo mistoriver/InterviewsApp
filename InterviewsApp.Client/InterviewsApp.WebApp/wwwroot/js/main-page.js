@@ -1,11 +1,11 @@
 ﻿function start() {
-    fetch('https://localhost:7262/api/User/GetUsers', { method: 'GET' });
+    fetch(apihost +'/User/GetUsers', { method: 'GET' });
 }
 
 function getInterviews(params) {
     let token = sessionStorage.getItem(tokenKey);
     $('#interviews-table').bootstrapTable("showLoading");
-    fetch("https://localhost:7262/api/Interview/GetInterviewsByUserForUi?userId=" + sessionStorage.getItem(currentUserId), {
+    fetch(apihost + "/Interview/GetInterviewsByUserForUi?userId=" + sessionStorage.getItem(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
             "Authorization": "Bearer " + token
@@ -33,7 +33,7 @@ function companyFormatter(value, row) {
 }
 
 function getInterviewData(id) {
-    fetch('https://localhost:7262/api/Interview/Get?id=' + id)
+    fetch(apihost + '/Interview/Get?id=' + id)
         .then((response) => response.json())
         .then((data) => {
             document.getElementById('interview-datetime').value = data.date.replace('Z', '');

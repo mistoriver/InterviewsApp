@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewsApp.WebApp", "InterviewsApp.WebApp\InterviewsApp.WebApp.csproj", "{8C8ADB50-005C-41F6-9F7D-DFD36F8F2362}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewsApp.WebAPI", "InterviewsApp.WebAPI\InterviewsApp.WebAPI.csproj", "{21F9DE89-D119-4A52-8725-7A0ADCE84DAE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewsApp.Data", "InterviewsApp.Data\InterviewsApp.Data.csproj", "{8392EEA5-D9A1-4E8F-9928-DCB9DC7B64DD}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8C8ADB50-005C-41F6-9F7D-DFD36F8F2362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C8ADB50-005C-41F6-9F7D-DFD36F8F2362}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C8ADB50-005C-41F6-9F7D-DFD36F8F2362}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C8ADB50-005C-41F6-9F7D-DFD36F8F2362}.Release|Any CPU.Build.0 = Release|Any CPU
 		{21F9DE89-D119-4A52-8725-7A0ADCE84DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21F9DE89-D119-4A52-8725-7A0ADCE84DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21F9DE89-D119-4A52-8725-7A0ADCE84DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU

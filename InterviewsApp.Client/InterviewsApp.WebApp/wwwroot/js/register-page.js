@@ -15,7 +15,7 @@ function register() {
     else
         if (checkPass(password, secpassword)) {
             document.getElementById("register-button").disabled = true;
-            fetch('https://localhost:7262/api/User/Register',
+            fetch(apihost + '/User/Register',
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

@@ -1,5 +1,7 @@
 ﻿var tokenKey = "AccessToken";
 var currentUserId = "userId";
+var apihost = "https://localhost:5001/api";
+
 function init() {
     let authorized = sessionStorage.getItem(currentUserId);
     if (!authorized) {

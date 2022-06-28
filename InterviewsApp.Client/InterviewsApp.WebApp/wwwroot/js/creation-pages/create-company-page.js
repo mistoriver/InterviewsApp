@@ -2,7 +2,7 @@
     let name = document.getElementById("company-name").value;
     if (!checkEmpty(name)) {
         document.getElementById("create-button").disabled = true;
-        fetch('https://localhost:7262/api/Company/CreateCompany',
+        fetch(apihost + '/Company/CreateCompany',
             {
                 method: "POST",
                 headers: {
