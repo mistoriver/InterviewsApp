@@ -7,11 +7,17 @@
     td {
         padding: 10px;
     }
+    td.comment-cell {
+        width:70%;
+    }
+    textarea {
+        width:100%;
+    }
 </style>
 <div>
     <h3 id="interview-name">Просмотр собеседования </h3>
 
-    <table>
+    <table  style="width:100%">
         <tr>
             <td>Время собеседования:</td>
             <td><input id="interview-time" type="datetime-local" disabled /></td>
@@ -26,7 +32,11 @@
         </tr>
         <tr>
             <td>Комментарий:</td>
-            <td id="comment"></td>
+            <td id="comment" class="comment-cell"></td>
+            <td style="display:none;"  class="comment-cell"><textarea id="comment-edit-input"></textarea></td>
+            <td><button id="edit-comment" onclick="editComment()"></button></td>
+            <td style="display:none;"><button id="confirm-comment"  onclick="confirmComment('@Model.InterviewId')"></button></td>
+            <td style="display:none;"><button id="discard-comment"  onclick="discardComment()"></button></td>
         </tr>
     </table>
 
