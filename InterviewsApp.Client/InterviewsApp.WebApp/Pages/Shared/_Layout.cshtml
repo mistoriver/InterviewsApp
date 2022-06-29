@@ -13,9 +13,49 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/bootstrap-table.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    
+
     <script src="/js/basic-logic.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <style>
+
+        button {
+            background-color: #fff;
+            border: 1px solid #d5d9d9;
+            border-radius: 8px;
+            box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+            box-sizing: border-box;
+            color: #0f1111;
+            cursor: pointer;
+            display: inline-block;
+            line-height: 29px;
+            padding: 0 10px 0 11px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            width: auto;
+        }
+
+            button:hover {
+                background-color: #f7fafa;
+            }
+
+            button:focus {
+                border-color: #008296;
+                box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+                outline: 0;
+            }
+
+        a {
+            color: black;
+            text-decoration: underline;
+            text-decoration-color: black;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -36,7 +76,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="flex: revert;">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            
+
                             <a class="nav-link text-dark" asp-area="" onclick="logout()" id="logout-button"><i class="fa-solid fa-user"></i> Выйти из системы</a>
                         </li>
                     </ul>
@@ -55,7 +95,7 @@
             &copy; 2022 - Interviews
         </div>
     </footer>
-    
+
     <script>init()</script>
 </body>
 </html>

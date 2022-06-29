@@ -5,10 +5,19 @@
 }
 <style>
     td {
-        padding:10px;
+        padding: 10px;
     }
-    td.comment-cell {
-        width:70%;
+    td.edit-cell {
+        width: 70%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    td.content-irrelevant {
+        width:20%;
+    }
+    button {
+        margin-left: 10px;
     }
     textarea {
         width:100%;
@@ -19,20 +28,22 @@
 
     <table style="width:100%">
         <tr>
-            <td>Город:</td>
+            <td class="content-irrelevant">Город:</td>
             <td id="city-name"></td>
         </tr>
         <tr>
-            <td>Компания:</td>
+            <td class="content-irrelevant">Компания:</td>
             <td id="company-name"></td>
         </tr>
         <tr>
-            <td>Комментарий:</td>
-            <td id="comment" class="comment-cell"></td>
-            <td style="display:none;"  class="comment-cell"><textarea id="comment-edit-input"></textarea></td>
-            <td><button id="edit-comment" onclick="editComment()"><i class="fa-solid fa-pen"></i></button></td>
-            <td style="display:none;"><button id="confirm-comment"  onclick="confirmComment('@Model.PositionId')"><i class="fa-solid fa-check"></i></button></td>
-            <td style="display:none;"><button id="discard-comment"  onclick="discardComment()"><i class="fa-solid fa-xmark"></i></button></td>
+            <td  class="content-irrelevant">Комментарий:</td>
+            <td  class="edit-cell">
+                <div id="comment"></div>
+                <textarea id="comment-edit-input" style="display:none;"></textarea>
+                <button id="edit-comment" onclick="editComment()"><i class="fa-solid fa-pen"></i></button>
+                <button id="confirm-comment" style="display:none;" onclick="confirmComment('@Model.PositionId')"><i class="fa-solid fa-check"></i></button>
+                <button id="discard-comment" style="display:none;" onclick="discardComment()"><i class="fa-solid fa-xmark"></i></button>
+            </td>
         </tr>
     </table>
     

@@ -69,5 +69,15 @@ namespace InterviewsApp.Core.Services
                 _repository.Update(interview);
             }
         }
+        public void UpdateDatetime(UpdateInterviewDto dto)
+        {
+            var positionIds = _positionRepository.Get(p => p.UserId == dto.UserId).Select(p => p.Id);
+            var interview = _repository.Get(e => e.Id == dto.Id && positionIds.Contains(e.PositionId)).FirstOrDefault();
+            if (interview != null)
+            {
+                interview.Date = dto.Date;
+                _repository.Update(interview);
+            }
+        }
     }
 }

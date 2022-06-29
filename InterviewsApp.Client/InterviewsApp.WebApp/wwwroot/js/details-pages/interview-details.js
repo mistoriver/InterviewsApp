@@ -10,7 +10,11 @@
                 if (data) {
                     document.getElementById("interview-name").innerText += ' "' + data.name + '"';
                     document.getElementById("interview-time").value = data.date.replace('Z', '');
-                    document.getElementById("comment").innerText = data.comment;
+                    let commentElem = document.getElementById("comment");
+                    commentElem.innerText = data.comment;
+                    if (!data.comment || data.comment === "") {
+                        commentElem.style = "display:none";
+                    }
                     let pos = document.getElementById("position-name");
                     let aPos = document.createElement('a');
                     aPos.href = '/Details/Position?PositionId=' + data.positionId;
@@ -30,10 +34,10 @@ function editComment() {
     let commInput = document.getElementById("comment-edit-input");
     commInput.value = com.innerText;
     com.style = "display:none;";
-    commInput.parentElement.style = "";
-    document.getElementById("edit-comment").parentElement.style = "display:none;";
-    document.getElementById("confirm-comment").parentElement.style = "";
-    document.getElementById("discard-comment").parentElement.style = "";
+    commInput.style = "";
+    document.getElementById("edit-comment").style = "display:none;";
+    document.getElementById("confirm-comment").style = "";
+    document.getElementById("discard-comment").style = "";
 
 }
 function discardComment() {
@@ -41,10 +45,10 @@ function discardComment() {
     let commInput = document.getElementById("comment-edit-input");
     commInput.value = comm.innerText;
     comm.style = "";
-    commInput.parentElement.style = "display:none;";
-    document.getElementById("edit-comment").parentElement.style = "";
-    document.getElementById("confirm-comment").parentElement.style = "display:none;";
-    document.getElementById("discard-comment").parentElement.style = "display:none;";
+    commInput.style = "display:none;";
+    document.getElementById("edit-comment").style = "";
+    document.getElementById("confirm-comment").style = "display:none;";
+    document.getElementById("discard-comment").style = "display:none;";
 
 }
 function confirmComment(id) {
@@ -69,6 +73,48 @@ function confirmComment(id) {
             else {
                 document.getElementById("confirm-comment").disabled = false;
                 document.getElementById("comment-edit-input").disabled = false;
+                response.json().then((data) => {
+                    if (data.errors) {
+                        setMessage("");
+                        addRequestErrorsToMessage(data);
+                    }
+                });
+            };
+        });
+}
+
+function editTime() {
+    document.getElementById("interview-time").disabled = false;
+    document.getElementById("edit-time").style = "display:none;";
+    document.getElementById("confirm-time").style = "";
+    document.getElementById("discard-time").style = "";
+
+}
+function discardTime() {
+    location.reload();
+}
+function confirmTime(id) {
+    document.getElementById("confirm-time").disabled = true;
+    document.getElementById("interview-time").disabled = true;
+    fetch(apihost + "/Interview/UpdateDatetime",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+            },
+            body: JSON.stringify({
+                id: id,
+                userId: sessionStorage.getItem(currentUserId),
+                date: document.getElementById("interview-time").value + "Z"
+            })
+        }).then((response) => {
+            if (response.ok === true) {
+                location.reload();
+            }
+            else {
+                document.getElementById("confirm-time").disabled = false;
+                document.getElementById("interview-time").disabled = false;
                 response.json().then((data) => {
                     if (data.errors) {
                         setMessage("");

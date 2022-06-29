@@ -31,5 +31,10 @@ namespace InterviewsApp.Core.Interfaces
         public void CreateInterview(CreateInterviewDto dto);
 
         public void UpdateComment(UpdateCommentDto dto);
+        /// <summary>
+        /// Обновить дату и время собеседования
+        /// </summary>
+        /// <param name="dto">Данные для обновления</param>
+        public void UpdateDatetime(UpdateInterviewDto dto);
     }
 }

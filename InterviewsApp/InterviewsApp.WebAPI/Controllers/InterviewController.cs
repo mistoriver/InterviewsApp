@@ -76,5 +76,12 @@ namespace InterviewsApp.WebAPI.Controllers
             _service.UpdateComment(commentInfo);
             return Ok();
         }
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UpdateDatetime(UpdateInterviewDto interviewInfo)
+        {
+            _service.UpdateDatetime(interviewInfo);
+            return Ok();
+        }
     }
 }
