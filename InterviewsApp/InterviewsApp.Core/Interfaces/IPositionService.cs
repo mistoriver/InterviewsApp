@@ -42,14 +42,19 @@ namespace InterviewsApp.Core.Interfaces
         /// Отметить получение отказа по вакансии
         /// </summary>
         /// <param name="id">Уникальный идентификатор вакансии</param>
-        public void UpdateSetDenied(Guid id);
+        public void UpdateSetDenied(Guid id, Guid userId);
         /// <summary>
         /// Отметить получение оффера по вакансии
         /// </summary>
         /// <param name="id">Уникальный идентификатор вакансии</param>
-        public void UpdateSetOffered(Guid id);
+        public void UpdateSetOffered(Guid id, Guid userId);
 
         public void UpdateComment(UpdateCommentDto dto);
+        /// <summary>
+        /// Обновить информацию о городе
+        /// </summary>
+        /// <param name="dto">Параметры вакансии</param>
+        public void UpdateCity(UpdatePositionDto dto);
 
     }
 }

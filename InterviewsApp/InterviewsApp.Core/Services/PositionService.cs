@@ -51,7 +51,7 @@ namespace InterviewsApp.Core.Services
                 _repository.Update(position);
             }
         }
-        public void UpdateSetDenied(Guid id)
+        public void UpdateSetDenied(Guid id, Guid userId)
         {
             var position = _repository.GetByIdOrDefault(id);
             if (position != null)
@@ -61,7 +61,7 @@ namespace InterviewsApp.Core.Services
                 _repository.Update(position);
             }
         }
-        public void UpdateSetOffered(Guid id)
+        public void UpdateSetOffered(Guid id, Guid userId)
         {
             var position = _repository.GetByIdOrDefault(id);
             if (position != null)
@@ -77,6 +77,15 @@ namespace InterviewsApp.Core.Services
             if (position != null)
             {
                 position.Comment = dto.Comment;
+                _repository.Update(position);
+            }
+        }
+        public void UpdateCity(UpdatePositionDto dto)
+        {
+            var position = _repository.GetByIdOrDefault(dto.Id);
+            if (position != null)
+            {
+                position.City = dto.City;
                 _repository.Update(position);
             }
         }

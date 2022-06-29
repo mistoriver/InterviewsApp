@@ -9,7 +9,7 @@
     <p>Здесь отображаются собеседования, которые вам предстоят.</p>
 </div>
 <button id="add-interview-button" onclick="location.assign('/Create/Interview');" style="margin-bottom:15px">Добавить новое собеседование</button>
-<table data-toggle="table" data-ajax="getInterviews" data-sort-name = "date" data-sort-order="asc">
+<table data-toggle="table" data-ajax="getInterviews" data-sort-name = "date" data-sort-order="asc" data-row-style="rowStyle">
   <thead>
     <tr>
       <th data-field="interviewId" data-visible="false">ID Интервью (не должен отображаться)</th>
@@ -19,6 +19,8 @@
       <th data-field="positionName" data-sortable="true" data-formatter="positionFormatter">Вакансия</th>
       <th data-field="companyId" data-visible="false">ID компании (не должен отображаться)</th>
       <th data-field="companyName" data-sortable="true" data-formatter="companyFormatter">Компания</th>
+      <th data-field="offerReceived" data-visible="false">Получен оффер</th>
+      <th data-field="denialReceived" data-visible="false">Получен отказ</th>
     </tr>
   </thead>
 </table>

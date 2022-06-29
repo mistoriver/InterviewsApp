@@ -31,3 +31,14 @@ function positionFormatter(value, row) {
 function companyFormatter(value, row) {
     return '<a  href="/Details/Company?CompanyId=' + row.companyId + '">' + value + ' <a/>'
 }
+function rowStyle(row, index) {
+    if (row.offerReceived)
+        return {
+            css: { background: '#cee8be'}
+        }
+    if (row.denialReceived)
+        return {
+            css: { background: '#bf8c8c' }
+        }
+    return {}
+}

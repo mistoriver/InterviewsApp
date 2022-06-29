@@ -80,7 +80,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <summary>
         /// Удалить вакансию из системы
         /// </summary>
-        /// <param name="id">Уникальный идентификатор вакансию</param>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
         /// <returns></returns>
         [HttpDelete]
         [Authorize(AuthenticationSchemes = "Bearer")]
@@ -94,6 +94,57 @@ namespace InterviewsApp.WebAPI.Controllers
         public IActionResult UpdateComment(UpdateCommentDto commentInfo)
         {
             _service.UpdateComment(commentInfo);
+            return Ok();
+        }
+        /// <summary>
+        /// Отметить получение оффера
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
+        /// <param name="rate">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        [HttpPut]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult SetOffered(Guid id, Guid userId)
+        {
+            _service.UpdateSetOffered(id, userId);
+            return Ok();
+        }
+        /// <summary>
+        /// Отметить получение отказа
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
+        /// <param name="rate">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        [HttpPut]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult SetDenied(Guid id, Guid userId)
+        {
+            _service.UpdateSetDenied(id, userId);
+            return Ok();
+        }
+        /// <summary>
+        /// Обновить информацию о зарплатной вилке
+        /// </summary>
+        /// <param name="updatePositionDto">Информация о вакансии</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UpdateMoney(UpdatePositionDto updatePositionDto)
+        {
+            _service.UpdateMoney(updatePositionDto);
+            return Ok();
+        }
+
+        /// <summary>
+        /// Обновить информацию о зарплатной вилке
+        /// </summary>
+        /// <param name="updatePositionDto">Информация о вакансии</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UpdateCity(UpdatePositionDto updatePositionDto)
+        {
+            _service.UpdateCity(updatePositionDto);
             return Ok();
         }
     }

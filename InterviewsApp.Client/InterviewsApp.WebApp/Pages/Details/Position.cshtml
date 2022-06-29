@@ -7,48 +7,70 @@
     td {
         padding: 10px;
     }
-    td.edit-cell {
-        width: 70%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-    td.content-irrelevant {
-        width:20%;
-    }
+
+        td.edit-cell {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        td.content-irrelevant {
+            width: 20%;
+        }
+
     button {
         margin-left: 10px;
     }
+
     textarea {
-        width:100%;
+        width: 100%;
     }
 </style>
 <div>
     <h3 id="position-name">Просмотр вакансии</h3>
 
     <table style="width:100%">
-        <tr>
+        <tr class="edit-cell">
             <td class="content-irrelevant">Город:</td>
-            <td id="city-name"></td>
+            <td class="edit-cell">
+                <div id="city-name"></div>
+                <input id="city-edit-input" style="display:none;" maxlength="50" />
+                <button id="edit-city" onclick="editCity()"><i class="fa-solid fa-pen"></i></button>
+                <button id="confirm-city" style="display:none;" onclick="confirmCity('@Model.PositionId')"><i class="fa-solid fa-check"></i></button>
+                <button id="discard-city" style="display:none;" onclick="discard()"><i class="fa-solid fa-xmark"></i></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="content-irrelevant">Зарплатная вилка:</td>
+            <td class="edit-cell">
+                <div id="money"></div>
+                <input id="money-edit-from" type="number" min="1000" max="10000000" step="1000" style="display:none;" />
+                <input id="money-edit-to" type="number" min="1000" max="10000000" step="1000" style="display:none;" />
+                <button id="edit-money" onclick="editMoney()"><i class="fa-solid fa-pen"></i></button>
+                <button id="confirm-money" style="display:none;" onclick="confirmMoney('@Model.PositionId')"><i class="fa-solid fa-check"></i></button>
+                <button id="discard-money" style="display:none;" onclick="discard()"><i class="fa-solid fa-xmark"></i></button>
+            </td>
         </tr>
         <tr>
             <td class="content-irrelevant">Компания:</td>
             <td id="company-name"></td>
         </tr>
         <tr>
-            <td  class="content-irrelevant">Комментарий:</td>
-            <td  class="edit-cell">
+            <td class="content-irrelevant">Комментарий:</td>
+            <td class="edit-cell" style="width: 70%;">
                 <div id="comment"></div>
-                <textarea id="comment-edit-input" style="display:none;"></textarea>
+                <textarea id="comment-edit-input" style="display:none;" maxlength="200"></textarea>
                 <button id="edit-comment" onclick="editComment()"><i class="fa-solid fa-pen"></i></button>
                 <button id="confirm-comment" style="display:none;" onclick="confirmComment('@Model.PositionId')"><i class="fa-solid fa-check"></i></button>
                 <button id="discard-comment" style="display:none;" onclick="discardComment()"><i class="fa-solid fa-xmark"></i></button>
             </td>
         </tr>
     </table>
-    
-    <button id="edit-button" onclick="editPosition()">Редактировать</button>
-    
+    <div style="margin-top:20px">
+        <button id="edit-button" onclick="offer('@Model.PositionId')" style="background:#cee8be">Получен оффер</button>
+        <button id="edit-button" onclick="denial('@Model.PositionId')" style="background:#bf8c8c">Получен отказ</button>
+    </div>
+
     <p id="message"></p>
 </div>
 <script src="/js/details-pages/position-details.js"></script>

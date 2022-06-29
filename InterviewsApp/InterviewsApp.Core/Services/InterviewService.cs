@@ -42,6 +42,8 @@ namespace InterviewsApp.Core.Services
                 var interview = _mapper.Map<InterviewDto>(i);
                 var position = _positionRepository.GetByIdOrDefault(i.PositionId);
                 interview.PositionName = position.Name;
+                interview.OfferReceived = position.OfferReceived;
+                interview.DenialReceived = position.DenialReceived;
                 var company = _companyRepository.GetByIdOrDefault(position.CompanyId);
                 interview.CompanyName = company.Name;
                 interview.CompanyId = company.Id;

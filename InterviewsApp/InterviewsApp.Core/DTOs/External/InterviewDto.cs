@@ -40,5 +40,15 @@ namespace InterviewsApp.Core.DTOs.External
         /// Уникальный идентификатор компании
         /// </summary>
         public Guid CompanyId { get; set; }
+
+        /// <summary>
+        /// Флаг получения оффера
+        /// </summary>
+        public bool OfferReceived { get; set; }
+
+        /// <summary>
+        /// Флаг получения отказа
+        /// </summary>
+        public bool DenialReceived { get; set; }
     }
 }
