@@ -20,13 +20,35 @@ namespace InterviewsApp.Core.DTOs.External
         public DateTime Date { get; set; }
 
         /// <summary>
-        /// Путь к комментарию
+        /// Комментарий
         /// </summary>
-        public string PathToComment { get; set; }
+        public string Comment { get; set; }
+        /// <summary>
+        /// Название позиции
+        /// </summary>
+        public string PositionName { get; set; }
 
         /// <summary>
         /// Уникальный идентификатор вакансии
         /// </summary>
         public Guid PositionId { get; set; }
+        /// <summary>
+        /// Название компании
+        /// </summary>
+        public string CompanyName { get; set; }
+        /// <summary>
+        /// Уникальный идентификатор компании
+        /// </summary>
+        public Guid CompanyId { get; set; }
+
+        /// <summary>
+        /// Флаг получения оффера
+        /// </summary>
+        public bool OfferReceived { get; set; }
+
+        /// <summary>
+        /// Флаг получения отказа
+        /// </summary>
+        public bool DenialReceived { get; set; }
     }
 }

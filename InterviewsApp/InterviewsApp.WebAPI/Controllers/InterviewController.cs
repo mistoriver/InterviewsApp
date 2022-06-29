@@ -1,5 +1,6 @@
 ﻿using InterviewsApp.Core.DTOs;
 using InterviewsApp.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,10 +24,10 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="id">Уникальный идентификатор собеседования</param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get(Guid id)
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult Get(Guid id, Guid userId)
         {
-            
-            return Ok(_service.Get(id));
+            return Ok(_service.Get(id, userId));
         }
         /// <summary>
         /// Получить список собеседований пользователя
@@ -34,7 +35,8 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetInterviewsByUser(Guid userId)
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetMultipleInterviewsByUser(Guid userId)
         {
             
             return Ok(_service.GetByUserId(userId));
@@ -45,10 +47,15 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="newInterview"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult AddInterview(CreateInterviewDto newInterview)
         {
-            _service.CreateInterview(newInterview);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                _service.CreateInterview(newInterview);
+                return Ok();
+            }
+            return BadRequest();
         }
         /// <summary>
         /// Удалить собеседование из системы
@@ -56,9 +63,24 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="id">Уникальный идентификатор собеседования</param>
         /// <returns></returns>
         [HttpDelete]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Delete(Guid id)
         {
             _service.Delete(id);
+            return Ok();
+        }
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UpdateComment(UpdateCommentDto commentInfo)
+        {
+            _service.UpdateComment(commentInfo);
+            return Ok();
+        }
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UpdateDatetime(UpdateInterviewDto interviewInfo)
+        {
+            _service.UpdateDatetime(interviewInfo);
             return Ok();
         }
     }

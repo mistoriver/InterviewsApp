@@ -1,9 +1,4 @@
-﻿using InterviewsApp.Data.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace InterviewsApp.Core.DTOs
 {
@@ -15,11 +10,13 @@ namespace InterviewsApp.Core.DTOs
         /// <summary>
         /// Имя пользователя
         /// </summary>
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина имени должна быть в пределах от 3 до 50 символов")]
         public string Name { get; set; }
 
         /// <summary>
         /// Пароль
         /// </summary>
+        [StringLength(20, MinimumLength = 5, ErrorMessage = "Длина логина должна быть в пределах от 5 до 20 символов")]
         public string Password { get; set; }
 
         /// <summary>

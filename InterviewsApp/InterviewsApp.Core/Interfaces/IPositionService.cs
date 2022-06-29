@@ -15,6 +15,13 @@ namespace InterviewsApp.Core.Interfaces
     public interface IPositionService : IDbService<PositionEntity, PositionDto>
     {
         /// <summary>
+        /// Получить конкретную вакансию пользователя с названием компании
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        public PositionDto Get(Guid id, Guid userId);
+        /// <summary>
         /// Получить вакансии пользователя
         /// </summary>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
@@ -24,7 +31,8 @@ namespace InterviewsApp.Core.Interfaces
         /// Создать вакансию в системе
         /// </summary>
         /// <param name="dto">Параметры вакансии</param>
-        public void CreatePosition(CreatePositionDto dto);
+        /// <returns>Уникальный идентификатор созданной вакансии</returns>
+        public Guid CreatePosition(CreatePositionDto dto);
         /// <summary>
         /// Обновить информацию о зарплатной вилке
         /// </summary>
@@ -34,12 +42,19 @@ namespace InterviewsApp.Core.Interfaces
         /// Отметить получение отказа по вакансии
         /// </summary>
         /// <param name="id">Уникальный идентификатор вакансии</param>
-        public void UpdateSetDenied(Guid id);
+        public void UpdateSetDenied(Guid id, Guid userId);
         /// <summary>
         /// Отметить получение оффера по вакансии
         /// </summary>
         /// <param name="id">Уникальный идентификатор вакансии</param>
-        public void UpdateSetOffered(Guid id);
+        public void UpdateSetOffered(Guid id, Guid userId);
+
+        public void UpdateComment(UpdateCommentDto dto);
+        /// <summary>
+        /// Обновить информацию о городе
+        /// </summary>
+        /// <param name="dto">Параметры вакансии</param>
+        public void UpdateCity(UpdatePositionDto dto);
 
     }
 }

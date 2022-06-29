@@ -32,9 +32,9 @@ namespace InterviewsApp.Data.Models.Entities
         public string City { get; set; } = null!;
 
         /// <summary>
-        /// Путь к комментарию
+        /// Комментарий
         /// </summary>
-        public string? PathToComment { get; set; }
+        public string Comment { get; set; }
 
         /// <summary>
         /// Флаг получения оффера
@@ -45,6 +45,11 @@ namespace InterviewsApp.Data.Models.Entities
         /// Флаг получения отказа
         /// </summary>
         public bool DenialReceived { get; set; }
+
+        /// <summary>
+        /// Оценка, выставленная родительской компании
+        /// </summary>
+        public short CompanyRate { get; set; }
 
         /// <summary>
         /// Уникальный идентификатор компании

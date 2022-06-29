@@ -1,10 +1,7 @@
-﻿using InterviewsApp.Core.DTOs.External;
+﻿using InterviewsApp.Core.DTOs;
+using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Data.Models.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Interfaces
 {
@@ -16,14 +13,22 @@ namespace InterviewsApp.Core.Interfaces
         /// <summary>
         /// Создать компанию в системе
         /// </summary>
-        /// <param name="name">Название компании</param>
-        public void CreateCompany(string name);
+        /// <param name="dto">Параметры компании</param>
+        /// <returns>Уникальный идентификатор созданной компании</returns>
+        public Guid CreateCompany(CreateCompanyDto dto);
         /// <summary>
         /// Оценить компанию
         /// </summary>
         /// <param name="id">Уникальный идентификатор компании</param>
         /// <param name="newRate">Новая оценка пользователя</param>
         /// <returns>Новое значение рейтинга</returns>
-        public short RateCompany(Guid id, short newRate);
+        public short RateCompany(Guid id, Guid userId, short newRate);
+        /// <summary>
+        /// Получить оценку, выставленную компании конкретным пользователем
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор компании</param>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns>Выставленная оценка</returns>
+        public short GetCompanyRate(Guid id, Guid userId);
     }
 }

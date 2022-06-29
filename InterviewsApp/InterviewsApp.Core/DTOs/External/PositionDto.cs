@@ -29,9 +29,9 @@ namespace InterviewsApp.Core.DTOs.External
         public string City { get; set; }
 
         /// <summary>
-        /// Путь к комментарию
+        /// Комментарий
         /// </summary>
-        public string PathToComment { get; set; }
+        public string Comment { get; set; }
 
         /// <summary>
         /// Флаг получения оффера
@@ -42,6 +42,10 @@ namespace InterviewsApp.Core.DTOs.External
         /// Флаг получения отказа
         /// </summary>
         public bool DenialReceived { get; set; }
+        /// <summary>
+        /// Название компании
+        /// </summary>
+        public string CompanyName { get; set; }
 
         /// <summary>
         /// Уникальный идентификатор компании

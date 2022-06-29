@@ -1,0 +1,49 @@
+﻿@page
+@model InterviewsApp.WebApp.Pages.Details.CompanyModel
+@{
+    ViewData["Title"] = "Просмотр компании";
+}
+<style>
+    td {
+        padding: 10px;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+
+    i {
+        width: fit-content;
+        min-width: 10px;
+    }
+</style>
+<div>
+    <h3 id="company-name">Просмотр компании</h3>
+
+    <table>
+        <tr>
+            <td>Общий рейтинг:</td>
+            <td id="company-rating"></td>
+        </tr>
+        <tr>
+            <td>Ваша оценка:</td>
+            <td style="display: flex;flex-direction: row;">
+                <i id="star-0" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)"></i>
+                <i id="star-5" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)" class="fa-regular fa-star"></i>
+                <i id="star-10" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)"></i>
+                <i id="star-15" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)" class="fa-regular fa-star"></i>
+                <i id="star-20" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)"></i>
+                <i id="star-25" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)" class="fa-regular fa-star"></i>
+                <i id="star-30" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)"></i>
+                <i id="star-35" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)" class="fa-regular fa-star"></i>
+                <i id="star-40" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)"></i>
+                <i id="star-45" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)" class="fa-regular fa-star"></i>
+                <i id="star-50" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)"></i>
+            </td>
+        </tr>
+    </table>
+
+    <p id="message"></p>
+</div>
+<script src="/js/details-pages/company-details.js"></script>
+<script>getCompanyInfo('@Model.CompanyId')</script>

@@ -1,0 +1,36 @@
+﻿@page
+@model InterviewsApp.WebApp.Pages.Create.PositionModel
+@{
+    ViewData["Title"] = "Добавление вакансии";
+}
+<style>
+    td {
+        padding:10px;
+    }
+</style>
+<div>
+    <h3>Добавление вакансии</h3>
+
+    <table>
+        <tr>
+            <td>Название вакансии</td>
+            <td><input id="position-name" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Город вакансии (или "Удалёнка")</td>
+            <td><input id="city-name" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Компания</td>
+            <td><select id="company-select"></select></td>
+            <td id="hidden-button-cell"><button onclick="location.assign('/Create/Company')">Нужной компании нет в списке</button></td>
+        </tr>
+    </table>
+    
+    <button id="create-button" onclick="createPosition()">Добавить вакансию</button>
+    <p id="message"></p>
+    <a id="manual-redirect" style="visibility:hidden" href="/" >Вернуться на главную страницу</a>
+</div>
+
+<script src="/js/creation-pages/create-position-page.js"></script>
+<script>getCompanies('@Model.CreatedCompany')</script>

@@ -35,11 +35,17 @@ namespace InterviewsApp.Data.Abstractions
             AppContext.Set<TEntity>().Update(entity);
             AppContext.SaveChanges();
         }
+        public void UpdateRange(params TEntity[] entities)
+        {
+            AppContext.Set<TEntity>().UpdateRange(entities);
+            AppContext.SaveChanges();
+        }
 
-        public void Create(TEntity entity)
+        public Guid Create(TEntity entity)
         {
             AppContext.Add(entity);
             AppContext.SaveChanges();
+            return entity.Id;
         }
 
         public void Delete(TEntity entity)

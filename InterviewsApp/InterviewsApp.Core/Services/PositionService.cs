@@ -19,12 +19,18 @@ namespace InterviewsApp.Core.Services
             _userRepository = userRepository;
             _companyRepository = companyRepository;
         }
+        public PositionDto Get(Guid id, Guid userId)
+        {
+            return GetByUserId(userId)?.FirstOrDefault(i => i.Id == id);
+        }
         public IEnumerable<PositionDto> GetByUserId(Guid userId)
         {
             var positions = _repository.Get(p => p.UserId == userId).Select(p => _mapper.Map<PositionDto>(p));
-            return positions;
+            var res = positions.ToList();
+            res.ForEach(p => p.CompanyName = _companyRepository.GetByIdOrDefault(p.CompanyId).Name);
+            return res;
         }
-        public void CreatePosition(CreatePositionDto dto)
+        public Guid CreatePosition(CreatePositionDto dto)
         {
             var user = _userRepository.GetByIdOrDefault(dto.UserId);
             var company = _companyRepository.GetByIdOrDefault(dto.CompanyId);
@@ -33,7 +39,7 @@ namespace InterviewsApp.Core.Services
             position.MoneyUpper = 0;
             position.User = user;
             position.Company = company;
-            _repository.Create(position);
+            return _repository.Create(position);
         }
         public void UpdateMoney(UpdatePositionDto dto)
         {
@@ -45,7 +51,7 @@ namespace InterviewsApp.Core.Services
                 _repository.Update(position);
             }
         }
-        public void UpdateSetDenied(Guid id)
+        public void UpdateSetDenied(Guid id, Guid userId)
         {
             var position = _repository.GetByIdOrDefault(id);
             if (position != null)
@@ -55,13 +61,31 @@ namespace InterviewsApp.Core.Services
                 _repository.Update(position);
             }
         }
-        public void UpdateSetOffered(Guid id)
+        public void UpdateSetOffered(Guid id, Guid userId)
         {
             var position = _repository.GetByIdOrDefault(id);
             if (position != null)
             {
                 position.OfferReceived = true;
                 position.DenialReceived = false;
+                _repository.Update(position);
+            }
+        }
+        public void UpdateComment(UpdateCommentDto dto)
+        {
+            var position = _repository.Get(e => e.Id == dto.Id && e.UserId == dto.UserId).FirstOrDefault();
+            if (position != null)
+            {
+                position.Comment = dto.Comment;
+                _repository.Update(position);
+            }
+        }
+        public void UpdateCity(UpdatePositionDto dto)
+        {
+            var position = _repository.GetByIdOrDefault(dto.Id);
+            if (position != null)
+            {
+                position.City = dto.City;
                 _repository.Update(position);
             }
         }

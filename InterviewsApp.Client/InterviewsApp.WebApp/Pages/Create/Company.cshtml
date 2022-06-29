@@ -1,0 +1,27 @@
+﻿@page
+@model InterviewsApp.WebApp.Pages.Create.CompanyModel
+@{
+    ViewData["Title"] = "Добавление компании";
+}
+<style>
+    td {
+        padding:10px;
+    }
+</style>
+<div>
+    <h3>Добавление компании</h3>
+
+    <table>
+        <tr>
+            <td>Название компании</td>
+            <td><input id="company-name" type="text" /></td>
+        </tr>
+    </table>
+    
+    <button id="create-button" onclick="createCompany()">Добавить компанию</button>
+    
+    <p id="message"></p>
+    <a id="manual-redirect" style="visibility:hidden" href="/" >Вернуться на главную страницу</a>
+</div>
+
+<script src="/js/creation-pages/create-company-page.js"></script>

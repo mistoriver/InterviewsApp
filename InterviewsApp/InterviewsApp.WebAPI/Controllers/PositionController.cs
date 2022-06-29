@@ -1,5 +1,6 @@
 ﻿using InterviewsApp.Core.DTOs;
 using InterviewsApp.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,16 +24,29 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="id">Уникальный идентификатор вакансии</param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Get(Guid id)
         {
             return Ok(_service.Get(id));
+        }
+        /// <summary>
+        /// Получить данные вакансии
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetByUser(Guid id, Guid userId)
+        {
+            return Ok(_service.Get(id, userId));
         }
         /// <summary>
         /// Получить список всех вакансий в системе
         /// </summary>
         /// <returns>Список вакансий в системе</returns>
         [HttpGet]
-        public IActionResult GetPositions()
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetMultiplePositions()
         {
             return Ok(_service.Get());
         }
@@ -41,7 +55,8 @@ namespace InterviewsApp.WebAPI.Controllers
         /// </summary>
         /// <returns>Список вакансий пользователя</returns>
         [HttpGet]
-        public IActionResult GetPositionsByUser(Guid userId)
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetMultiplePositionsByUser(Guid userId)
         {
             if (userId == Guid.Empty)
                 return BadRequest();
@@ -53,20 +68,83 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <param name="position">Данные вакансии</param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult CreatePosition(CreatePositionDto position)
         {
-            _service.CreatePosition(position);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                return Ok(_service.CreatePosition(position));
+            }
+            return BadRequest();
         }
         /// <summary>
         /// Удалить вакансию из системы
         /// </summary>
-        /// <param name="id">Уникальный идентификатор вакансию</param>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
         /// <returns></returns>
         [HttpDelete]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Delete(Guid id)
         {
             _service.Delete(id);
+            return Ok();
+        }
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UpdateComment(UpdateCommentDto commentInfo)
+        {
+            _service.UpdateComment(commentInfo);
+            return Ok();
+        }
+        /// <summary>
+        /// Отметить получение оффера
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
+        /// <param name="rate">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        [HttpPut]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult SetOffered(Guid id, Guid userId)
+        {
+            _service.UpdateSetOffered(id, userId);
+            return Ok();
+        }
+        /// <summary>
+        /// Отметить получение отказа
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
+        /// <param name="rate">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        [HttpPut]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult SetDenied(Guid id, Guid userId)
+        {
+            _service.UpdateSetDenied(id, userId);
+            return Ok();
+        }
+        /// <summary>
+        /// Обновить информацию о зарплатной вилке
+        /// </summary>
+        /// <param name="updatePositionDto">Информация о вакансии</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UpdateMoney(UpdatePositionDto updatePositionDto)
+        {
+            _service.UpdateMoney(updatePositionDto);
+            return Ok();
+        }
+
+        /// <summary>
+        /// Обновить информацию о зарплатной вилке
+        /// </summary>
+        /// <param name="updatePositionDto">Информация о вакансии</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UpdateCity(UpdatePositionDto updatePositionDto)
+        {
+            _service.UpdateCity(updatePositionDto);
             return Ok();
         }
     }

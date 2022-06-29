@@ -46,14 +46,14 @@ namespace InterviewsApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PathToComment")
                         .HasColumnType("text");
 
                     b.Property<Guid>("PositionId")
@@ -76,8 +76,14 @@ namespace InterviewsApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uuid");
+
+                    b.Property<short>("CompanyRate")
+                        .HasColumnType("smallint");
 
                     b.Property<bool>("DenialReceived")
                         .HasColumnType("boolean");
@@ -94,9 +100,6 @@ namespace InterviewsApp.Data.Migrations
 
                     b.Property<bool>("OfferReceived")
                         .HasColumnType("boolean");
-
-                    b.Property<string>("PathToComment")
-                        .HasColumnType("text");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");

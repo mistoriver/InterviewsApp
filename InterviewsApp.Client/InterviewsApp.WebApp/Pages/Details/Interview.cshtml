@@ -1,0 +1,65 @@
+﻿@page
+@model InterviewsApp.WebApp.Pages.Details.InterviewModel
+@{
+    ViewData["Title"] = "Просмотр собеседования";
+}
+<style>
+    td {
+        padding: 10px;
+    }
+    td.edit-cell {
+        width: 70%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    td.content-irrelevant {
+        width:20%;
+    }
+    button {
+        margin-left: 10px;
+    }
+    textarea {
+        width:100%;
+    }
+</style>
+<div>
+    <h3 id="interview-name">Просмотр собеседования </h3>
+
+    <table  style="width:100%">
+        <tr>
+            <td class="content-irrelevant">Время собеседования:</td>
+            <td>
+                <input id="interview-time" type="datetime-local" disabled />
+                <button id="edit-time" onclick="editTime()"><i class="fa-solid fa-pen"></i></button>
+                <button id="confirm-time" style="display:none;" onclick="confirmTime('@Model.InterviewId')"><i class="fa-solid fa-check"></i></button>
+                <button id="discard-time" style="display:none;" onclick="discardTime()"><i class="fa-solid fa-xmark"></i></button>
+            </td>
+            <td></td>
+            <td></td>
+            <td style="display:none;"></td>
+        </tr>
+        <tr>
+            <td class="content-irrelevant">Вакансия:</td>
+            <td id="position-name"></td>
+        </tr>
+        <tr>
+            <td class="content-irrelevant">Компания:</td>
+            <td id="company-name"></td>
+        </tr>
+        <tr>
+            <td class="first-cell">Комментарий:</td>
+            <td  class="edit-cell">
+                <div id="comment"></div>
+                <textarea id="comment-edit-input" style="display:none;"></textarea>
+                <button id="edit-comment" onclick="editComment()"><i class="fa-solid fa-pen"></i></button>
+                <button id="confirm-comment" style="display:none;" onclick="confirmComment('@Model.InterviewId')"><i class="fa-solid fa-check"></i></button>
+                <button id="discard-comment" style="display:none;" onclick="discardComment()"><i class="fa-solid fa-xmark"></i></button>
+            </td>
+        </tr>
+    </table>
+
+    <p id="message"></p>
+</div>
+<script src="/js/details-pages/interview-details.js"></script>
+<script>getInterviewInfo('@Model.InterviewId')</script>

@@ -22,9 +22,9 @@ namespace InterviewsApp.Data.Models.Entities
         public DateTime Date { get; set; }
 
         /// <summary>
-        /// Путь к комментарию
+        /// Комментарий
         /// </summary>
-        public string? PathToComment { get; set; }
+        public string Comment { get; set; }
 
         /// <summary>
         /// Уникальный идентификатор вакансии

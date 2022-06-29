@@ -1,0 +1,44 @@
+﻿@page
+@model InterviewsApp.WebApp.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<style>
+    td {
+        padding:10px;
+    }
+    a{
+        font-weight:bold;
+        text-decoration:underline;
+    }
+</style>
+
+<script src="/js/register-page.js"></script>
+<div>
+    <h3>Регистрация</h3>
+
+    <table>
+        <tr>
+            <td>Имя: </td>
+            <td><input id="name" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Логин: </td>
+            <td><input id="login" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Пароль: </td>
+            <td><input id="password" type="password" /></td>
+        </tr>
+        <tr>
+            <td>Повторите пароль: </td>
+            <td><input id="repeat-password" type="password" /></td>
+        </tr>
+    </table>
+    
+    <button id="register-button" onclick="register()">Зарегистрироваться</button>
+
+    <p id="message"></p>
+    <a id="manual-redirect" style="visibility:hidden" href="/Login" >Перейти на страницу входа</a>
+</div>
