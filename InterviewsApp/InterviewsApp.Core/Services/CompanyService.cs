@@ -55,7 +55,7 @@ namespace InterviewsApp.Core.Services
                 {
                     var companyRating = company.Rating;
                     var substract = oldRate == 0 ? (companyRating / (countOfRates * 1f)) : oldRate;
-                    var rating = companyRating - substract + (newRate / (countOfRates * 1f));
+                    var rating = companyRating - substract/ (countOfRates * 1f) + (newRate / (countOfRates * 1f));
                     bool positiveRate = companyRating / (countOfRates * 1f) < newRate / (countOfRates * 1f);
 
                     return Convert.ToInt16(positiveRate ? Math.Ceiling(rating) : Math.Floor(rating));
