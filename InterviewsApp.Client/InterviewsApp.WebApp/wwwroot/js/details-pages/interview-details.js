@@ -8,8 +8,9 @@
         response.json()
             .then((data) => {
                 if (data) {
-                    document.getElementById("interview-name").innerText = data.name;
+                    document.getElementById("interview-name").innerText += ' "' + data.name + '"';
                     document.getElementById("interview-time").value = data.date.replace('Z', '');
+                    document.getElementById("comment").innerText = data.comment;
                     let pos = document.getElementById("position-name");
                     let aPos = document.createElement('a');
                     aPos.href = '/Details/Position?PositionId=' + data.positionId;
