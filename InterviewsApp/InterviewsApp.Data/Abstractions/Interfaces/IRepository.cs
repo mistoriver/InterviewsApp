@@ -30,6 +30,11 @@ namespace InterviewsApp.Data.Abstractions.Interfaces
         /// </summary>
         /// <param name="entity">Экземпляр сущности для обновления</param>
         void Update(TEntity entity);
+        /// <summary>
+        /// Обновить данные набора сущностей
+        /// </summary>
+        /// <param name="entities">Набор сущностей</param>
+        void UpdateRange(params TEntity[] entities);
 
         /// <summary>
         /// Создать новый экземпляр сущности в бд

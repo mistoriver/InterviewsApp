@@ -22,6 +22,13 @@ namespace InterviewsApp.Core.Interfaces
         /// <param name="id">Уникальный идентификатор компании</param>
         /// <param name="newRate">Новая оценка пользователя</param>
         /// <returns>Новое значение рейтинга</returns>
-        public short RateCompany(Guid id, short newRate);
+        public short RateCompany(Guid id, Guid userId, short newRate);
+        /// <summary>
+        /// Получить оценку, выставленную компании конкретным пользователем
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор компании</param>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns>Выставленная оценка</returns>
+        public short GetCompanyRate(Guid id, Guid userId);
     }
 }

@@ -47,6 +47,11 @@ namespace InterviewsApp.Data.Models.Entities
         public bool DenialReceived { get; set; }
 
         /// <summary>
+        /// Оценка, выставленная родительской компании
+        /// </summary>
+        public short CompanyRate { get; set; }
+
+        /// <summary>
         /// Уникальный идентификатор компании
         /// </summary>
         public Guid CompanyId { get; set; }

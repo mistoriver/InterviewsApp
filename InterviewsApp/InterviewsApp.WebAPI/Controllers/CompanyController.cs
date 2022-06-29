@@ -62,9 +62,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPut]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult RateCompany(Guid id, short rate)
+        public IActionResult RateCompany(Guid id, Guid userId, short rate)
         {
-            return Ok(_service.RateCompany(id, rate));
+            return Ok(_service.RateCompany(id, userId, rate));
         }
         /// <summary>
         /// Удалить компанию из системы
@@ -77,6 +77,18 @@ namespace InterviewsApp.WebAPI.Controllers
         {
             _service.Delete(id);
             return Ok();
+        }
+        /// <summary>
+        /// Получить оценку, выставленную компании конкретным пользователем
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор компании</param>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetCompanyRate(Guid id, Guid userId)
+        {
+            return Ok(_service.GetCompanyRate(id, userId));
         }
     }
 }
