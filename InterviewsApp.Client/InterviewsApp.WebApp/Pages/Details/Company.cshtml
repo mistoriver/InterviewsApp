@@ -5,10 +5,16 @@
 }
 <style>
     td {
-        padding:10px;
+        padding: 10px;
     }
+
     button {
         margin-top: 10px;
+    }
+
+    i {
+        width: fit-content;
+        min-width: 10px;
     }
 </style>
 <div>
@@ -19,10 +25,19 @@
             <td>Рейтинг:</td>
             <td id="company-rating"></td>
         </tr>
+        <tr>
+            <td>Оценить:</td>
+            <td style="display: flex;flex-direction: row;">
+                <i id="star-0" onmouseover="handleHover(event)" onmouseout="clearStar()"></i>
+                <i id="star-5" onmouseover="handleHover(event)" onmouseout="clearStar()" class="fa-regular fa-star"></i><i id="star-10" onmouseover="handleHover(event)" onmouseout="clearStar()"></i>
+                <i id="star-15" onmouseover="handleHover(event)" onmouseout="clearStar()" class="fa-regular fa-star"></i><i id="star-20" onmouseover="handleHover(event)" onmouseout="clearStar()"></i>
+                <i id="star-25" onmouseover="handleHover(event)" onmouseout="clearStar()" class="fa-regular fa-star"></i><i id="star-30" onmouseover="handleHover(event)" onmouseout="clearStar()"></i>
+                <i id="star-35" onmouseover="handleHover(event)" onmouseout="clearStar()" class="fa-regular fa-star"></i><i id="star-40" onmouseover="handleHover(event)" onmouseout="clearStar()"></i>
+                <i id="star-45" onmouseover="handleHover(event)" onmouseout="clearStar()" class="fa-regular fa-star"></i><i id="star-50" onmouseover="handleHover(event)" onmouseout="clearStar()"></i>
+            </td>
+        </tr>
     </table>
-    
-    <button id="edit-button" onclick="editCompany()">Редактировать</button>
-    
+
     <p id="message"></p>
 </div>
 <script src="/js/details-pages/company-details.js"></script>

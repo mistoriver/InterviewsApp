@@ -34,9 +34,9 @@
             <td>Комментарий:</td>
             <td id="comment" class="comment-cell"></td>
             <td style="display:none;"  class="comment-cell"><textarea id="comment-edit-input"></textarea></td>
-            <td><button id="edit-comment" onclick="editComment()"></button></td>
-            <td style="display:none;"><button id="confirm-comment"  onclick="confirmComment('@Model.InterviewId')"></button></td>
-            <td style="display:none;"><button id="discard-comment"  onclick="discardComment()"></button></td>
+            <td><button id="edit-comment" onclick="editComment()"><i class="fa-solid fa-pen"></i></button></td>
+            <td style="display:none;"><button id="confirm-comment"  onclick="confirmComment('@Model.InterviewId')"><i class="fa-solid fa-check"></i></button></td>
+            <td style="display:none;"><button id="discard-comment"  onclick="discardComment()"><i class="fa-solid fa-xmark"></i></button></td>
         </tr>
     </table>
 
