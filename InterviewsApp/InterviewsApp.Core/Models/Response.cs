@@ -19,15 +19,15 @@ namespace InterviewsApp.Core.Models
 
     public class Response<TData> :Response
     {
-        public TData Data { get; private set; }
+        public TData ResponseData { get; private set; }
 
         public Response(TData entity, string errorMessage = null) :base (errorMessage)
         {
-            Data = entity;
+            ResponseData = entity;
         }
         public Response(string errorMessage) : base(errorMessage)
         {
-            Data = default(TData);
+            ResponseData = default(TData);
         }
     }
 }

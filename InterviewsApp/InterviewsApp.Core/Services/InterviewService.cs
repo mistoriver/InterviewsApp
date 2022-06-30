@@ -31,7 +31,7 @@ namespace InterviewsApp.Core.Services
         }
         public Response<InterviewDto> Get(Guid id, Guid userId)
         {
-            var interviewDto = GetByUserId(userId).Data.FirstOrDefault(i => i.Id == id);
+            var interviewDto = GetByUserId(userId).ResponseData.FirstOrDefault(i => i.Id == id);
             if (interviewDto != null)
             {
                 return new Response<InterviewDto>(interviewDto);

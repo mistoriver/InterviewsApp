@@ -25,7 +25,9 @@ namespace InterviewsApp.Core.Services
             var pos = _repository.Get(e => e.Id == id && e.UserId == userId).FirstOrDefault();
             if (pos != null)
             {
-                return new Response<PositionDto>(_mapper.Map<PositionDto>(pos));
+                var posDto = _mapper.Map<PositionDto>(pos);
+                posDto.CompanyName = _companyRepository.GetByIdOrDefault(posDto.CompanyId)?.Name;
+                return new Response<PositionDto>(posDto);
             }
             return new Response<PositionDto>("Вакансия не существует");
         }

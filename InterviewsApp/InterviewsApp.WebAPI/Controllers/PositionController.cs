@@ -27,7 +27,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Get(Guid id)
         {
-            return Ok(_service.Get(id));
+            var response = _service.Get(id);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Получить данные вакансии
@@ -38,7 +41,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetByUser(Guid id, Guid userId)
         {
-            return Ok(_service.Get(id, userId));
+            var response = _service.Get(id, userId);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Получить список всех вакансий в системе
@@ -48,7 +54,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetMultiplePositions()
         {
-            return Ok(_service.Get());
+            var response = _service.Get();
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Получить список вакансий пользователя
@@ -58,9 +67,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetMultiplePositionsByUser(Guid userId)
         {
-            if (userId == Guid.Empty)
-                return BadRequest();
-            return Ok(_service.GetByUserId(userId));
+            var response = _service.GetByUserId(userId);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Создать новую вакансию в системе
@@ -73,7 +83,10 @@ namespace InterviewsApp.WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Ok(_service.CreatePosition(position));
+                var response = _service.CreatePosition(position);
+                if (response.Ok)
+                    return Ok(response);
+                return StatusCode(500, response);
             }
             return BadRequest();
         }
@@ -86,15 +99,19 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Delete(Guid id)
         {
-            _service.Delete(id);
-            return Ok();
+            var response = _service.Delete(id);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult UpdateComment(UpdateCommentDto commentInfo)
         {
-            _service.UpdateComment(commentInfo);
-            return Ok();
+            var response = _service.UpdateComment(commentInfo);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Отметить получение оффера
@@ -106,8 +123,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult SetOffered(Guid id, Guid userId)
         {
-            _service.UpdateSetOffered(id, userId);
-            return Ok();
+            var response = _service.UpdateSetOffered(id, userId);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Отметить получение отказа
@@ -119,8 +138,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult SetDenied(Guid id, Guid userId)
         {
-            _service.UpdateSetDenied(id, userId);
-            return Ok();
+            var response = _service.UpdateSetDenied(id, userId);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Обновить информацию о зарплатной вилке
@@ -131,8 +152,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult UpdateMoney(UpdatePositionDto updatePositionDto)
         {
-            _service.UpdateMoney(updatePositionDto);
-            return Ok();
+            var response = _service.UpdateMoney(updatePositionDto);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
 
         /// <summary>
@@ -144,8 +167,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult UpdateCity(UpdatePositionDto updatePositionDto)
         {
-            _service.UpdateCity(updatePositionDto);
-            return Ok();
+            var response = _service.UpdateCity(updatePositionDto);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
     }
 }
