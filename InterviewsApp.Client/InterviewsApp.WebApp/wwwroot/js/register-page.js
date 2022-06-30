@@ -25,7 +25,7 @@ function register() {
                         password: password
                     })
                 }).then((response) => {
-                    if (response.ok === true) {
+                    if (response.ok) {
                         document.getElementById("manual-redirect").style = "";
                         setMessage("Пользователь успешно зарегистрирован. Переадресация на страницу входа через 5 секунд...");
                         redirectTimeoutToken = setTimeout(() => {
@@ -33,16 +33,7 @@ function register() {
                         }, 5000);
                     }
                     else {
-                        try {
-                            response.json().then((data) => {
-                                setMessage("");
-                                addRequestErrorsToMessage(data)
-                                document.getElementById("register-button").disabled = false;
-                            })
-                        }
-                        catch (e) {
-                            setMessage("Регистрация неуспешна. Код ошибки: " + response.status);
-                        }
+                        handleRequestErrors(response);
                     }
                 })
         }

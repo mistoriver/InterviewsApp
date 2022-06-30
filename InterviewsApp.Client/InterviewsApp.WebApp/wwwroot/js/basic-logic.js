@@ -54,3 +54,18 @@ function addRequestErrorsToMessage(requestData, messageElement) {
     if (messageElement)
         addMultipleMessageHtml(errorArr, messageElement);
 }
+
+function handleRequestErrors(response) {
+    response.json().then((data) => {
+        if (data.errors) {
+            //обработка ошибок модели
+            setMessage("");
+            addRequestErrorsToMessage(data);
+        }
+        else
+            if (data.errorMessage)
+                //обработка ошибок сервера
+                setMessage(data.errorMessage);
+            else setMessage("Произошла ошибка. Код ошибки: " + response.status);
+    });
+}

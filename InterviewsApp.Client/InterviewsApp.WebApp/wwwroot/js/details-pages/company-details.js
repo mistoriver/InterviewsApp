@@ -7,17 +7,20 @@ function getCompanyInfo(id) {
             "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
         }
     }).then((response) => {
-        response.json()
-            .then((data) => {
-                if (data) {
-                    document.getElementById("company-name").innerText += ' "' + data.name + '"';
-                    let rating = document.getElementById("company-rating");
-                    let dbRating = data.rating / 10
-                    rating.innerText = dbRating/2;
-                    rating.style = "color: " + (dbRating > 8 ? "green" : (dbRating < 5 ? "red" : "orange")) + "; font-weight: 900;"
-                    getRateFromDb(id);
-                }
-            })
+        if (response.ok)
+            response.json()
+                .then((data) => {
+                    if (data) {
+                        document.getElementById("company-name").innerText += ' "' + data.responseData.name + '"';
+                        let rating = document.getElementById("company-rating");
+                        let dbRating = data.responseData.rating / 10
+                        rating.innerText = dbRating / 2;
+                        rating.style = "color: " + (dbRating > 8 ? "green" : (dbRating < 5 ? "red" : "orange")) + "; font-weight: 900;"
+                        getRateFromDb(id);
+                    }
+                });
+        else
+            handleRequestErrors(response);
     });
 }
 function handleHover(event) {
@@ -71,13 +74,16 @@ function getRateFromDb(id) {
             "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
         }
     }).then((response) => {
-        response.json()
-            .then((data) => {
-                if (data) {
-                    currentRate = data / 2;
-                    setRate(currentRate);
-                }
-            })
+        if (response.ok)
+            response.json()
+                .then((data) => {
+                    if (data) {
+                        currentRate = data.responseData / 2;
+                        setRate(currentRate);
+                    }
+                });
+        else
+            handleRequestErrors(response);
     });
 }
 function rateCompany(id, event) {

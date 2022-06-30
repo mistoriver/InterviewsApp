@@ -5,28 +5,30 @@
             "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
         }
     }).then((response) => {
-        response.json()
-            .then((data) => {
-                if (data) {
-                    document.getElementById("interview-name").innerText += ' "' + data.name + '"';
-                    document.getElementById("interview-time").value = data.date.replace('Z', '');
-                    let commentElem = document.getElementById("comment");
-                    commentElem.innerText = data.comment;
-                    if (!data.comment || data.comment === "") {
-                        commentElem.style = "display:none";
+        if (response.ok)
+            response.json()
+                .then((data) => {
+                    if (data) {
+                        document.getElementById("interview-name").innerText += ' "' + data.responseData.name + '"';
+                        document.getElementById("interview-time").value = data.responseData.date.replace('Z', '');
+                        let commentElem = document.getElementById("comment");
+                        commentElem.innerText = data.responseData.comment;
+                        if (!data.responseData.comment || data.responseData.comment === "") {
+                            commentElem.style = "display:none";
+                        }
+                        let pos = document.getElementById("position-name");
+                        let aPos = document.createElement('a');
+                        aPos.href = '/Details/Position?PositionId=' + data.responseData.positionId;
+                        aPos.innerText = data.responseData.positionName;
+                        pos.appendChild(aPos);
+                        let comp = document.getElementById("company-name");
+                        let aComp = document.createElement('a');
+                        aComp.href = '/Details/Company?CompanyId=' + data.responseData.companyId;
+                        aComp.innerText = data.responseData.companyName;
+                        comp.appendChild(aComp);
                     }
-                    let pos = document.getElementById("position-name");
-                    let aPos = document.createElement('a');
-                    aPos.href = '/Details/Position?PositionId=' + data.positionId;
-                    aPos.innerText = data.positionName;
-                    pos.appendChild(aPos);
-                    let comp = document.getElementById("company-name");
-                    let aComp = document.createElement('a');
-                    aComp.href = '/Details/Company?CompanyId=' + data.companyId;
-                    aComp.innerText = data.companyName;
-                    comp.appendChild(aComp);
-                }
-            })
+                });
+        else handleRequestErrors(response);
     });
 }
 function editComment() {
@@ -67,18 +69,13 @@ function confirmComment(id) {
                 comment: document.getElementById("comment-edit-input").value
             })
         }).then((response) => {
-            if (response.ok === true) {
+            if (response.ok) {
                 location.reload();
             }
             else {
                 document.getElementById("confirm-comment").disabled = false;
                 document.getElementById("comment-edit-input").disabled = false;
-                response.json().then((data) => {
-                    if (data.errors) {
-                        setMessage("");
-                        addRequestErrorsToMessage(data);
-                    }
-                });
+                handleRequestErrors(response);
             };
         });
 }
@@ -109,18 +106,13 @@ function confirmTime(id) {
                 date: document.getElementById("interview-time").value + "Z"
             })
         }).then((response) => {
-            if (response.ok === true) {
+            if (response.ok) {
                 location.reload();
             }
             else {
                 document.getElementById("confirm-time").disabled = false;
                 document.getElementById("interview-time").disabled = false;
-                response.json().then((data) => {
-                    if (data.errors) {
-                        setMessage("");
-                        addRequestErrorsToMessage(data);
-                    }
-                });
+                handleRequestErrors(response);
             };
         });
 }

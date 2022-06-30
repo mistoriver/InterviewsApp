@@ -12,24 +12,15 @@
                 password: password
             })
         }).then((response) => {
-            if (response.ok === true) {
+            if (response.ok) {
                 response.json().then((data) => {
-                    sessionStorage.setItem(tokenKey, data.token);
-                    sessionStorage.setItem(currentUserId, data.userId);
+                    sessionStorage.setItem(tokenKey, data.responseData.token);
+                    sessionStorage.setItem(currentUserId, data.responseData.userId);
                     location.replace("/");
                 });
             }
             else {
-                response.json().then((data) => {
-                    if (data.errors) {
-                        setMessage("");
-                        addRequestErrorsToMessage(data);
-                    }
-                    else
-                        if (response.status === 401)
-                            setMessage(data.error);
-                        else setMessage("Аутентификация неуспешна. Код ошибки: " + response.status);
-                });
+                handleRequestErrors(response);
             }
         }).catch((error) => {
             setMessage("Аутентификация неуспешна. Сервер недоступен.");

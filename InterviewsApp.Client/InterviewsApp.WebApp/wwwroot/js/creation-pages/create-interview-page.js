@@ -1,32 +1,35 @@
 ﻿function getPositions(createdPosition) {
-    fetch(apihost + "/Position/GetMultipleByUser?userId=" + sessionStorage.getItem("userId"), {
+    fetch(apihost + "/Position/GetMultiplePositionsByUser?userId=" + sessionStorage.getItem("userId"), {
         method: "GET", headers: {
             "Accept": "application/json",
             "Authorization": "Bearer " + sessionStorage.getItem("AccessToken")
         }
     }).then((response) => {
-        response.json()
-            .then(function (data) {
-                let sel = document.getElementById("position-select");
-                if (data.length > 0) {
-                    for (let i = 0; i < data.length; i++) {
-                        let opt = document.createElement("option");
-                        opt.value = data[i].id;
-                        opt.text = data[i].name;
-                        if (data[i].id === createdPosition)
-                            opt.selected = true;
-                        sel.appendChild(opt);
+        if (response.ok)
+            response.json()
+                .then(function (data) {
+                    let sel = document.getElementById("position-select");
+                    if (data.responseData.length > 0) {
+                        for (let i = 0; i < data.responseData.length; i++) {
+                            let opt = document.createElement("option");
+                            opt.value = data.responseData[i].id;
+                            opt.text = data.responseData[i].name;
+                            if (data.responseData[i].id === createdPosition)
+                                opt.selected = true;
+                            sel.appendChild(opt);
+                        }
                     }
-                }
-                else {
-                    let opt = document.createElement("option");
-                    opt.text = "У вас нет вакансий, для которых можно добавить собеседование.";
-                    sel.appendChild(opt);
-                    sel.disabled = true;
-                    document.getElementById("create-button").disabled = true;
-                }
-                document.getElementById("hidden-button-cell").style = "";
-            });
+                    else {
+                        let opt = document.createElement("option");
+                        opt.text = "У вас нет вакансий, для которых можно добавить собеседование.";
+                        sel.appendChild(opt);
+                        sel.disabled = true;
+                        document.getElementById("create-button").disabled = true;
+                    }
+                    document.getElementById("hidden-button-cell").style = "";
+                });
+        else
+            handleRequestErrors(response);
     });
 }
 function createInterview() {
@@ -48,24 +51,15 @@ function createInterview() {
                     positionId: position
                 })
             }).then((response) => {
-                if (response.ok === true) {
+                if (response.ok) {
                     document.getElementById("manual-redirect").style = "";
                     setMessage("Собеседование добавлено. Переадресация на страницу входа через 5 секунд...");
                     redirectTimeoutToken = setTimeout(() => {
                         location.assign("/");
                     }, 5000);
                 }
-                else {
-                    try {
-                        response.json().then((data) => {
-                            setMessage("");
-                            addRequestErrorsToMessage(data);
-                        })
-                    }
-                    catch (e) {
-                        setMessage("Добавление неуспешно. Код ошибки: " + response.status);
-                    }
-                }
+                else
+                    handleRequestErrors(response);
             }).then(() => {
                 document.getElementById("create-button").disabled = false;
             });

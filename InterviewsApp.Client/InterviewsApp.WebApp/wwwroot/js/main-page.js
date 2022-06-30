@@ -13,7 +13,7 @@ function getInterviews(params) {
     }).then((response) => {
         response.json()
             .then(function (data) {
-                params.success(data);
+                params.success(data.responseData);
                 $('#interviews-table').bootstrapTable("hideLoading");
             })
     });

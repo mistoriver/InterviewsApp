@@ -13,26 +13,17 @@
                     name: name
                 })
             }).then((response) => {
-                if (response.ok === true) {
+                if (response.ok) {
                     response.json().then((data) => {
                         document.getElementById("manual-redirect").style = "";
                         setMessage("Компания успешно добавлена. Переадресация на страницу создания вакансии...");
                         redirectTimeoutToken = setTimeout(() => {
-                            location.assign("/Create/Position?CreatedCompany=" + data);
+                            location.assign("/Create/Position?CreatedCompany=" + data.responseData);
                         }, 1000);
                     })
                 }
-                else {
-                    try {
-                        response.json().then((data) => {
-                            setMessage("");
-                            addRequestErrorsToMessage(data);
-                        })
-                    }
-                    catch (e) {
-                        setMessage("Создание неуспешно. Код ошибки: " + response.status);
-                    }
-                }
+                else
+                    handleRequestErrors(response);
             }).then(() => {
                 document.getElementById("create-button").disabled = false;
             });
