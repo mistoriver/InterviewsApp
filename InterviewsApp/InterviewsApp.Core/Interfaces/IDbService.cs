@@ -1,4 +1,5 @@
 ﻿using InterviewsApp.Core.DTOs.External;
+using InterviewsApp.Core.Models;
 using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,17 +23,17 @@ namespace InterviewsApp.Core.Interfaces
         /// </summary>
         /// <param name="id">Уникальный идентификатор</param>
         /// <returns>Данные сущности</returns>
-        public TExternalDto Get(Guid id);
+        public Response<TExternalDto> Get(Guid id);
         /// <summary>
         /// Получить все сущности в системе
         /// </summary>
         /// <returns>Список всех сущностей</returns>
-        public IEnumerable<TExternalDto> Get();
+        public Response<IEnumerable<TExternalDto>> Get();
 
         /// <summary>
         /// Удалить сущность из системы
         /// </summary>
         /// <param name="id">Уникальный идентификатор</param>
-        public void Delete(Guid id);
+        public Response Delete(Guid id);
     }
 }

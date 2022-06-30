@@ -9,6 +9,7 @@ namespace InterviewsApp.Core.Mappings
         public InterviewMapping() : base()
         {
             CreateMap<CreateInterviewDto, InterviewEntity>();
+            CreateMap<InterviewEntity, InterviewDto>();
             CreateMap<InterviewDto, InterviewEntity>();
         }
     }

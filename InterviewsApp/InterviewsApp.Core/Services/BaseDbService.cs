@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Core.Interfaces;
+using InterviewsApp.Core.Models;
 using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
 using System;
@@ -24,24 +25,28 @@ namespace InterviewsApp.Core.Services
             _mapper = mapper;
 
         }
-        public virtual TExternalDto Get(Guid id)
+        public virtual Response<TExternalDto> Get(Guid id)
         {
             var entity = _repository.GetByIdOrDefault(id);
-            return _mapper.Map<TExternalDto>(entity);
+            return new Response<TExternalDto>(_mapper.Map<TExternalDto>(entity));
         }
 
-        public virtual IEnumerable<TExternalDto> Get()
+        public virtual Response<IEnumerable<TExternalDto>> Get()
         { 
             var entityList = _repository.Get(e => true);
             entityList.Select(entity => _mapper.Map<TExternalDto>(entity));
-            return entityList.Select(entity => _mapper.Map<TExternalDto>(entity));
+            return new Response<IEnumerable<TExternalDto>>(entityList.Select(entity => _mapper.Map<TExternalDto>(entity)));
         }
 
-        public virtual void Delete(Guid id)
+        public virtual Response Delete(Guid id)
         {
             var entity = _repository.GetByIdOrDefault(id);
             if (entity != null)
+            {
                 _repository.Delete(entity);
+                return new Response();
+            }
+            return new Response("Сущность, которую вы пытаетесь удалить, не существует");
         }
     }
 }
