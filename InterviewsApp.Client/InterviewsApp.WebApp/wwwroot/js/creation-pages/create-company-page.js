@@ -7,7 +7,7 @@
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                    "Authorization": "Bearer " + Cookies.get(tokenKey)
                 },
                 body: JSON.stringify({
                     name: name

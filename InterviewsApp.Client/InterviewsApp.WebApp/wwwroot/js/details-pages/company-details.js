@@ -4,7 +4,7 @@ function getCompanyInfo(id) {
     fetch(apihost + "/Company/Get?id=" + id, {
         method: "GET", headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
         }
     }).then((response) => {
         if (response.ok)
@@ -68,10 +68,10 @@ function setRate(rate) {
     }
 }
 function getRateFromDb(id) {
-    fetch(apihost + "/Company/GetCompanyRate?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId), {
+    fetch(apihost + "/Company/GetCompanyRate?id=" + id + "&userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
         }
     }).then((response) => {
         if (response.ok)
@@ -88,10 +88,10 @@ function getRateFromDb(id) {
 }
 function rateCompany(id, event) {
     newRate = event.target.id.substring(5) * 2;
-    fetch(apihost + "/Company/RateCompany?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId) + "&rate=" + newRate, {
+    fetch(apihost + "/Company/RateCompany?id=" + id + "&userId=" + Cookies.get(currentUserId) + "&rate=" + newRate, {
         method: "PUT", headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
         }
     }).then((response) => {
         location.reload();

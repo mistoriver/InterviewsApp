@@ -38,4 +38,4 @@
     <p id="message"></p>
     <a id="manual-redirect" style="visibility:hidden" href="/Login" >Перейти на страницу входа</a>
 </div>
-<script>if(sessionStorage.getItem(currentUserId)) location.assign("/")</script>
+<script>if(Cookies.get(currentUserId)) location.assign("/")</script>

@@ -3,19 +3,20 @@
 }
 
 function getInterviews(params) {
-    let token = sessionStorage.getItem(tokenKey);
+    let token = Cookies.get(tokenKey);
     $('#interviews-table').bootstrapTable("showLoading");
-    fetch(apihost + "/Interview/GetMultipleInterviewsByUser?userId=" + sessionStorage.getItem(currentUserId), {
+    fetch(apihost + "/Interview/GetMultipleInterviewsByUser?userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
             "Authorization": "Bearer " + token
         }
     }).then((response) => {
-        response.json()
-            .then(function (data) {
-                params.success(data.responseData);
-                $('#interviews-table').bootstrapTable("hideLoading");
-            })
+        if (response.ok)
+            response.json()
+                .then(function (data) {
+                    params.success(data.responseData);
+                });
+        $('#interviews-table').bootstrapTable("hideLoading");
     });
 }
 function dateFormatter(value) {

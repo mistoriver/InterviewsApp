@@ -1,8 +1,8 @@
 ﻿function getPositionInfo(id) {
-    fetch(apihost + "/Position/GetByUser?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId), {
+    fetch(apihost + "/Position/GetByUser?id=" + id + "&userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
         }
     }).then((response) => {
         if (response.ok)
@@ -69,11 +69,11 @@ function confirmComment(id) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             },
             body: JSON.stringify({
                 id: id,
-                userId: sessionStorage.getItem(currentUserId),
+                userId: Cookies.get(currentUserId),
                 comment: document.getElementById("comment-edit-input").value
             })
         }).then((response) => {
@@ -109,11 +109,11 @@ function confirmMoney(id) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             },
             body: JSON.stringify({
                 id: id,
-                userId: sessionStorage.getItem(currentUserId),
+                userId: Cookies.get(currentUserId),
                 moneyLower: document.getElementById("money-edit-from").value,
                 moneyUpper: document.getElementById("money-edit-to").value
             })
@@ -144,11 +144,11 @@ function confirmCity(id) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             },
             body: JSON.stringify({
                 id: id,
-                userId: sessionStorage.getItem(currentUserId),
+                userId: Cookies.get(currentUserId),
                 city: document.getElementById("city-edit-input").value
             })
         }).then((response) => {
@@ -164,12 +164,12 @@ function confirmCity(id) {
 }
 
 function offer(id) {
-    fetch(apihost + "/Position/SetOffered?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId),
+    fetch(apihost + "/Position/SetOffered?id=" + id + "&userId=" + Cookies.get(currentUserId),
         {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             }
         }).then((response) => {
             if (response.ok) {
@@ -181,12 +181,12 @@ function offer(id) {
         });
 }
 function denial(id) {
-    fetch(apihost + "/Position/SetDenied?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId),
+    fetch(apihost + "/Position/SetDenied?id=" + id + "&userId=" + Cookies.get(currentUserId),
         {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             }
         }).then((response) => {
             if (response.ok) {

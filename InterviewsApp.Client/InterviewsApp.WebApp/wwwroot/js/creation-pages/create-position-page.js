@@ -2,7 +2,7 @@
     fetch(apihost + "/Company/GetCompanies", {
         method: "GET", headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem("AccessToken")
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
         }
     }).then((response) => {
         if (response.ok)
@@ -43,13 +43,13 @@ function createPosition() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                    "Authorization": "Bearer " + Cookies.get(tokenKey)
                 },
                 body: JSON.stringify({
                     name: name,
                     city: cityName,
                     companyId: company,
-                    userId: sessionStorage.getItem(currentUserId)
+                    userId: Cookies.get(currentUserId)
                 })
             }).then((response) => {
                 if (response.ok) {

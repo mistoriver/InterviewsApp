@@ -14,8 +14,8 @@
         }).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    sessionStorage.setItem(tokenKey, data.responseData.token);
-                    sessionStorage.setItem(currentUserId, data.responseData.userId);
+                    Cookies.set(tokenKey, data.responseData.token, {expires: 1});
+                    Cookies.set(currentUserId, data.responseData.userId, { expires: 1 });
                     location.replace("/");
                 });
             }

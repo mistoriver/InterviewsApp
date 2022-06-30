@@ -1,8 +1,8 @@
 ﻿function getInterviewInfo(id) {
-    fetch(apihost + "/Interview/Get?id="+ id +"&userId=" + sessionStorage.getItem(currentUserId), {
+    fetch(apihost + "/Interview/Get?id="+ id +"&userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
         }
     }).then((response) => {
         if (response.ok)
@@ -61,11 +61,11 @@ function confirmComment(id) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             },
             body: JSON.stringify({
                 id: id,
-                userId: sessionStorage.getItem(currentUserId),
+                userId: Cookies.get(currentUserId),
                 comment: document.getElementById("comment-edit-input").value
             })
         }).then((response) => {
@@ -98,11 +98,11 @@ function confirmTime(id) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             },
             body: JSON.stringify({
                 id: id,
-                userId: sessionStorage.getItem(currentUserId),
+                userId: Cookies.get(currentUserId),
                 date: document.getElementById("interview-time").value + "Z"
             })
         }).then((response) => {

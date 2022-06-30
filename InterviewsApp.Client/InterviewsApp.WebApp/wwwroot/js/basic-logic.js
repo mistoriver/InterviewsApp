@@ -3,7 +3,7 @@ var currentUserId = "userId";
 var apihost = "https://localhost:5001/api";
 
 function init() {
-    let authorized = sessionStorage.getItem(currentUserId);
+    let authorized = Cookies.get(currentUserId);
     if (!authorized) {
         document.getElementById("logout-button").style = "visibility:hidden";
         if (location.pathname != "/Login" && location.pathname != "/Register")
@@ -12,8 +12,8 @@ function init() {
 }
 
 function logout() {
-    sessionStorage.removeItem(tokenKey);
-    sessionStorage.removeItem(currentUserId);
+    Cookies.remove(tokenKey);
+    Cookies.remove(currentUserId);
 }
 
 function checkEmpty() {

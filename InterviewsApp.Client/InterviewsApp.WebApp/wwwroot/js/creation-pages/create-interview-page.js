@@ -1,8 +1,8 @@
 ﻿function getPositions(createdPosition) {
-    fetch(apihost + "/Position/GetMultiplePositionsByUser?userId=" + sessionStorage.getItem("userId"), {
+    fetch(apihost + "/Position/GetMultiplePositionsByUser?userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem("AccessToken")
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
         }
     }).then((response) => {
         if (response.ok)
@@ -43,7 +43,7 @@ function createInterview() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer " + sessionStorage.getItem("AccessToken")
+                    "Authorization": "Bearer " + Cookies.get(tokenKey)
                 },
                 body: JSON.stringify({
                     name: name,
