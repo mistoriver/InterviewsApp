@@ -5,7 +5,18 @@
 }
 <style>
     td {
-        padding:10px;
+        padding: 10px;
+    }
+    td.edit-cell {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    tbody{
+        width:fit-content;
+    }
+    button {
+        margin-left: 10px;
     }
 </style>
 <div>
@@ -14,16 +25,15 @@
     <table>
         <tr>
             <td>Название вакансии</td>
-            <td><input id="position-name" type="text" /></td>
+            <td><input id="position-name" type="text" style="width:100%" /></td>
         </tr>
         <tr>
             <td>Город вакансии (или "Удалёнка")</td>
-            <td><input id="city-name" type="text" /></td>
+            <td><input id="city-name" type="text"  style="width:100%"/></td>
         </tr>
         <tr>
             <td>Компания</td>
-            <td><select id="company-select"></select></td>
-            <td id="hidden-button-cell"><button onclick="location.assign('/Create/Company')">Нужной компании нет в списке</button></td>
+            <td class="edit-cell"><select id="company-select"></select><button id="hidden-button" onclick="location.assign('/Create/Company')">Нужной компании нет в списке</button></td>
         </tr>
     </table>
     

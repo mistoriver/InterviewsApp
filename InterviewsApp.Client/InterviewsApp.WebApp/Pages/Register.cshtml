@@ -8,10 +8,6 @@
     td {
         padding:10px;
     }
-    a{
-        font-weight:bold;
-        text-decoration:underline;
-    }
 </style>
 
 <script src="/js/register-page.js"></script>
@@ -42,3 +38,4 @@
     <p id="message"></p>
     <a id="manual-redirect" style="visibility:hidden" href="/Login" >Перейти на страницу входа</a>
 </div>
+<script>if(sessionStorage.getItem(currentUserId)) location.assign("/")</script>

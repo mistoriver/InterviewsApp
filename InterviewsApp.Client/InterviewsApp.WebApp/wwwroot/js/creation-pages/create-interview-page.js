@@ -26,7 +26,7 @@
                         sel.disabled = true;
                         document.getElementById("create-button").disabled = true;
                     }
-                    document.getElementById("hidden-button-cell").style = "";
+                    document.getElementById("hidden-button").style = "";
                 });
         else
             handleRequestErrors(response);
