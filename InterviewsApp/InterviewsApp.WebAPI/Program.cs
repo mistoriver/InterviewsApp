@@ -44,6 +44,8 @@ namespace InterviewsApp.WebAPI
 
             app.MapControllers();
 
+            app.ApplyMigrations();
+
             app.Run();
         }
     }
