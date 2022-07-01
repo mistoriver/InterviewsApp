@@ -1,19 +1,19 @@
 ﻿var tokenKey = "AccessToken";
 var currentUserId = "userId";
-var apihost = "https://localhost:5001/api";
+var apihost = "";
 
-function init() {
-    let authorized = sessionStorage.getItem(currentUserId);
+function init(host) {
+    apihost = host ?? "http://unconfigured-api-host-will-not-work";
+    let authorized = Cookies.get(currentUserId);
     if (!authorized) {
-        document.getElementById("logout-button").style = "visibility:hidden";
         if (location.pathname != "/Login" && location.pathname != "/Register")
             location.assign("/Login");
     }
 }
 
 function logout() {
-    sessionStorage.removeItem(tokenKey);
-    sessionStorage.removeItem(currentUserId);
+    Cookies.remove(tokenKey);
+    Cookies.remove(currentUserId);
 }
 
 function checkEmpty() {
@@ -53,4 +53,19 @@ function addRequestErrorsToMessage(requestData, messageElement) {
         messageElement = document.getElementById("message");
     if (messageElement)
         addMultipleMessageHtml(errorArr, messageElement);
+}
+
+function handleRequestErrors(response) {
+    response.json().then((data) => {
+        if (data.errors) {
+            //обработка ошибок модели
+            setMessage("");
+            addRequestErrorsToMessage(data);
+        }
+        else
+            if (data.errorMessage)
+                //обработка ошибок сервера
+                setMessage(data.errorMessage);
+            else setMessage("Произошла ошибка. Код ошибки: " + response.status);
+    });
 }

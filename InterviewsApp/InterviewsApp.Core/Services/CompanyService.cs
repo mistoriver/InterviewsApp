@@ -2,6 +2,7 @@
 using InterviewsApp.Core.DTOs;
 using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Core.Interfaces;
+using InterviewsApp.Core.Models;
 using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
 using System;
@@ -18,13 +19,13 @@ namespace InterviewsApp.Core.Services
             _positionRepository = positionRepository;
         }
 
-        public Guid CreateCompany(CreateCompanyDto dto)
+        public Response<Guid> CreateCompany(CreateCompanyDto dto)
         {
             var company = _mapper.Map<CompanyEntity>(dto);
             company.Rating = 50;
-            return _repository.Create(company);
+            return new Response<Guid>(_repository.Create(company));
         }
-        public short RateCompany(Guid id, Guid userId, short newRate)
+        public Response<short> RateCompany(Guid id, Guid userId, short newRate)
         {
             var company = _repository.GetByIdOrDefault(id);
             var positions = _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id).ToList();
@@ -36,14 +37,17 @@ namespace InterviewsApp.Core.Services
                 positions.ForEach(p => p.CompanyRate = newRate);
                 _positionRepository.UpdateRange(positions.ToArray());
                 _repository.Update(company);
-                return newRating;
+                return new Response<short> (newRating);
             }
-            return 0;
+            return new Response<short>("Компании, которую вы пытаетесь оценить, не существует");
         }
 
-        public short GetCompanyRate(Guid id, Guid userId)
+        public Response<short> GetCompanyRate(Guid id, Guid userId)
         {
-            return _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id).FirstOrDefault()?.CompanyRate ?? 0;
+            var comp = _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id).FirstOrDefault();
+            if (comp != null)
+                return new Response<short>(comp.CompanyRate);
+            return  new Response<short>("Компании не существует");
         }
 
         private short CalculateNewRating(CompanyEntity company, short newRate, short oldRate = 0)

@@ -1,7 +1,9 @@
 ﻿using InterviewsApp.Core.DTOs;
 using InterviewsApp.Core.DTOs.External;
+using InterviewsApp.Core.Models;
 using InterviewsApp.Data.Models.Entities;
 using InterviewsApp.WebAPI.Models;
+using System;
 
 namespace InterviewsApp.Core.Interfaces
 {
@@ -11,12 +13,12 @@ namespace InterviewsApp.Core.Interfaces
         /// Создать пользователя в системе
         /// </summary>
         /// <param name="dto">Данные для создания пользователя</param>
-        public void CreateUser(CreateUserDto dto);
+        public Response<Guid> CreateUser(CreateUserDto dto);
         /// <summary>
         /// Авторизовать пользователя в системе
         /// </summary>
         /// <param name="dto">Данные для авторизации</param>
         /// <returns></returns>
-        public LoginDto Login(LoginUserDto dto);
+        public Response<LoginDto> Login(LoginUserDto dto);
     }
 }

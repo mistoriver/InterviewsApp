@@ -27,7 +27,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Get(Guid id)
         {
-            return Ok(_service.Get(id));
+            var response = _service.Get(id);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Получить список всех компаний в системе
@@ -37,7 +40,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetCompanies()
         {
-            return Ok(_service.Get());
+            var response = _service.Get();
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Добавить в систему новую компанию
@@ -50,7 +56,10 @@ namespace InterviewsApp.WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Ok(_service.CreateCompany(dto));
+                var response = _service.CreateCompany(dto);
+                if (response.Ok)
+                    return Ok(response);
+                return StatusCode(500, response);
             }
             return BadRequest();
         }
@@ -64,7 +73,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult RateCompany(Guid id, Guid userId, short rate)
         {
-            return Ok(_service.RateCompany(id, userId, rate));
+            var response = _service.RateCompany(id, userId, rate);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Удалить компанию из системы
@@ -75,8 +87,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Delete(Guid id)
         {
-            _service.Delete(id);
-            return Ok();
+            var response = _service.Delete(id);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Получить оценку, выставленную компании конкретным пользователем
@@ -88,7 +102,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetCompanyRate(Guid id, Guid userId)
         {
-            return Ok(_service.GetCompanyRate(id, userId));
+            var response = _service.GetCompanyRate(id, userId);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
     }
 }

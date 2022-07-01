@@ -27,7 +27,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Get(Guid id, Guid userId)
         {
-            return Ok(_service.Get(id, userId));
+            var response = _service.Get(id, userId);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Получить список собеседований пользователя
@@ -38,8 +41,11 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetMultipleInterviewsByUser(Guid userId)
         {
-            
-            return Ok(_service.GetByUserId(userId));
+
+            var response = _service.GetByUserId(userId);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Добавить в систему новое собеседование
@@ -52,8 +58,10 @@ namespace InterviewsApp.WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _service.CreateInterview(newInterview);
-                return Ok();
+                var response = _service.CreateInterview(newInterview);
+                if (response.Ok)
+                    return Ok(response);
+                return StatusCode(500, response);
             }
             return BadRequest();
         }
@@ -66,22 +74,28 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Delete(Guid id)
         {
-            _service.Delete(id);
-            return Ok();
+            var response = _service.Delete(id);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult UpdateComment(UpdateCommentDto commentInfo)
         {
-            _service.UpdateComment(commentInfo);
-            return Ok();
+            var response = _service.UpdateComment(commentInfo);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult UpdateDatetime(UpdateInterviewDto interviewInfo)
         {
-            _service.UpdateDatetime(interviewInfo);
-            return Ok();
+            var response = _service.UpdateDatetime(interviewInfo);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
     }
 }

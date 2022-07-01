@@ -1,3 +1,4 @@
+using InterviewsApp.WebApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +13,7 @@ namespace InterviewsApp.WebApp
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.Configure<CustomHostOptions>(builder.Configuration);
 
             var app = builder.Build();
 

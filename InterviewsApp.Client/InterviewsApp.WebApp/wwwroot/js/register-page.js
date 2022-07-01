@@ -12,7 +12,8 @@ function register() {
     let secpassword = document.getElementById("repeat-password").value;
     if (checkEmpty(name, login, password, secpassword))
         setMessage("Для регистрации необходимо заполнить все поля!");
-    else
+    else {
+        setMessage("");
         if (checkPass(password, secpassword)) {
             document.getElementById("register-button").disabled = true;
             fetch(apihost + '/User/Register',
@@ -25,7 +26,7 @@ function register() {
                         password: password
                     })
                 }).then((response) => {
-                    if (response.ok === true) {
+                    if (response.ok) {
                         document.getElementById("manual-redirect").style = "";
                         setMessage("Пользователь успешно зарегистрирован. Переадресация на страницу входа через 5 секунд...");
                         redirectTimeoutToken = setTimeout(() => {
@@ -33,20 +34,16 @@ function register() {
                         }, 5000);
                     }
                     else {
-                        try {
-                            response.json().then((data) => {
-                                setMessage("");
-                                addRequestErrorsToMessage(data)
-                                document.getElementById("register-button").disabled = false;
-                            })
-                        }
-                        catch (e) {
-                            setMessage("Регистрация неуспешна. Код ошибки: " + response.status);
-                        }
+                        handleRequestErrors(response);
+                        document.getElementById("register-button").disabled = true;
                     }
+                }).catch((error) => {
+                    setMessage("Регистрация невозможна. Сервер недоступен.");
+                    document.getElementById("register-button").disabled = false;
                 })
         }
         else {
             setMessage("Пароль и подтверждение пароля должны совпадать!");
         }
+    }
 }

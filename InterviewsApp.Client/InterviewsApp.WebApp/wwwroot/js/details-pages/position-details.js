@@ -1,32 +1,38 @@
 ﻿function getPositionInfo(id) {
-    fetch(apihost + "/Position/GetByUser?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId), {
+    setMessage("");
+    fetch(apihost + "/Position/GetByUser?id=" + id + "&userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
         }
     }).then((response) => {
-        response.json()
-            .then((data) => {
-                if (data) {
-                    document.getElementById("position-name").innerText += ' "' + data.name + '"';
-                    document.getElementById("city-name").innerText = data.city;
-                    document.getElementById("city-edit-input").value = data.city;
-                    document.getElementById("money").innerText = data.moneyLower == data.moneyUpper ? numberWithSpaces(data.moneyLower) : numberWithSpaces(data.moneyLower) + " - " + numberWithSpaces(data.moneyUpper);
-                    document.getElementById("money-edit-from").value = data.moneyLower;
-                    document.getElementById("money-edit-to").value = data.moneyUpper;
-                    let commentElem = document.getElementById("comment");
-                    commentElem.innerText = data.comment;
-                    if (!data.comment || data.comment === "") {
-                        commentElem.style = "display:none";
+        if (response.ok)
+            response.json()
+                .then((data) => {
+                    if (data) {
+                        document.getElementById("position-name").innerText += ' "' + data.responseData.name + '"';
+                        document.getElementById("city-name").innerText = data.responseData.city;
+                        document.getElementById("city-edit-input").value = data.responseData.city;
+                        document.getElementById("money").innerText = data.responseData.moneyLower == data.responseData.moneyUpper ?
+                            numberWithSpaces(data.responseData.moneyLower) :
+                            numberWithSpaces(data.responseData.moneyLower) + " - " + numberWithSpaces(data.responseData.moneyUpper);
+                        document.getElementById("money-edit-from").value = data.responseData.moneyLower;
+                        document.getElementById("money-edit-to").value = data.responseData.moneyUpper;
+                        let commentElem = document.getElementById("comment");
+                        commentElem.innerText = data.responseData.comment;
+                        if (!data.responseData.comment || data.responseData.comment === "") {
+                            commentElem.style = "display:none";
+                        }
+                        document.getElementById("comment-edit-input").value = data.responseData.comment;
+                        let comp = document.getElementById("company-name");
+                        let aComp = document.createElement('a');
+                        aComp.href = '/Details/Company?CompanyId=' + data.responseData.companyId;
+                        aComp.innerText = data.responseData.companyName;
+                        comp.appendChild(aComp);
                     }
-                    document.getElementById("comment-edit-input").value = data.comment;
-                    let comp = document.getElementById("company-name");
-                    let aComp = document.createElement('a');
-                    aComp.href = '/Details/Company?CompanyId=' + data.companyId;
-                    aComp.innerText = data.companyName;
-                    comp.appendChild(aComp);
-                }
-            })
+                });
+        else
+            handleRequestErrors(response);
     });
 }
 
@@ -57,33 +63,29 @@ function discardComment() {
 
 }
 function confirmComment(id) {
+    setMessage("");
     document.getElementById("confirm-comment").disabled = true;
     document.getElementById("comment-edit-input").disabled = true;
-    fetch(apihost + "/Interview/UpdateComment",
+    fetch(apihost + "/Position/UpdateComment",
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             },
             body: JSON.stringify({
                 id: id,
-                userId: sessionStorage.getItem(currentUserId),
+                userId: Cookies.get(currentUserId),
                 comment: document.getElementById("comment-edit-input").value
             })
         }).then((response) => {
-            if (response.ok === true) {
+            if (response.ok) {
                 location.reload();
             }
             else {
                 document.getElementById("confirm-comment").disabled = false;
                 document.getElementById("comment-edit-input").disabled = false;
-                response.json().then((data) => {
-                    if (data.errors) {
-                        setMessage("");
-                        addRequestErrorsToMessage(data);
-                    }
-                });
+                handleRequestErrors(response);
             };
         });
 }
@@ -101,6 +103,7 @@ function discard() {
 
 }
 function confirmMoney(id) {
+    setMessage("");
     document.getElementById("confirm-money").disabled = true;
     document.getElementById("money-edit-from").disabled = true;
     document.getElementById("money-edit-to").disabled = true;
@@ -109,28 +112,23 @@ function confirmMoney(id) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             },
             body: JSON.stringify({
                 id: id,
-                userId: sessionStorage.getItem(currentUserId),
+                userId: Cookies.get(currentUserId),
                 moneyLower: document.getElementById("money-edit-from").value,
                 moneyUpper: document.getElementById("money-edit-to").value
             })
         }).then((response) => {
-            if (response.ok === true) {
+            if (response.ok) {
                 location.reload();
             }
             else {
                 document.getElementById("confirm-money").disabled = false;
                 document.getElementById("money-edit-from").disabled = false;
                 document.getElementById("money-edit-to").disabled = false;
-                response.json().then((data) => {
-                    if (data.errors) {
-                        setMessage("");
-                        addRequestErrorsToMessage(data);
-                    }
-                });
+                handleRequestErrors(response);
             };
         });
 }
@@ -142,6 +140,7 @@ function editCity() {
     document.getElementById("discard-city").style = "";
 }
 function confirmCity(id) {
+    setMessage("");
     document.getElementById("confirm-city").disabled = true;
     document.getElementById("city-edit-input").disabled = true;
     fetch(apihost + "/Position/UpdateCity",
@@ -149,71 +148,58 @@ function confirmCity(id) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             },
             body: JSON.stringify({
                 id: id,
-                userId: sessionStorage.getItem(currentUserId),
+                userId: Cookies.get(currentUserId),
                 city: document.getElementById("city-edit-input").value
             })
         }).then((response) => {
-            if (response.ok === true) {
+            if (response.ok) {
                 location.reload();
             }
             else {
                 document.getElementById("confirm-city").disabled = false;
                 document.getElementById("city-edit-input").disabled = false;
-                response.json().then((data) => {
-                    if (data.errors) {
-                        setMessage("");
-                        addRequestErrorsToMessage(data);
-                    }
-                });
+                handleRequestErrors(response);
             };
         });
 }
 
 function offer(id) {
-    fetch(apihost + "/Position/SetOffered?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId),
+    setMessage("");
+    fetch(apihost + "/Position/SetOffered?id=" + id + "&userId=" + Cookies.get(currentUserId),
         {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             }
         }).then((response) => {
-            if (response.ok === true) {
+            if (response.ok) {
                 location.assign("/");
             }
             else {
-                response.json().then((data) => {
-                    if (data.errors) {
-                        setMessage("");
-                        addRequestErrorsToMessage(data);
-                    }
-                });
+                handleRequestErrors(response);
             };
         });
 }
 function denial(id) {
-    fetch(apihost + "/Position/SetDenied?id=" + id + "&userId=" + sessionStorage.getItem(currentUserId),
+    setMessage("");
+    fetch(apihost + "/Position/SetDenied?id=" + id + "&userId=" + Cookies.get(currentUserId),
         {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + sessionStorage.getItem(tokenKey)
+                "Authorization": "Bearer " + Cookies.get(tokenKey)
             }
         }).then((response) => {
-            if (response.ok === true) {
+            if (response.ok) {
                 location.assign("/");
             }
             else {
-                response.json().then((data) => {
-                    if (data.errors) {
-                        setMessage("");
-                        addRequestErrorsToMessage(data);
-                    }
-                });
+                handleRequestErrors(response);
             };
         });
 }

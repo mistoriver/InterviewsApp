@@ -2,6 +2,7 @@
 using InterviewsApp.Core.DTOs;
 using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Core.Interfaces;
+using InterviewsApp.Core.Models;
 using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
 using System;
@@ -20,19 +21,24 @@ namespace InterviewsApp.Core.Services
             _positionRepository = positionRepository;
             _companyRepository = companyRepository;
         }
-        public override IEnumerable<InterviewDto> Get()
+        public override Response<IEnumerable<InterviewDto>> Get()
         {
-            return new List<InterviewDto>();
+            return new Response<IEnumerable<InterviewDto>>("Для получения списка собеседований необходима информация о пользователе");
         }
-        public override InterviewDto Get(Guid id)
+        public override Response<InterviewDto> Get(Guid id)
         {
-            return new InterviewDto();
+            return new Response<InterviewDto>("Для получения собеседования необходима информация о пользователе");
         }
-        public InterviewDto Get(Guid id, Guid userId)
+        public Response<InterviewDto> Get(Guid id, Guid userId)
         {
-            return GetByUserId(userId)?.FirstOrDefault(i => i.Id == id);
+            var interviewDto = GetByUserId(userId).ResponseData.FirstOrDefault(i => i.Id == id);
+            if (interviewDto != null)
+            {
+                return new Response<InterviewDto>(interviewDto);
+            }
+            return new Response<InterviewDto>("Собеседование не существует");
         }
-        public IEnumerable<InterviewDto> GetByUserId(Guid userId)
+        public Response<IEnumerable<InterviewDto>> GetByUserId(Guid userId)
         {
             var positions = _positionRepository.Get(p => p.UserId == userId)?.Select(p => p.Id);
             var ints = _repository.Get(i => positions.Any(p => i.PositionId == p));
@@ -49,37 +55,44 @@ namespace InterviewsApp.Core.Services
                 interview.CompanyId = company.Id;
                 res.Add(interview);
             });
-            return res;
+            return new Response<IEnumerable<InterviewDto>>(res);
         }
 
-        public void CreateInterview(CreateInterviewDto dto)
+        public Response<Guid> CreateInterview(CreateInterviewDto dto)
         {
             var position = _positionRepository.GetByIdOrDefault(dto.PositionId);
             var interview = _mapper.Map<InterviewEntity>(dto);
             interview.Position = position;
             if (interview.Date.Kind == DateTimeKind.Unspecified)
                 interview.Date = new DateTime(dto.Date.Ticks, DateTimeKind.Utc);
-            _repository.Create(interview);
+            return new Response<Guid>(_repository.Create(interview));
         }
-        public void UpdateComment(UpdateCommentDto dto)
+        public Response UpdateComment(UpdateCommentDto dto)
         {
-            var positionIds = _positionRepository.Get(p => p.UserId == dto.UserId).Select(p => p.Id);
-            var interview = _repository.Get(e => e.Id == dto.Id && positionIds.Contains(e.PositionId)).FirstOrDefault();
+            var interview = GetInterviewOrDefault(dto.Id, dto.UserId);
             if (interview != null)
             {
                 interview.Comment = dto.Comment;
                 _repository.Update(interview);
+                return new Response();
             }
+            return new Response("Собеседование, которое вы пытаетесь отредактировать, не существует");
         }
-        public void UpdateDatetime(UpdateInterviewDto dto)
+        public Response UpdateDatetime(UpdateInterviewDto dto)
         {
-            var positionIds = _positionRepository.Get(p => p.UserId == dto.UserId).Select(p => p.Id);
-            var interview = _repository.Get(e => e.Id == dto.Id && positionIds.Contains(e.PositionId)).FirstOrDefault();
+            var interview = GetInterviewOrDefault(dto.Id, dto.UserId); 
             if (interview != null)
             {
                 interview.Date = dto.Date;
                 _repository.Update(interview);
+                return new Response();
             }
+            return new Response("Собеседование, которое вы пытаетесь отредактировать, не существует");
+        }
+        private InterviewEntity GetInterviewOrDefault(Guid id, Guid userId)
+        {
+            var positionIds = _positionRepository.Get(p => p.UserId == userId).Select(p => p.Id);
+            return _repository.Get(e => e.Id == id && positionIds.Contains(e.PositionId)).FirstOrDefault();
         }
     }
 }

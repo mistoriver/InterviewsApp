@@ -1,4 +1,5 @@
 ﻿function login() {
+    setMessage("");
     let login = document.getElementById("login").value;
     let password = document.getElementById("password").value;
     document.getElementById("login-button").disabled = true;
@@ -12,27 +13,20 @@
                 password: password
             })
         }).then((response) => {
-            if (response.ok === true) {
+            if (response.ok) {
                 response.json().then((data) => {
-                    sessionStorage.setItem(tokenKey, data.token);
-                    sessionStorage.setItem(currentUserId, data.userId);
+                    Cookies.set(tokenKey, data.responseData.token, {expires: 1});
+                    Cookies.set(currentUserId, data.responseData.userId, { expires: 1 });
                     location.replace("/");
                 });
             }
             else {
-                response.json().then((data) => {
-                    if (data.errors) {
-                        setMessage("");
-                        addRequestErrorsToMessage(data);
-                    }
-                    else
-                        if (response.status === 401)
-                            setMessage(data.error);
-                        else setMessage("Аутентификация неуспешна. Код ошибки: " + response.status);
-                });
+                handleRequestErrors(response);
             }
         }).catch((error) => {
             setMessage("Аутентификация неуспешна. Сервер недоступен.");
+            document.getElementById("login-button").disabled = false;
+            document.getElementById("register-button").disabled = false;
         })
         .then(() => {
             document.getElementById("login-button").disabled = false;

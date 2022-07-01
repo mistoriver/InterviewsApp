@@ -5,7 +5,18 @@
 }
 <style>
     td {
-        padding:10px;
+        padding: 10px;
+    }
+    td.edit-cell {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    tbody{
+        width:fit-content;
+    }
+    button {
+        margin-left: 10px;
     }
 </style>
 <div>
@@ -14,7 +25,7 @@
     <table>
         <tr>
             <td>Название собеседования</td>
-            <td><input id="interviewName" type="text" /></td>
+            <td><input id="interviewName" type="text" style="width:100%"/></td>
         </tr>
         <tr>
             <td>Время собеседования</td>
@@ -22,8 +33,7 @@
         </tr>
         <tr>
             <td>Вакансия</td>
-            <td><select id="position-select"></select></td>
-            <td id="hidden-button-cell" style="display:none"><button onclick="location.assign('/Create/Position')">Добавить вакансию</button></td>
+            <td class="edit-cell"><select id="position-select"></select><button id="hidden-button" style="display:none" onclick="location.assign('/Create/Position')">Добавить вакансию</button></td>
         </tr>
     </table>
     

@@ -9,6 +9,7 @@
     }
 </style>
 <script src="/js/login-page.js"></script>
+<script>document.getElementById("logout-button").style = "visibility:hidden";</script>
 <div class="text-center">
     <table style="margin:auto">
         <tr>
@@ -25,3 +26,4 @@
     
     <p id="message" style="margin:20px;"></p>
 </div>
+<script>if(Cookies.get(currentUserId)) location.assign("/")</script>

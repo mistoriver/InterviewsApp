@@ -1,5 +1,6 @@
 ﻿using InterviewsApp.Core.DTOs;
 using InterviewsApp.Core.DTOs.External;
+using InterviewsApp.Core.Models;
 using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,41 +21,41 @@ namespace InterviewsApp.Core.Interfaces
         /// <param name="id">Уникальный идентификатор вакансии</param>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns></returns>
-        public PositionDto Get(Guid id, Guid userId);
+        public Response<PositionDto> Get(Guid id, Guid userId);
         /// <summary>
         /// Получить вакансии пользователя
         /// </summary>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns>Коллекция вакансий пользователя</returns>
-        public IEnumerable<PositionDto> GetByUserId(Guid userId);
+        public Response<IEnumerable<PositionDto>> GetByUserId(Guid userId);
         /// <summary>
         /// Создать вакансию в системе
         /// </summary>
         /// <param name="dto">Параметры вакансии</param>
         /// <returns>Уникальный идентификатор созданной вакансии</returns>
-        public Guid CreatePosition(CreatePositionDto dto);
+        public Response<Guid> CreatePosition(CreatePositionDto dto);
         /// <summary>
         /// Обновить информацию о зарплатной вилке
         /// </summary>
         /// <param name="dto">Параметры вакансии</param>
-        public void UpdateMoney(UpdatePositionDto dto);
+        public Response UpdateMoney(UpdatePositionDto dto);
         /// <summary>
         /// Отметить получение отказа по вакансии
         /// </summary>
         /// <param name="id">Уникальный идентификатор вакансии</param>
-        public void UpdateSetDenied(Guid id, Guid userId);
+        public Response UpdateSetDenied(Guid id, Guid userId);
         /// <summary>
         /// Отметить получение оффера по вакансии
         /// </summary>
         /// <param name="id">Уникальный идентификатор вакансии</param>
-        public void UpdateSetOffered(Guid id, Guid userId);
+        public Response UpdateSetOffered(Guid id, Guid userId);
 
-        public void UpdateComment(UpdateCommentDto dto);
+        public Response UpdateComment(UpdateCommentDto dto);
         /// <summary>
         /// Обновить информацию о городе
         /// </summary>
         /// <param name="dto">Параметры вакансии</param>
-        public void UpdateCity(UpdatePositionDto dto);
+        public Response UpdateCity(UpdatePositionDto dto);
 
     }
 }

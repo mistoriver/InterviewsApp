@@ -27,9 +27,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetById(Guid id)
         {
-            if (id == Guid.Empty)
-                return BadRequest();
-            return Ok(_service.Get(id));
+            var response = _service.Get(id);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Получить список всех пользователей системы
@@ -39,7 +40,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult GetUsers()
         {
-            return Ok(_service.Get());
+            var response = _service.Get();
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
         /// <summary>
         /// Зарегистрировать нового пользователя в системе
@@ -52,8 +56,10 @@ namespace InterviewsApp.WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _service.CreateUser(newUser);
-                return Ok();
+                var response = _service.CreateUser(newUser);
+                if (response.Ok)
+                    return Ok(response);
+                return StatusCode(500, response);
             }
             return BadRequest();
         }
@@ -68,12 +74,10 @@ namespace InterviewsApp.WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userInfo = _service.Login(loginDto);
-                if (userInfo != null)
-                {
-                    return Ok(userInfo);
-                }
-                return Unauthorized(new { error = "Неверный логин и/или пароль" });
+                var response = _service.Login(loginDto);
+                if (response.Ok)
+                    return Ok(response);
+                return Unauthorized(response);
             }
             return BadRequest();
         }
@@ -86,8 +90,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Delete(Guid id)
         {
-            _service.Delete(id);
-            return Ok();
+            var response = _service.Delete(id);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
         }
     }
 }
