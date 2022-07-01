@@ -1,4 +1,5 @@
 ﻿function createCompany() {
+    setMessage("");
     let name = document.getElementById("company-name").value;
     if (!checkEmpty(name)) {
         document.getElementById("create-button").disabled = true;

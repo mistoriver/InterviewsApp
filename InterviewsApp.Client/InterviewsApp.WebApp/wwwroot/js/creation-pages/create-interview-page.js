@@ -1,4 +1,5 @@
 ﻿function getPositions(createdPosition) {
+    setMessage("");
     fetch(apihost + "/Position/GetMultiplePositionsByUser?userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
@@ -33,6 +34,7 @@
     });
 }
 function createInterview() {
+    setMessage("");
     let name = document.getElementById("interviewName").value;
     let datetime = document.getElementById("interviewTime").value+"Z";
     let position = document.getElementById("position-select").value;

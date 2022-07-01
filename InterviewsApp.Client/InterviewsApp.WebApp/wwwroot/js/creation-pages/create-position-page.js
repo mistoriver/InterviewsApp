@@ -1,4 +1,5 @@
 ﻿function getCompanies(createdCompany) {
+    setMessage("");
     fetch(apihost + "/Company/GetCompanies", {
         method: "GET", headers: {
             "Accept": "application/json",
@@ -33,6 +34,7 @@
 }
 
 function createPosition() {
+    setMessage("");
     let name = document.getElementById("position-name").value;
     let cityName = document.getElementById("city-name").value;
     let company = document.getElementById("company-select").value;

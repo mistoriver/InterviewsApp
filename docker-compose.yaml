@@ -1,0 +1,36 @@
+services:
+    
+  interviewsapp-client:
+    image: interviewsapp-client
+    container_name: interviewsapp-client
+    build:
+      context: ./InterviewsApp.Client
+      dockerfile: Dockerfile
+    ports:
+      - "7000:80"
+      - "7001:443"
+    depends_on: 
+      - interviewsapp-api
+      
+  interviewsapp-api:
+    image: interviewsapp-api
+    container_name: interviewsapp-api
+    build:
+      context: ./InterviewsApp
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+      - "5001:443"
+    depends_on:
+      - interviewsapp-postgres
+
+  interviewsapp-postgres:
+    image: postgres
+    container_name: interviewsapp-db
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "pg2255301"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "interviewsappdb"

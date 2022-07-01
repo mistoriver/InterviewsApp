@@ -12,7 +12,8 @@ function register() {
     let secpassword = document.getElementById("repeat-password").value;
     if (checkEmpty(name, login, password, secpassword))
         setMessage("Для регистрации необходимо заполнить все поля!");
-    else
+    else {
+        setMessage("");
         if (checkPass(password, secpassword)) {
             document.getElementById("register-button").disabled = true;
             fetch(apihost + '/User/Register',
@@ -34,10 +35,15 @@ function register() {
                     }
                     else {
                         handleRequestErrors(response);
+                        document.getElementById("register-button").disabled = true;
                     }
+                }).catch((error) => {
+                    setMessage("Регистрация невозможна. Сервер недоступен.");
+                    document.getElementById("register-button").disabled = false;
                 })
         }
         else {
             setMessage("Пароль и подтверждение пароля должны совпадать!");
         }
+    }
 }

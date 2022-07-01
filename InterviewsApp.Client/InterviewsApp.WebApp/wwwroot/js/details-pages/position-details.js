@@ -1,4 +1,5 @@
 ﻿function getPositionInfo(id) {
+    setMessage("");
     fetch(apihost + "/Position/GetByUser?id=" + id + "&userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
@@ -62,6 +63,7 @@ function discardComment() {
 
 }
 function confirmComment(id) {
+    setMessage("");
     document.getElementById("confirm-comment").disabled = true;
     document.getElementById("comment-edit-input").disabled = true;
     fetch(apihost + "/Position/UpdateComment",
@@ -101,6 +103,7 @@ function discard() {
 
 }
 function confirmMoney(id) {
+    setMessage("");
     document.getElementById("confirm-money").disabled = true;
     document.getElementById("money-edit-from").disabled = true;
     document.getElementById("money-edit-to").disabled = true;
@@ -137,6 +140,7 @@ function editCity() {
     document.getElementById("discard-city").style = "";
 }
 function confirmCity(id) {
+    setMessage("");
     document.getElementById("confirm-city").disabled = true;
     document.getElementById("city-edit-input").disabled = true;
     fetch(apihost + "/Position/UpdateCity",
@@ -164,6 +168,7 @@ function confirmCity(id) {
 }
 
 function offer(id) {
+    setMessage("");
     fetch(apihost + "/Position/SetOffered?id=" + id + "&userId=" + Cookies.get(currentUserId),
         {
             method: "PUT",
@@ -181,6 +186,7 @@ function offer(id) {
         });
 }
 function denial(id) {
+    setMessage("");
     fetch(apihost + "/Position/SetDenied?id=" + id + "&userId=" + Cookies.get(currentUserId),
         {
             method: "PUT",

@@ -1,4 +1,5 @@
 ﻿function getInterviewInfo(id) {
+    setMessage("");
     fetch(apihost + "/Interview/Get?id="+ id +"&userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
@@ -54,6 +55,7 @@ function discardComment() {
 
 }
 function confirmComment(id) {
+    setMessage("");
     document.getElementById("confirm-comment").disabled = true;
     document.getElementById("comment-edit-input").disabled = true;
     fetch(apihost + "/Interview/UpdateComment",
@@ -91,6 +93,7 @@ function discardTime() {
     location.reload();
 }
 function confirmTime(id) {
+    setMessage("");
     document.getElementById("confirm-time").disabled = true;
     document.getElementById("interview-time").disabled = true;
     fetch(apihost + "/Interview/UpdateDatetime",

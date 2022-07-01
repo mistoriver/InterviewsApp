@@ -1,4 +1,5 @@
 ﻿function login() {
+    setMessage("");
     let login = document.getElementById("login").value;
     let password = document.getElementById("password").value;
     document.getElementById("login-button").disabled = true;
@@ -24,6 +25,8 @@
             }
         }).catch((error) => {
             setMessage("Аутентификация неуспешна. Сервер недоступен.");
+            document.getElementById("login-button").disabled = false;
+            document.getElementById("register-button").disabled = false;
         })
         .then(() => {
             document.getElementById("login-button").disabled = false;

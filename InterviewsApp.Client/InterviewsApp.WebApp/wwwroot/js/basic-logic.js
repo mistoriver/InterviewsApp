@@ -1,11 +1,11 @@
 ﻿var tokenKey = "AccessToken";
 var currentUserId = "userId";
-var apihost = "https://localhost:5001/api";
+var apihost = "";
 
-function init() {
+function init(host) {
+    apihost = host ?? "http://unconfigured-api-host-will-not-work";
     let authorized = Cookies.get(currentUserId);
     if (!authorized) {
-        document.getElementById("logout-button").style = "visibility:hidden";
         if (location.pathname != "/Login" && location.pathname != "/Register")
             location.assign("/Login");
     }
