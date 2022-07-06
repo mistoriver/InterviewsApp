@@ -16,6 +16,8 @@ function getInterviews(params) {
                 .then(function (data) {
                     params.success(data.responseData);
                 });
+        else
+            handleRequestErrors(response);
         $('#interviews-table').bootstrapTable("hideLoading");
     });
 }
