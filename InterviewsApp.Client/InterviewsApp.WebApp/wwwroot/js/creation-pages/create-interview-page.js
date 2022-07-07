@@ -14,7 +14,7 @@
                         for (let i = 0; i < data.responseData.length; i++) {
                             let opt = document.createElement("option");
                             opt.value = data.responseData[i].id;
-                            opt.text = data.responseData[i].name;
+                            opt.text = data.responseData[i].companyName + " -> " + data.responseData[i].name;
                             if (data.responseData[i].id === createdPosition)
                                 opt.selected = true;
                             sel.appendChild(opt);
