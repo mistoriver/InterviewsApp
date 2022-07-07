@@ -1,10 +1,12 @@
-﻿function start() {
+﻿var currDTString;
+function start() {
     fetch(apihost +'/User/GetUsers', { method: 'GET' });
 }
 
 function getInterviews(params) {
     let token = Cookies.get(tokenKey);
     $('#interviews-table').bootstrapTable("showLoading");
+    currDTString = new Date().toISOString();
     fetch(apihost + "/Interview/GetMultipleInterviewsByUser?userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
@@ -43,5 +45,10 @@ function rowStyle(row, index) {
         return {
             css: { background: '#bf8c8c' }
         }
+    if (row.date < currDTString) {
+        return {
+            css: { background: '#e3e3e3' }
+        }
+    }
     return {}
 }
