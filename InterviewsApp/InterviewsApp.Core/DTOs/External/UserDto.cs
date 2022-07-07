@@ -19,11 +19,6 @@ namespace InterviewsApp.Core.DTOs.External
         public string Login { get; set; }
 
         /// <summary>
-        /// Пароль
-        /// </summary>
-        public string Password { get; set; }
-
-        /// <summary>
         /// Флаг активности
         /// </summary>
         public bool IsActive { get; set; }

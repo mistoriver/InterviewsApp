@@ -56,6 +56,10 @@ function addRequestErrorsToMessage(requestData, messageElement) {
 }
 
 function handleRequestErrors(response) {
+    if (response.status === 401) {
+        logout();
+        location.reload();
+    }
     response.json().then((data) => {
         if (data.errors) {
             //обработка ошибок модели
