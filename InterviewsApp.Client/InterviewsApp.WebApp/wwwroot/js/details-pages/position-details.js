@@ -1,5 +1,7 @@
-﻿function getPositionInfo(id) {
+﻿let positionId = "";
+function getPositionInfo(id) {
     setMessage("");
+    positionId = id;
     fetch(apihost + "/Position/GetByUser?id=" + id + "&userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
@@ -202,4 +204,52 @@ function denial(id) {
                 handleRequestErrors(response);
             };
         });
+}
+function getInterviewsForPosition(params) {
+    let token = Cookies.get(tokenKey);
+    $('#interviews-table').bootstrapTable("showLoading");
+    let dt = new Date()
+    let corrDt = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes() - dt.getTimezoneOffset());
+    currDTString = corrDt.toISOString();
+    fetch(apihost + "/Interview/GetByPosition?positionId="+ positionId +"&userId=" + Cookies.get(currentUserId), {
+        method: "GET", headers: {
+            "Accept": "application/json",
+            "Authorization": "Bearer " + token
+        }
+    }).then((response) => {
+        if (response.ok)
+            response.json()
+                .then(function (data) {
+                    params.success(data.responseData);
+                });
+        else
+            handleRequestErrors(response);
+        $('#interviews-table').bootstrapTable("hideLoading");
+    });
+}
+function dateFormatter(value) {
+    value = value.split('.')[0].replace('Z', '');
+    return '<input type="datetime-local" value="' + value + '" disabled/>'
+}
+function interviewFormatter(value, row) {
+    return '<a  href="/Details/Interview?InterviewId=' + row.id + '">' + value + ' <a/>'
+}
+function rowStyle(row, index) {
+    if (row.offerReceived)
+        return {
+            css: { background: '#cee8be' }
+        }
+    if (row.denialReceived)
+        return {
+            css: { background: '#bf8c8c' }
+        }
+    if (row.date < currDTString) {
+        return {
+            css: { background: '#e3e3e3' }
+        }
+    }
+    return {}
+}
+function goToInterviewCreation() {
+    location.assign('/Create/Interview?CreatedPosition=' + positionId);
 }

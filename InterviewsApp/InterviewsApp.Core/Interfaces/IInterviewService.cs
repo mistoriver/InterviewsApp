@@ -24,7 +24,14 @@ namespace InterviewsApp.Core.Interfaces
         /// </summary>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns>Коллекция собеседований пользователя</returns>
-        public Response<IEnumerable<InterviewDto>> GetByUserId(Guid userId);
+        public Response<IEnumerable<InterviewDto>> GetByUserId(Guid userId, bool showOnlyFuture);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positionId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public Response<IEnumerable<InterviewDto>> GetByPosition(Guid positionId, Guid userId);
         /// <summary>
         /// Создать собеседование в системе
         /// </summary>

@@ -39,10 +39,23 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetMultipleInterviewsByUser(Guid userId)
+        public IActionResult GetMultipleInterviewsByUser(Guid userId, bool showOnlyFuture = false)
         {
-
-            var response = _service.GetByUserId(userId);
+            var response = _service.GetByUserId(userId, showOnlyFuture);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
+        }
+        /// <summary>
+        /// Получить данные конкретного собеседования
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор собеседования</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult GetByPosition(Guid positionId, Guid userId)
+        {
+            var response = _service.GetByPosition(positionId, userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
