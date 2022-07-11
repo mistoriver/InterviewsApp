@@ -6,7 +6,9 @@ function start() {
 function getInterviews(params) {
     let token = Cookies.get(tokenKey);
     $('#interviews-table').bootstrapTable("showLoading");
-    currDTString = new Date().toISOString();
+    let dt = new Date()
+    let corrDt = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes() - dt.getTimezoneOffset());
+    currDTString = corrDt.toISOString();
     fetch(apihost + "/Interview/GetMultipleInterviewsByUser?userId=" + Cookies.get(currentUserId), {
         method: "GET", headers: {
             "Accept": "application/json",
