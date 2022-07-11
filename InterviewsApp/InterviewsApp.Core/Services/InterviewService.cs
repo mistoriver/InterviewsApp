@@ -38,10 +38,15 @@ namespace InterviewsApp.Core.Services
             }
             return new Response<InterviewDto>("Собеседование не существует");
         }
-        public Response<IEnumerable<InterviewDto>> GetByUserId(Guid userId)
+        public Response<IEnumerable<InterviewDto>> GetByUserId(Guid userId, bool showOnlyFuture = false)
         {
             var positions = _positionRepository.Get(p => p.UserId == userId)?.Select(p => p.Id);
             var ints = _repository.Get(i => positions.Any(p => i.PositionId == p));
+            if (showOnlyFuture)
+            {
+                var dt = DateTime.Now;
+                ints = ints.Where(i => i.Date > dt);
+            }
             var res = new List<InterviewDto>();
             ints.ToList().ForEach(i => 
             {
@@ -56,6 +61,15 @@ namespace InterviewsApp.Core.Services
                 res.Add(interview);
             });
             return new Response<IEnumerable<InterviewDto>>(res);
+        }
+        public Response<IEnumerable<InterviewDto>> GetByPosition(Guid positionId, Guid userId)
+        {
+            var interviewDtoList = GetByUserId(userId).ResponseData.Where(i => i.PositionId == positionId);
+            if (interviewDtoList.Count() > 0)
+            {
+                return new Response<IEnumerable<InterviewDto>>(interviewDtoList);
+            }
+            return new ("Собеседование не существует");
         }
 
         public Response<Guid> CreateInterview(CreateInterviewDto dto)

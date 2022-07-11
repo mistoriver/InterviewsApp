@@ -72,6 +72,17 @@
     </div>
 
     <p id="message"></p>
+    <h4>Собеседования по этой вакансии:</h4>
+    <table id="interviews-table" data-toggle="table" data-ajax="getInterviewsForPosition" data-sort-name="date" data-sort-order="asc" data-row-style="rowStyle">
+        <thead>
+            <tr>
+                <th data-field="interviewId" data-visible="false">ID Интервью (не должен отображаться)</th>
+                <th data-field="name" data-sortable="true" data-formatter="interviewFormatter">Название собеседования</th>
+                <th data-field="date" data-sortable="true" data-formatter="dateFormatter">Дата собеседования</th>
+            </tr>
+        </thead>
+    </table>
+    <button id="add-interview-button" onclick="goToInterviewCreation()" style="margin-top:15px">Добавить новое собеседование</button>
 </div>
 <script src="/js/details-pages/position-details.js"></script>
 <script>getPositionInfo('@Model.PositionId')</script>

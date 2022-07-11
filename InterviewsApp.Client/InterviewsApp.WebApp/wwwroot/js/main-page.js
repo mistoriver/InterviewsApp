@@ -1,6 +1,16 @@
 ﻿var currDTString;
+let onlyfuture;
 function start() {
     fetch(apihost +'/User/GetUsers', { method: 'GET' });
+}
+
+function setCheckbox(checked) {
+    onlyfuture = checked === "True";
+    document.getElementById("showOnlyFuture").checked = onlyfuture;
+}
+function updateFuture() {
+    onlyfuture = document.getElementById("showOnlyFuture").checked
+    location.assign(onlyfuture? "/?OnlyFuture=true" : "/");
 }
 
 function getInterviews(params) {
@@ -9,7 +19,7 @@ function getInterviews(params) {
     let dt = new Date()
     let corrDt = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes() - dt.getTimezoneOffset());
     currDTString = corrDt.toISOString();
-    fetch(apihost + "/Interview/GetMultipleInterviewsByUser?userId=" + Cookies.get(currentUserId), {
+    fetch(apihost + "/Interview/GetMultipleInterviewsByUser?userId=" + Cookies.get(currentUserId) + (onlyfuture ? "&showOnlyFuture=true" : ""), {
         method: "GET", headers: {
             "Accept": "application/json",
             "Authorization": "Bearer " + token
