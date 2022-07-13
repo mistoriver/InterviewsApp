@@ -1,4 +1,6 @@
 ﻿function getPositions(params) {
+    document.getElementById("my-positions-tab").style = "font-weight: bold;text-decoration: underline;";
+    document.getElementById("my-interviews-tab").style = "";
     let token = Cookies.get(tokenKey);
     $('#positions-table').bootstrapTable("showLoading");
     let dt = new Date()

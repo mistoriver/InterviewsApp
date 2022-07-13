@@ -56,7 +56,7 @@ function addRequestErrorsToMessage(requestData, messageElement) {
 }
 
 function handleRequestErrors(response) {
-    if (response.status === 401) {
+    if (response.status === 401 && location.pathname != "/Login") {
         logout();
         location.reload();
     }
