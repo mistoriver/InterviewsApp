@@ -14,6 +14,8 @@ function updateFuture() {
 }
 
 function getInterviews(params) {
+    document.getElementById("my-positions-tab").style = "";
+    document.getElementById("my-interviews-tab").style = "font-weight: bold;text-decoration: underline;";
     let token = Cookies.get(tokenKey);
     $('#interviews-table').bootstrapTable("showLoading");
     let dt = new Date()
