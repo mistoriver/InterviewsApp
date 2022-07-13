@@ -222,8 +222,6 @@ function getInterviewsForPosition(params) {
                 .then(function (data) {
                     params.success(data.responseData);
                 });
-        else
-            handleRequestErrors(response);
         $('#interviews-table').bootstrapTable("hideLoading");
     });
 }
@@ -252,4 +250,21 @@ function rowStyle(row, index) {
 }
 function goToInterviewCreation() {
     location.assign('/Create/Interview?CreatedPosition=' + positionId);
+}
+
+function deletePosition() {
+    document.getElementById("delete-position-button").disabled = true;
+    fetch(apihost + "/Position/Delete?id=" + positionId + "&userId=" + Cookies.get(currentUserId), {
+        method: "DELETE", headers: {
+            "Accept": "application/json",
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
+        }
+    }).then((response) => {
+        if (response.ok)
+            location.assign('/Positions');
+        else {
+            document.getElementById("delete-position-button").disabled = false;
+            handleRequestErrors(response);
+        }
+    });
 }

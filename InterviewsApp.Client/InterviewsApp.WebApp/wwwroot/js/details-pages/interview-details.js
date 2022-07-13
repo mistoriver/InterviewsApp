@@ -119,3 +119,19 @@ function confirmTime(id) {
             };
         });
 }
+function deleteInterview(id) {
+    document.getElementById("delete-interview-button").disabled = true;
+    fetch(apihost + "/Interview/Delete?id=" + id + "&userId=" + Cookies.get(currentUserId), {
+        method: "DELETE", headers: {
+            "Accept": "application/json",
+            "Authorization": "Bearer " + Cookies.get(tokenKey)
+        }
+    }).then((response) => {
+        if (response.ok)
+            location.assign('/');
+        else {
+            document.getElementById("delete-interview-button").disabled = false;
+            handleRequestErrors(response);
+        }
+    });
+}

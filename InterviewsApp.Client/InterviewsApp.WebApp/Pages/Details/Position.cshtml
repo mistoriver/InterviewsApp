@@ -70,10 +70,12 @@
         <button id="edit-button" onclick="offer('@Model.PositionId')" style="background:#cee8be">Получен оффер</button>
         <button id="edit-button" onclick="denial('@Model.PositionId')" style="background:#bf8c8c">Получен отказ</button>
     </div>
+    
+    <button id="delete-position-button" onclick="deletePosition()" style="margin-top:15px; margin-top:15px">Удалить данную вакансию</button>
 
     <p id="message"></p>
     <h4>Собеседования по этой вакансии:</h4>
-    <table id="interviews-table" data-toggle="table" data-ajax="getInterviewsForPosition" data-sort-name="date" data-sort-order="asc" data-row-style="rowStyle">
+    <table id="interviews-table" data-toggle="table" data-ajax="getInterviewsForPosition" data-sort-name="date" data-sort-order="asc" data-row-style="rowStyle" data-locale="ru-RU">
         <thead>
             <tr>
                 <th data-field="interviewId" data-visible="false">ID Интервью (не должен отображаться)</th>
