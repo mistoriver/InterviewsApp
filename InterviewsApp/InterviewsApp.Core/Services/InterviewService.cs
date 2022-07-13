@@ -103,6 +103,10 @@ namespace InterviewsApp.Core.Services
             }
             return new Response("Собеседование, которое вы пытаетесь отредактировать, не существует");
         }
+        public Response Delete(Guid id, Guid userId)
+        {
+            return base.Delete(GetInterviewOrDefault(id, userId));
+        }
         private InterviewEntity GetInterviewOrDefault(Guid id, Guid userId)
         {
             var positionIds = _positionRepository.Get(p => p.UserId == userId).Select(p => p.Id);

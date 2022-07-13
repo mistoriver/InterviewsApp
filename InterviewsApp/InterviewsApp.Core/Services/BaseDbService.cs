@@ -38,9 +38,8 @@ namespace InterviewsApp.Core.Services
             return new Response<IEnumerable<TExternalDto>>(entityList.Select(entity => _mapper.Map<TExternalDto>(entity)));
         }
 
-        public virtual Response Delete(Guid id)
+        protected Response Delete(TEntity entity)
         {
-            var entity = _repository.GetByIdOrDefault(id);
             if (entity != null)
             {
                 _repository.Delete(entity);

@@ -29,11 +29,5 @@ namespace InterviewsApp.Core.Interfaces
         /// </summary>
         /// <returns>Список всех сущностей</returns>
         public Response<IEnumerable<TExternalDto>> Get();
-
-        /// <summary>
-        /// Удалить сущность из системы
-        /// </summary>
-        /// <param name="id">Уникальный идентификатор</param>
-        public Response Delete(Guid id);
     }
 }

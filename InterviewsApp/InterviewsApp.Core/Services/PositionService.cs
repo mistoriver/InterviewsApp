@@ -107,5 +107,10 @@ namespace InterviewsApp.Core.Services
             }
             return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
         }
+        public Response Delete(Guid id, Guid userId)
+        {
+            var pos = _repository.Get(e => e.Id == id && e.UserId == userId).FirstOrDefault();
+            return base.Delete(pos);
+        }
     }
 }

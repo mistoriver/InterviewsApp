@@ -57,5 +57,12 @@ namespace InterviewsApp.Core.Interfaces
         /// <param name="dto">Параметры вакансии</param>
         public Response UpdateCity(UpdatePositionDto dto);
 
+        /// <summary>
+        /// Удалить вакансию из системы
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор вакансии</param>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        public Response Delete(Guid id, Guid userId);
+
     }
 }

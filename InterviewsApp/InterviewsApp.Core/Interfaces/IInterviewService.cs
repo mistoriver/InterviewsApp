@@ -44,5 +44,13 @@ namespace InterviewsApp.Core.Interfaces
         /// </summary>
         /// <param name="dto">Данные для обновления</param>
         public Response UpdateDatetime(UpdateInterviewDto dto);
+
+
+        /// <summary>
+        /// Удалить собеседование из системы
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор собеседования</param>
+        /// <param name="userId">Уникальный идентификатор пользователя</param>
+        public Response Delete(Guid id, Guid userId);
     }
 }
