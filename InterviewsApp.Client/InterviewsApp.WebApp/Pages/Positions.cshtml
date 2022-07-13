@@ -1,0 +1,24 @@
+﻿@page
+@model InterviewsApp.WebApp.Pages.PositionsModel
+@{
+    ViewData["Title"] = "Мои вакансии";
+}
+<script type="text/javascript" src="js/main-positions-page.js"> </script>
+<div class="text-center">
+    <p>Здесь отображаются предложенные Вам вакансии.</p>
+</div>
+<div style="display: flex;justify-content: space-between;">
+    <button id="add-position-button" onclick="location.assign('/Create/Position');" style="margin-bottom:15px">Добавить новую вакансию</button>
+</div>
+<table id="positions-table" data-toggle="table" data-ajax="getPositions" data-sort-name="denialReceived" data-sort-order="desc" data-row-style="rowStyle">
+    <thead>
+        <tr>
+            <th data-field="id" data-visible="false">ID вакансии (не должен отображаться)</th>
+            <th data-field="name" data-sortable="true" data-formatter="positionFormatter">Вакансия</th>
+            <th data-field="companyId" data-visible="false">ID компании (не должен отображаться)</th>
+            <th data-field="companyName" data-sortable="true" data-formatter="companyFormatter">Компания</th>
+            <th data-field="offerReceived" data-visible="false">Получен оффер</th>
+            <th data-field="denialReceived" data-visible="false">Получен отказ</th>
+        </tr>
+    </thead>
+</table>

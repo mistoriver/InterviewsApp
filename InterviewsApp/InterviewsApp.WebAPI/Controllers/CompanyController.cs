@@ -87,10 +87,10 @@ namespace InterviewsApp.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = "Bearer")]
         public IActionResult Delete(Guid id)
         {
-            var response = _service.Delete(id);
-            if (response.Ok)
-                return Ok(response);
-            return StatusCode(500, response);
+            //var response = _service.Delete(id);
+            //if (response.Ok)
+            //    return Ok(response);
+            return StatusCode(400);
         }
         /// <summary>
         /// Получить оценку, выставленную компании конкретным пользователем
