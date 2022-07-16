@@ -42,7 +42,7 @@ function dateFormatter(value) {
     return '<input type="datetime-local" value="' + value + '" disabled/>'
 }
 function interviewFormatter(value, row) {
-    return '<a  href="/Details/Interview?InterviewId=' + row.id + '">' + value + ' <a/>'
+    return '<a  href="/Details/Interview?InterviewId=' + row.id + (row.comment ?'" title="'+ row.comment:'')+'">' + value + ' <a/>'
 }
 function positionFormatter(value, row) {
     return '<a  href="/Details/Position?PositionId=' + row.positionId + '">' + value + ' <a/>'
