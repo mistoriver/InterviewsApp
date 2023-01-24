@@ -7,6 +7,7 @@ using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Services
 {
@@ -19,32 +20,32 @@ namespace InterviewsApp.Core.Services
             _positionRepository = positionRepository;
         }
 
-        public Response<Guid> CreateCompany(CreateCompanyDto dto)
+        public async Task<Response<Guid>> CreateCompany(CreateCompanyDto dto)
         {
             var company = _mapper.Map<CompanyEntity>(dto);
             company.Rating = 50;
-            return new Response<Guid>(_repository.Create(company));
+            return new Response<Guid>(await _repository.Create(company));
         }
-        public Response<short> RateCompany(Guid id, Guid userId, short newRate)
+        public async Task<Response<short>> RateCompany(Guid id, Guid userId, short newRate)
         {
-            var company = _repository.GetByIdOrDefault(id);
-            var positions = _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id).ToList();
+            var company = await _repository.GetByIdOrDefault(id);
+            var positions = (await _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id)).ToList();
             if (positions != null && positions.Count() > 0)
             {
                 var oldRate = positions.FirstOrDefault().CompanyRate;
                 var newRating = CalculateNewRating(company, newRate, oldRate);
                 company.Rating = newRating;
                 positions.ForEach(p => p.CompanyRate = newRate);
-                _positionRepository.UpdateRange(positions.ToArray());
-                _repository.Update(company);
+                await _positionRepository.UpdateRange(positions.ToArray());
+                await _repository.Update(company);
                 return new Response<short> (newRating);
             }
             return new Response<short>("Компании, которую вы пытаетесь оценить, не существует");
         }
 
-        public Response<short> GetCompanyRate(Guid id, Guid userId)
+        public async Task<Response<short>> GetUserCompanyRate(Guid id, Guid userId)
         {
-            var comp = _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id).FirstOrDefault();
+            var comp = (await _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id)).FirstOrDefault();
             if (comp != null)
                 return new Response<short>(comp.CompanyRate);
             return  new Response<short>("Компании не существует");

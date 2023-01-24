@@ -21,48 +21,47 @@ namespace InterviewsApp.Core.Interfaces
         /// <param name="id">Уникальный идентификатор вакансии</param>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns></returns>
-        public Response<PositionDto> Get(Guid id, Guid userId);
+        public Task<Response<PositionDto>> Get(Guid id, Guid userId);
         /// <summary>
         /// Получить вакансии пользователя
         /// </summary>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
         /// <returns>Коллекция вакансий пользователя</returns>
-        public Response<IEnumerable<PositionDto>> GetByUserId(Guid userId);
+        public Task<Response<IEnumerable<PositionDto>>> GetByUserId(Guid userId);
         /// <summary>
         /// Создать вакансию в системе
         /// </summary>
         /// <param name="dto">Параметры вакансии</param>
         /// <returns>Уникальный идентификатор созданной вакансии</returns>
-        public Response<Guid> CreatePosition(CreatePositionDto dto);
+        public Task<Response<Guid>> CreatePosition(CreatePositionDto dto);
         /// <summary>
         /// Обновить информацию о зарплатной вилке
         /// </summary>
         /// <param name="dto">Параметры вакансии</param>
-        public Response UpdateMoney(UpdatePositionDto dto);
+        public Task<Response> UpdateMoney(UpdatePositionDto dto);
         /// <summary>
         /// Отметить получение отказа по вакансии
         /// </summary>
         /// <param name="id">Уникальный идентификатор вакансии</param>
-        public Response UpdateSetDenied(Guid id, Guid userId);
+        public Task<Response> UpdateSetDenied(Guid id, Guid userId);
         /// <summary>
         /// Отметить получение оффера по вакансии
         /// </summary>
         /// <param name="id">Уникальный идентификатор вакансии</param>
-        public Response UpdateSetOffered(Guid id, Guid userId);
+        public Task<Response> UpdateSetOffered(Guid id, Guid userId);
 
-        public Response UpdateComment(UpdateCommentDto dto);
+        public Task<Response> UpdateComment(UpdateCommentDto dto);
         /// <summary>
         /// Обновить информацию о городе
         /// </summary>
         /// <param name="dto">Параметры вакансии</param>
-        public Response UpdateCity(UpdatePositionDto dto);
+        public Task<Response> UpdateCity(UpdatePositionDto dto);
 
         /// <summary>
         /// Удалить вакансию из системы
         /// </summary>
         /// <param name="id">Уникальный идентификатор вакансии</param>
         /// <param name="userId">Уникальный идентификатор пользователя</param>
-        public Response Delete(Guid id, Guid userId);
-
+        public Task<Response> Delete(Guid id, Guid userId);
     }
 }

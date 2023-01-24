@@ -23,11 +23,11 @@ namespace InterviewsApp.Core.Interfaces
         /// </summary>
         /// <param name="id">Уникальный идентификатор</param>
         /// <returns>Данные сущности</returns>
-        public Response<TExternalDto> Get(Guid id);
+        public Task<Response<TExternalDto>> Get(Guid id);
         /// <summary>
         /// Получить все сущности в системе
         /// </summary>
         /// <returns>Список всех сущностей</returns>
-        public Response<IEnumerable<TExternalDto>> Get();
+        public Task<Response<IEnumerable<TExternalDto>>> Get();
     }
 }

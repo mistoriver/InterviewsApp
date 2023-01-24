@@ -4,6 +4,7 @@ using InterviewsApp.Core.Models;
 using InterviewsApp.Data.Models.Entities;
 using InterviewsApp.WebAPI.Models;
 using System;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Interfaces
 {
@@ -13,12 +14,12 @@ namespace InterviewsApp.Core.Interfaces
         /// Создать пользователя в системе
         /// </summary>
         /// <param name="dto">Данные для создания пользователя</param>
-        public Response<Guid> CreateUser(CreateUserDto dto);
+        public Task<Response<Guid>> CreateUser(CreateUserDto dto);
         /// <summary>
         /// Авторизовать пользователя в системе
         /// </summary>
         /// <param name="dto">Данные для авторизации</param>
         /// <returns></returns>
-        public Response<LoginDto> Login(LoginUserDto dto);
+        public Task<Response<LoginDto>> Login(LoginUserDto dto);
     }
 }

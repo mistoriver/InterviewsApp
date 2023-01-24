@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.Data.Abstractions.Interfaces
 {
@@ -16,36 +17,36 @@ namespace InterviewsApp.Data.Abstractions.Interfaces
         /// </summary>
         /// <param name="entityId">Уникальный идентификатор</param>
         /// <returns>Экземпляр сущности типа <see cref="TEntity"/></returns>
-        TEntity? GetByIdOrDefault(Guid entityId);
+        Task<TEntity?> GetByIdOrDefault(Guid entityId);
 
         /// <summary>
-        /// Возвращает коллекцию экземпляров сущности, соответсвтующую условию предиката
+        /// Возвращает коллекцию экземпляров сущности, соответствующую условию предиката
         /// </summary>
         /// <param name="predicate">Предикат, содержащий условие для отбора</param>
         /// <returns>Коллекция экземпляров сущности <see cref="TEntity"/></returns>
-        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
         /// Обновить данные сущности
         /// </summary>
         /// <param name="entity">Экземпляр сущности для обновления</param>
-        void Update(TEntity entity);
+        Task Update(TEntity entity);
         /// <summary>
         /// Обновить данные набора сущностей
         /// </summary>
         /// <param name="entities">Набор сущностей</param>
-        void UpdateRange(params TEntity[] entities);
+        Task UpdateRange(params TEntity[] entities);
 
         /// <summary>
         /// Создать новый экземпляр сущности в бд
         /// </summary>
         /// <param name="entity">Экземпляр сущности</param>
-        Guid Create(TEntity entity);
+        Task<Guid> Create(TEntity entity);
 
         /// <summary>
         /// Удалить сущность из бд
         /// </summary>
         /// <param name="entity">Экземпляр сущности</param>
-        void Delete(TEntity entity);
+        Task Delete(TEntity entity);
     }
 }

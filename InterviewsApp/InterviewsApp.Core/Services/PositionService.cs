@@ -8,6 +8,7 @@ using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Services
 {
@@ -20,97 +21,106 @@ namespace InterviewsApp.Core.Services
             _userRepository = userRepository;
             _companyRepository = companyRepository;
         }
-        public Response<PositionDto> Get(Guid id, Guid userId)
+        public async Task<Response<PositionDto>> Get(Guid id, Guid userId)
         {
-            var pos = _repository.Get(e => e.Id == id && e.UserId == userId).FirstOrDefault();
+            var pos = (await _repository.Get(e => e.Id == id && e.UserId == userId)).FirstOrDefault();
             if (pos != null)
             {
                 var posDto = _mapper.Map<PositionDto>(pos);
-                posDto.CompanyName = _companyRepository.GetByIdOrDefault(posDto.CompanyId)?.Name;
+                posDto.CompanyName = (await _companyRepository.GetByIdOrDefault(posDto.CompanyId))?.Name;
                 return new Response<PositionDto>(posDto);
             }
             return new Response<PositionDto>("Вакансия не существует");
         }
-        public Response<IEnumerable<PositionDto>> GetByUserId(Guid userId)
+        public async Task<Response<IEnumerable<PositionDto>>> GetByUserId(Guid userId)
         {
-            var positions = _repository.Get(p => p.UserId == userId).Select(p => _mapper.Map<PositionDto>(p));
+            var positions = (await _repository.Get(p => p.UserId == userId)).Select(p => _mapper.Map<PositionDto>(p));
             var res = positions.ToList();
-            res.ForEach(p => p.CompanyName = _companyRepository.GetByIdOrDefault(p.CompanyId).Name);
+            res.ForEach(async p => p.CompanyName = (await _companyRepository.GetByIdOrDefault(p.CompanyId)).Name);
             return new Response<IEnumerable<PositionDto>>(res);
         }
-        public Response<Guid> CreatePosition(CreatePositionDto dto)
+        public async Task<Response<Guid>> CreatePosition(CreatePositionDto dto)
         {
-            var user = _userRepository.GetByIdOrDefault(dto.UserId);
-            var company = _companyRepository.GetByIdOrDefault(dto.CompanyId);
+            var user = await _userRepository.GetByIdOrDefault(dto.UserId);
+            var company = await _companyRepository.GetByIdOrDefault(dto.CompanyId);
             var position = _mapper.Map<PositionEntity>(dto);
-            position.MoneyLower = 0;
-            position.MoneyUpper = 0;
-            position.User = user;
-            position.Company = company;
-            return new Response<Guid>(_repository.Create(position));
+            if (user != null)
+            {
+                if (company != null)
+                {
+                    position.MoneyLower = 0;
+                    position.MoneyUpper = 0;
+                    position.User = user;
+                    position.Company = company;
+                    return new Response<Guid>(await _repository.Create(position));
+                }
+                return new Response<Guid>("Компания не существует");
+            }
+            return new Response<Guid>("Пользователь не существует");
+
         }
-        public Response UpdateMoney(UpdatePositionDto dto)
+        public async Task<Response> UpdateMoney(UpdatePositionDto dto)
         {
-            var position = _repository.Get(e => e.Id == dto.Id && e.UserId == dto.UserId).FirstOrDefault();
+            var position = (await _repository.Get(e => e.Id == dto.Id && e.UserId == dto.UserId)).FirstOrDefault();
             if (position != null)
             {
                 position.MoneyLower = dto.MoneyLower;
                 position.MoneyUpper = dto.MoneyUpper;
-                _repository.Update(position);
+                await _repository.Update(position);
                 return new Response();
             }
             return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
         }
-        public Response UpdateSetDenied(Guid id, Guid userId)
+        public async Task<Response> UpdateSetDenied(Guid id, Guid userId)
         {
-            var position = _repository.Get(e => e.Id == id && e.UserId == userId).FirstOrDefault();
+            var position = (await _repository.Get(e => e.Id == id && e.UserId == userId)).FirstOrDefault();
             if (position != null)
             {
                 position.DenialReceived = true;
                 position.OfferReceived = false;
-                _repository.Update(position);
+                await _repository.Update(position);
                 return new Response();
             }
             return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
         }
-        public Response UpdateSetOffered(Guid id, Guid userId)
+        public async Task<Response> UpdateSetOffered(Guid id, Guid userId)
         {
-            var position = _repository.Get(e => e.Id == id && e.UserId == userId).FirstOrDefault();
+            var position = (await _repository.Get(e => e.Id == id && e.UserId == userId)).FirstOrDefault();
             if (position != null)
             {
                 position.OfferReceived = true;
                 position.DenialReceived = false;
-                _repository.Update(position);
+                await _repository.Update(position);
                 return new Response();
             }
             return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
         }
-        public Response UpdateComment(UpdateCommentDto dto)
+        public async Task<Response> UpdateComment(UpdateCommentDto dto)
         {
-            var position = _repository.Get(e => e.Id == dto.Id && e.UserId == dto.UserId).FirstOrDefault();
+            var position = (await _repository.Get(e => e.Id == dto.Id && e.UserId == dto.UserId)).FirstOrDefault();
             if (position != null)
             {
                 position.Comment = dto.Comment;
-                _repository.Update(position);
+                await _repository.Update(position);
                 return new Response();
             }
             return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
         }
-        public Response UpdateCity(UpdatePositionDto dto)
+        public async Task<Response> UpdateCity(UpdatePositionDto dto)
         {
-            var position = _repository.Get(e => e.Id == dto.Id && e.UserId == dto.UserId).FirstOrDefault();
+            var position = (await _repository.Get(e => e.Id == dto.Id && e.UserId == dto.UserId)).FirstOrDefault();
             if (position != null)
             {
                 position.City = dto.City;
-                _repository.Update(position);
+                await _repository.Update(position);
                 return new Response();
             }
             return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
         }
-        public Response Delete(Guid id, Guid userId)
+        public async Task<Response> Delete(Guid id, Guid userId)
         {
-            var pos = _repository.Get(e => e.Id == id && e.UserId == userId).FirstOrDefault();
-            return base.Delete(pos);
+            var pos = (await _repository.Get(e => e.Id == id && e.UserId == userId)).FirstOrDefault();
+            return await base.Delete(pos);
         }
     }
 }

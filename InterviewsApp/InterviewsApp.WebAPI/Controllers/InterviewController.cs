@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.WebAPI.Controllers
 {
@@ -25,9 +26,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult Get(Guid id, Guid userId)
+        public async Task<IActionResult> Get(Guid id, Guid userId)
         {
-            var response = _service.Get(id, userId);
+            var response = await _service.Get(id, userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -39,9 +40,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetMultipleInterviewsByUser(Guid userId, bool showOnlyFuture = false)
+        public async Task<IActionResult> GetMultipleInterviewsByUser(Guid userId, bool showOnlyFuture = false)
         {
-            var response = _service.GetByUserId(userId, showOnlyFuture);
+            var response = await _service.GetByUserId(userId, showOnlyFuture);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -53,9 +54,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetByPosition(Guid positionId, Guid userId)
+        public async Task<IActionResult> GetByPosition(Guid positionId, Guid userId)
         {
-            var response = _service.GetByPosition(positionId, userId);
+            var response = await _service.GetByPosition(positionId, userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -67,11 +68,11 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult AddInterview(CreateInterviewDto newInterview)
+        public async Task<IActionResult> AddInterview(CreateInterviewDto newInterview)
         {
             if (ModelState.IsValid)
             {
-                var response = _service.CreateInterview(newInterview);
+                var response = await _service.CreateInterview(newInterview);
                 if (response.Ok)
                     return Ok(response);
                 return StatusCode(500, response);
@@ -85,27 +86,27 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult Delete(Guid id, Guid userId)
+        public async Task<IActionResult> Delete(Guid id, Guid userId)
         {
-            var response = _service.Delete(id, userId);
+            var response = await _service.Delete(id, userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
         }
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult UpdateComment(UpdateCommentDto commentInfo)
+        public async Task<IActionResult> UpdateComment(UpdateCommentDto commentInfo)
         {
-            var response = _service.UpdateComment(commentInfo);
+            var response = await _service.UpdateComment(commentInfo);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
         }
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult UpdateDatetime(UpdateInterviewDto interviewInfo)
+        public async Task<IActionResult> UpdateDatetime(UpdateInterviewDto interviewInfo)
         {
-            var response = _service.UpdateDatetime(interviewInfo);
+            var response = await _service.UpdateDatetime(interviewInfo);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);

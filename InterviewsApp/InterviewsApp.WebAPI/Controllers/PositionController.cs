@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.WebAPI.Controllers
 {
@@ -25,9 +26,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            var response = _service.Get(id);
+            var response = await _service.Get(id);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -39,9 +40,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetByUser(Guid id, Guid userId)
+        public async Task<IActionResult> GetByUser(Guid id, Guid userId)
         {
-            var response = _service.Get(id, userId);
+            var response = await _service.Get(id, userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -52,9 +53,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns>Список вакансий в системе</returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetMultiplePositions()
+        public async Task<IActionResult> GetMultiplePositions()
         {
-            var response = _service.Get();
+            var response = await _service.Get();
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -65,9 +66,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns>Список вакансий пользователя</returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetMultiplePositionsByUser(Guid userId)
+        public async Task<IActionResult> GetMultiplePositionsByUser(Guid userId)
         {
-            var response = _service.GetByUserId(userId);
+            var response = await _service.GetByUserId(userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -79,11 +80,11 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult CreatePosition(CreatePositionDto position)
+        public async Task<IActionResult> CreatePosition(CreatePositionDto position)
         {
             if (ModelState.IsValid)
             {
-                var response = _service.CreatePosition(position);
+                var response = await _service.CreatePosition(position);
                 if (response.Ok)
                     return Ok(response);
                 return StatusCode(500, response);
@@ -97,18 +98,18 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult Delete(Guid id, Guid userId)
+        public async Task<IActionResult> Delete(Guid id, Guid userId)
         {
-            var response = _service.Delete(id, userId);
+            var response = await _service.Delete(id, userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
         }
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult UpdateComment(UpdateCommentDto commentInfo)
+        public async Task<IActionResult> UpdateComment(UpdateCommentDto commentInfo)
         {
-            var response = _service.UpdateComment(commentInfo);
+            var response = await _service.UpdateComment(commentInfo);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -121,9 +122,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPut]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult SetOffered(Guid id, Guid userId)
+        public async Task<IActionResult> SetOffered(Guid id, Guid userId)
         {
-            var response = _service.UpdateSetOffered(id, userId);
+            var response = await _service.UpdateSetOffered(id, userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -136,9 +137,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPut]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult SetDenied(Guid id, Guid userId)
+        public async Task<IActionResult> SetDenied(Guid id, Guid userId)
         {
-            var response = _service.UpdateSetDenied(id, userId);
+            var response = await _service.UpdateSetDenied(id, userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -150,9 +151,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult UpdateMoney(UpdatePositionDto updatePositionDto)
+        public async Task<IActionResult> UpdateMoney(UpdatePositionDto updatePositionDto)
         {
-            var response = _service.UpdateMoney(updatePositionDto);
+            var response = await _service.UpdateMoney(updatePositionDto);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -165,9 +166,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult UpdateCity(UpdatePositionDto updatePositionDto)
+        public async Task<IActionResult> UpdateCity(UpdatePositionDto updatePositionDto)
         {
-            var response = _service.UpdateCity(updatePositionDto);
+            var response = await _service.UpdateCity(updatePositionDto);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);

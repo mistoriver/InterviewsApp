@@ -8,6 +8,7 @@ using InterviewsApp.Data.Models.Entities;
 using InterviewsApp.WebAPI.Models;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Services
 {
@@ -22,22 +23,28 @@ namespace InterviewsApp.Core.Services
             _authService = authService;
         }
 
-        public Response<Guid> CreateUser(CreateUserDto dto)
+        public async Task<Response<Guid>> CreateUser(CreateUserDto dto)
         {
-            if (!IsUnique(dto))
+            var isUnique = await IsUnique(dto);
+            if (isUnique)
             {
                 var user = _mapper.Map<UserEntity>(dto);
                 user.Password = _passwordService.HashPassword(user.Password);
                 user.IsActive = true;
-                return new Response<Guid>(_repository.Create(user));
+                return new Response<Guid>(await _repository.Create(user));
             }
             return new Response<Guid>("Пользователь с данным логином уже существует");
         }
-        public bool IsUnique(CreateUserDto dto) => _repository.Get(user => user.Login.Equals(dto.Login)).Any();
-
-        public Response<LoginDto> Login(LoginUserDto dto)
+        private async Task<bool> IsUnique(CreateUserDto dto)
         {
-            var user = _repository.Get(u => u.Login == dto.Login).FirstOrDefault();
+            var users = await _repository.Get(user => user.Login.Equals(dto.Login)); 
+            return !users.Any();
+        }
+
+        public async Task<Response<LoginDto>> Login(LoginUserDto dto)
+        {
+            var users = await _repository.Get(u => u.Login.Equals(dto.Login));
+            var user = users.FirstOrDefault();
 
             if (user != null)
             {

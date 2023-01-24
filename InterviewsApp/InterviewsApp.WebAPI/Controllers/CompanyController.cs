@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.WebAPI.Controllers
 {
@@ -25,9 +26,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            var response = _service.Get(id);
+            var response = await _service.Get(id);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -38,9 +39,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns>Список компаний в системе</returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetCompanies()
+        public async Task<IActionResult> GetCompanies()
         {
-            var response = _service.Get();
+            var response = await _service.Get();
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -52,11 +53,11 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult CreateCompany(CreateCompanyDto dto)
+        public async Task<IActionResult> CreateCompany(CreateCompanyDto dto)
         {
             if (ModelState.IsValid)
             {
-                var response = _service.CreateCompany(dto);
+                var response = await _service.CreateCompany(dto);
                 if (response.Ok)
                     return Ok(response);
                 return StatusCode(500, response);
@@ -71,9 +72,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpPut]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult RateCompany(Guid id, Guid userId, short rate)
+        public async Task<IActionResult> RateCompany(Guid id, Guid userId, short rate)
         {
-            var response = _service.RateCompany(id, userId, rate);
+            var response = await _service.RateCompany(id, userId, rate);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -85,7 +86,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             //var response = _service.Delete(id);
             //if (response.Ok)
@@ -100,9 +101,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetCompanyRate(Guid id, Guid userId)
+        public async Task<IActionResult> GetCompanyRate(Guid id, Guid userId)
         {
-            var response = _service.GetCompanyRate(id, userId);
+            var response = await _service.GetUserCompanyRate(id, userId);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
