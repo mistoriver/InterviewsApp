@@ -36,8 +36,8 @@ namespace InterviewsApp.Tests
             var res = await sut.Login(loginUserDto);
 
             //Assert
-            passMoq.Verify(passService => passService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
             Assert.True(res.Ok, $"Ожидалось, что запрос будет успешен, но это не так. Ошибка: {res.ErrorMessage}");
+            passMoq.Verify(passService => passService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 
         [Fact]
@@ -52,9 +52,9 @@ namespace InterviewsApp.Tests
             var res = await sut.Login(loginUserDto);
 
             //Assert
-            passMoq.Verify(passService => passService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Never());
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
             Assert.Contains("Неправильный логин и/или пароль", res.ErrorMessage);
+            passMoq.Verify(passService => passService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Never());
         }
         [Fact]
         public async Task UserTest_LoginTest_WrongPass_RU()
@@ -73,9 +73,9 @@ namespace InterviewsApp.Tests
             var res = await sut.Login(loginUserDto);
 
             //Assert
-            passMoq.Verify(passService => passService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
             Assert.Contains("Неправильный логин и/или пароль", res.ErrorMessage);
+            passMoq.Verify();
         }
         [Fact]
         public async Task UserTest_CreateUserTest_Success()
@@ -91,8 +91,9 @@ namespace InterviewsApp.Tests
             var res = await sut.CreateUser(createUserDto);
 
             //Assert
-            passMoq.Verify(passService => passService.HashPassword(It.IsAny<string>()), Times.Once());
             Assert.True(res.Ok, $"Ожидалось, что запрос будет успешен, но это не так. Ошибка: {res.ErrorMessage}");
+            passMoq.Verify(passRep => passRep.HashPassword(It.IsAny<string>()), Times.Once());
+            repMock.Verify(userRep => userRep.Create(It.IsAny<UserEntity>()), Times.Once());
         }
         [Fact]
         public async Task UserTest_CreateUserTest_NotUnique_RU()
@@ -111,9 +112,10 @@ namespace InterviewsApp.Tests
             var res = await sut.CreateUser(createUserDto);
 
             //Assert
-            passMoq.Verify(passService => passService.HashPassword(It.IsAny<string>()), Times.Never());
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
             Assert.Contains("Пользователь с данным логином уже существует", res.ErrorMessage);
+            passMoq.Verify(passService => passService.HashPassword(It.IsAny<string>()), Times.Never());
+            repMock.Verify(userRep => userRep.Create(It.IsAny<UserEntity>()), Times.Never());
         }
     }
 }

@@ -76,9 +76,9 @@ namespace InterviewsApp.Core.Services
         public async Task<Response<Guid>> CreateInterview(CreateInterviewDto dto)
         {
             var position = await _positionRepository.GetByIdOrDefault(dto.PositionId);
-            var interview = _mapper.Map<InterviewEntity>(dto);
             if (position == null)
-                return new ("Позиции не существует");
+                return new("Позиции не существует");
+            var interview = _mapper.Map<InterviewEntity>(dto);
             interview.Position = position;
             if (interview.Date.Kind == DateTimeKind.Unspecified)
                 interview.Date = new DateTime(dto.Date.Ticks, DateTimeKind.Utc);

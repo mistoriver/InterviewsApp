@@ -29,16 +29,19 @@ namespace InterviewsApp.Core.Services
         public async Task<Response<short>> RateCompany(Guid id, Guid userId, short newRate)
         {
             var company = await _repository.GetByIdOrDefault(id);
-            var positions = (await _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id)).ToList();
-            if (positions != null && positions.Count() > 0)
+            if (company != null)
             {
-                var oldRate = positions.FirstOrDefault().CompanyRate;
-                var newRating = CalculateNewRating(company, newRate, oldRate);
-                company.Rating = newRating;
-                positions.ForEach(p => p.CompanyRate = newRate);
-                await _positionRepository.UpdateRange(positions.ToArray());
-                await _repository.Update(company);
-                return new Response<short> (newRating);
+                var positions = (await _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id)).ToList();
+                if (positions != null && positions.Count() > 0)
+                {
+                    var oldRate = positions.FirstOrDefault().CompanyRate;
+                    var newRating = CalculateNewRating(company, newRate, oldRate);
+                    company.Rating = newRating;
+                    positions.ForEach(p => p.CompanyRate = newRate);
+                    await _positionRepository.UpdateRange(positions.ToArray());
+                    await _repository.Update(company);
+                    return new Response<short>(newRating);
+                }
             }
             return new Response<short>("Компании, которую вы пытаетесь оценить, не существует");
         }
@@ -66,7 +69,7 @@ namespace InterviewsApp.Core.Services
                     return Convert.ToInt16(positiveRate ? Math.Ceiling(rating) : Math.Floor(rating));
                 }
             }
-            return 0;
+            return oldRate;
         }
     }
 }
