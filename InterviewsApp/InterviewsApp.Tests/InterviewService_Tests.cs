@@ -28,6 +28,7 @@ namespace InterviewsApp.Tests
 
             var res = await sut.Get();
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
+            Assert.Contains("необходима информация о пользователе", res.ErrorMessage);
         }
         [Fact]
         public async void InterviewTest_GetFailureOnlyId()
@@ -37,9 +38,10 @@ namespace InterviewsApp.Tests
 
             var res = await sut.Get(interviewId);
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
+            Assert.Contains("необходима информация о пользователе", res.ErrorMessage);
         }
         [Fact]
-        public async void InterviewTest_GetFailureNoInterview()
+        public async void InterviewTest_GetFailureNotFound()
         {
             var interviewId = fixture.Create<Guid>();
             var userId = fixture.Create<Guid>();
@@ -49,6 +51,7 @@ namespace InterviewsApp.Tests
 
             var res = await sut.Get(interviewId, userId);
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
+            Assert.Contains("Собеседование не существует", res.ErrorMessage);
         }
         [Fact]
         public async void InterviewTest_GetSuccess()
@@ -136,7 +139,7 @@ namespace InterviewsApp.Tests
             Assert.True(res.Ok, $"Ожидалось, что запрос будет успешен, но это не так. Ошибка: {res.ErrorMessage}");
         }
         [Fact]
-        public async void InterviewTest_GetByPositionIdFailureNoPosition()
+        public async void InterviewTest_GetByPositionIdFailureNotFound()
         {
             var interviewId = fixture.Create<Guid>();
             var userId = fixture.Create<Guid>();
@@ -156,6 +159,7 @@ namespace InterviewsApp.Tests
             var res = await sut.GetByPosition(positionId, userId);
 
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
+            Assert.Contains("Собеседование не существует", res.ErrorMessage);
         }
         [Fact]
         public async void InterviewTest_CreateInterviewSuccess()
@@ -176,32 +180,79 @@ namespace InterviewsApp.Tests
         [Fact]
         public async void InterviewTest_CreateInterviewFailureNoPosition()
         {
+            var intDto = fixture.Create<CreateInterviewDto>();
+            var intEntity = fixture.Create<InterviewEntity>();
+
+            mapperMoq.Setup(map => map.Map<InterviewEntity>(It.IsAny<CreateInterviewDto>())).Returns(intEntity);
+
+            positionMock.Setup(rep => rep.GetByIdOrDefault(It.IsAny<Guid>())).ReturnsAsync((PositionEntity) null);
 
             var sut = new InterviewService(repMock.Object, positionMock.Object, companyMock.Object, mapperMoq.Object);
+            var res = await sut.CreateInterview(intDto);
+
+            Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
+            Assert.Contains("Позиции не существует", res.ErrorMessage);
         }
         [Fact]
         public async void InterviewTest_UpdateCommentSuccess()
         {
+            var userId = fixture.Create<Guid>();
+            var interviewId = fixture.Create<Guid>();
+            var commentDto = fixture.Build<UpdateCommentDto>().With(u => u.UserId, userId).With(u => u.Id, interviewId).Create();
+            var interviews = fixture.CreateMany<InterviewEntity>(3);
+            var positions = fixture.CreateMany<PositionEntity>(3);
+
+            repMock.Setup(rep => rep.Get(It.IsAny<Expression<Func<InterviewEntity, bool>>>())).ReturnsAsync(interviews);
+            positionMock.Setup(rep => rep.Get(It.IsAny<Expression<Func<PositionEntity, bool>>>())).ReturnsAsync(positions);
 
             var sut = new InterviewService(repMock.Object, positionMock.Object, companyMock.Object, mapperMoq.Object);
+            var res = await sut.UpdateComment(commentDto);
+
+            Assert.True(res.Ok, $"Ожидалось, что запрос будет успешен, но это не так. Ошибка: {res.ErrorMessage}");
         }
         [Fact]
         public async void InterviewTest_UpdateCommentFailureNoInterview()
         {
+            var commentDto = fixture.Create<UpdateCommentDto>();
+
+            repMock.Setup(rep => rep.Get(It.IsAny<Expression<Func<InterviewEntity, bool>>>())).ReturnsAsync(new List<InterviewEntity>());
 
             var sut = new InterviewService(repMock.Object, positionMock.Object, companyMock.Object, mapperMoq.Object);
+            var res = await sut.UpdateComment(commentDto);
+
+            Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
+            Assert.Contains("Собеседование, которое вы пытаетесь отредактировать, не существует", res.ErrorMessage);
         }
         [Fact]
         public async void InterviewTest_UpdateDatetimeSuccess()
         {
 
+            var userId = fixture.Create<Guid>();
+            var interviewId = fixture.Create<Guid>();
+            var updateDto = fixture.Build<UpdateInterviewDto>().With(u => u.UserId, userId).With(u => u.Id, interviewId).Create();
+            var interviews = fixture.CreateMany<InterviewEntity>(3);
+            var positions = fixture.CreateMany<PositionEntity>(3);
+
+            repMock.Setup(rep => rep.Get(It.IsAny<Expression<Func<InterviewEntity, bool>>>())).ReturnsAsync(interviews);
+            positionMock.Setup(rep => rep.Get(It.IsAny<Expression<Func<PositionEntity, bool>>>())).ReturnsAsync(positions);
+
             var sut = new InterviewService(repMock.Object, positionMock.Object, companyMock.Object, mapperMoq.Object);
+            var res = await sut.UpdateDatetime(updateDto);
+
+            Assert.True(res.Ok, $"Ожидалось, что запрос будет успешен, но это не так. Ошибка: {res.ErrorMessage}");
         }
         [Fact]
         public async void InterviewTest_UpdateDatetimeFailureNoInterview()
         {
+            var updateDto = fixture.Create<UpdateInterviewDto>();
+
+            repMock.Setup(rep => rep.Get(It.IsAny<Expression<Func<InterviewEntity, bool>>>())).ReturnsAsync(new List<InterviewEntity>());
 
             var sut = new InterviewService(repMock.Object, positionMock.Object, companyMock.Object, mapperMoq.Object);
+            var res = await sut.UpdateDatetime(updateDto);
+
+            Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
+            Assert.Contains("Собеседование, которое вы пытаетесь отредактировать, не существует", res.ErrorMessage);
         }
     }
 }
