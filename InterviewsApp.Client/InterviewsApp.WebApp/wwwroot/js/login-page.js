@@ -17,6 +17,7 @@
                 response.json().then((data) => {
                     Cookies.set(tokenKey, data.responseData.token, {expires: 1});
                     Cookies.set(currentUserId, data.responseData.userId, { expires: 1 });
+                    getLocals();
                     location.replace("/");
                 });
             }

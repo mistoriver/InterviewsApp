@@ -28,6 +28,7 @@ namespace InterviewsApp.Data.Extensions
             services.AddScoped<IRepository<InterviewEntity>, GenericRepository<InterviewEntity>>();
             services.AddScoped<IRepository<PositionEntity>, GenericRepository<PositionEntity>>();
             services.AddScoped<IRepository<UserEntity>, UserRepository>();
+            services.AddScoped<IRepository<LocalizationEntity>, GenericRepository<LocalizationEntity>>();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace InterviewsApp.Core.Mappings
         public BaseMapping()
         {
             CreateMap<TEntity, TExternalDto>();
+            CreateMap<TExternalDto, TEntity>();
         }
     }
 }

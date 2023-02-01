@@ -10,6 +10,7 @@ namespace InterviewsApp.Data
         public DbSet<CompanyEntity> Companies => Set<CompanyEntity>();
         public DbSet<PositionEntity> Positions => Set<PositionEntity>();
         public DbSet<InterviewEntity> Interviews => Set<InterviewEntity>();
+        public DbSet<LocalizationEntity> Localizations => Set<LocalizationEntity>();
 
 
         public InterviewsContext(DbContextOptions<InterviewsContext> options) : base(options)

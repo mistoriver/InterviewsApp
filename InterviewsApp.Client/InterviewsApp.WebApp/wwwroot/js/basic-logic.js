@@ -73,3 +73,24 @@ function handleRequestErrors(response) {
             else setMessage("Произошла ошибка. Код ошибки: " + response.status);
     });
 }
+
+function getLocals() {
+    let langBtn = document.getElementById("localization-button");
+    langBtn.innerText = (langBtn.innerText === "RU" ? "EN" : "RU");
+
+    let lang = langBtn.innerText;
+    Cookies.get(currentUserId);
+    fetch(apihost + "/Localization/" + (lang ? "GetByLang?langCode=" + lang : "GetByUserId?userId=" + Cookies.get(currentUserId)), {
+        method: "GET", headers: {
+            "Accept": "application/json"
+        }
+    }).then((response) => {
+        if (response.ok)
+            response.json()
+                .then(function (data) {
+                    localStorage.setItem("localizations", data);
+                });
+        else
+            handleRequestErrors(response);
+    });
+}
