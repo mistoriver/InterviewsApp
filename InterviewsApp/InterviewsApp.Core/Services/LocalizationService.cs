@@ -24,7 +24,8 @@ namespace InterviewsApp.Core.Services
         public async Task<Response<IEnumerable<LocalizationDto>>> GetByLanguage(string language)
         { 
             var localsByLanguage =  await _repository.Get(loc => loc.Language == language);
-            return new Response<IEnumerable<LocalizationDto>>(_mapper.Map<IEnumerable<LocalizationDto>>(localsByLanguage));
+            var localsDtos = localsByLanguage.Select(e => _mapper.Map<LocalizationDto>(e));
+            return new Response<IEnumerable<LocalizationDto>>(localsDtos);
         }
         public async Task<Response<IEnumerable<LocalizationDto>>> GetByUserId(Guid userId)
         {

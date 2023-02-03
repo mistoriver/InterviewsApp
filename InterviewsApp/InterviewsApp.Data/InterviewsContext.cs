@@ -1,6 +1,8 @@
 ﻿using InterviewsApp.Data.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 using System.Reflection;
+using System.Text.Json;
 
 namespace InterviewsApp.Data
 {
@@ -21,6 +23,15 @@ namespace InterviewsApp.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.Entity<LocalizationEntity>().HasData(GetDefaultLocalsFromJson());
+        }
+
+        private LocalizationEntity[] GetDefaultLocalsFromJson()
+        {
+            var json = File.ReadAllText(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/DefaultLocalizations.json");
+            var locals = JsonSerializer.Deserialize<LocalizationEntity[]>(json);
+            return locals;
         }
     }
 }

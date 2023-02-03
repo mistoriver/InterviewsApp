@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "09F058AF-F787-4D84-82BE-C80795C07164",
+    "LocalizationCode": "Loc.Login.SignIn",
+    "Language": "RU",
+    "Value": "Войти"
+  },
+  {
+    "Id": "12FC8B66-E033-4DF9-AF8E-3C59A673BDEF",
+    "LocalizationCode": "Loc.Login.SignUp",
+    "Language": "RU",
+    "Value": "Зарегистрироваться"
+  },
+  {
+    "Id": "60A80B05-FBED-4C46-AB3D-CFC5D4B783C0",
+    "LocalizationCode": "Loc.Login.SignIn",
+    "Language": "EN",
+    "Value": "Sign in"
+  },
+  {
+    "Id": "9AA9C9BC-BAB8-4F4E-B888-28BE51EDB9C1",
+    "LocalizationCode": "Loc.Login.SignUp",
+    "Language": "EN",
+    "Value": "Sign up"
+  }
+]
