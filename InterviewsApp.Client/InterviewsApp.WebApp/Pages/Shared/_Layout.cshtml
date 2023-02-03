@@ -24,6 +24,10 @@
     <script src="/js/basic-logic.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>init('@host')</script>
+    <script>
+        const localsReadyEvent = new Event("localsReady");
+        document.addEventListener("localsReady", () => setLocals());
+    </script>
     <style>
 
         button {
@@ -87,7 +91,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
 
-                            <a class="nav-link text-dark" style="cursor:pointer;" onclick="getLocals()" id="localization-button">RU</a>
+                            <a class="nav-link text-dark" style="cursor:pointer;" onclick="getLocals(true)" id="localization-button">RU</a>
                         </li>
                         <li class="nav-item">
 

@@ -74,13 +74,15 @@ function handleRequestErrors(response) {
     });
 }
 
-function getLocals() {
-    let langBtn = document.getElementById("localization-button");
-    langBtn.innerText = (langBtn.innerText === "RU" ? "EN" : "RU");
+function getLocals(isLangSwitched = false) {
+    let userId = Cookies.get(currentUserId);
 
+    let langBtn = document.getElementById("localization-button");
     let lang = langBtn.innerText;
-    Cookies.get(currentUserId);
-    fetch(apihost + "/Localization/" + (lang ? "GetByLang?langCode=" + lang : "GetByUserId?userId=" + Cookies.get(currentUserId)), {
+    if (isLangSwitched) {
+        langBtn.innerText = (langBtn.innerText === "RU" ? "EN" : "RU");
+    }
+    fetch(apihost + "/Localization/" + (isLangSwitched || !userId ? "GetByLang?langCode=" + lang : "GetByUserId?userId=" + userId), {
         method: "GET", headers: {
             "Accept": "application/json"
         }
@@ -88,9 +90,21 @@ function getLocals() {
         if (response.ok)
             response.json()
                 .then(function (data) {
-                    localStorage.setItem("localizations", data);
+                    localStorage.setItem("localizations", JSON.stringify(data.responseData));
+                    document.dispatchEvent(localsReadyEvent);
                 });
         else
             handleRequestErrors(response);
     });
+}
+
+function setLocals() {
+    let locals = JSON.parse(localStorage.getItem("localizations"));
+    let localizableElements = document.getElementsByClassName("loc");
+    for (let elem of localizableElements) {
+        let local = locals.find(loc => elem.innerText === loc.localizationCode);
+        if (local) {
+            elem.innerText = local.value;
+        }
+    };
 }
