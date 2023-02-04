@@ -11,32 +11,32 @@
 </style>
 
 <script src="/js/register-page.js"></script>
-<script>document.getElementById("logout-button").style = "visibility:hidden";</script>
+<script>document.getElementById("logout-button").hidden = true;</script>
 <div>
-    <h3>Регистрация</h3>
+    <h3 class="localizable">Loc.Register.Title</h3>
 
     <table>
         <tr>
-            <td>Имя: </td>
+            <td class="localizable">Loc.Register.Name: </td>
             <td><input id="name" type="text" /></td>
         </tr>
         <tr>
-            <td>Логин: </td>
+            <td class="localizable">Loc.Login.Login: </td>
             <td><input id="login" type="text" /></td>
         </tr>
         <tr>
-            <td>Пароль: </td>
+            <td class="localizable">Loc.Login.Password: </td>
             <td><input id="password" type="password" /></td>
         </tr>
         <tr>
-            <td>Повторите пароль: </td>
+            <td class="localizable">Loc.Register.PasswordConfirmation: </td>
             <td><input id="repeat-password" type="password" /></td>
         </tr>
     </table>
     
-    <button id="register-button" onclick="register()">Зарегистрироваться</button>
+    <button id="register-button" onclick="register()" class="localizable">Loc.Register.Register</button>
 
     <p id="message"></p>
-    <a id="manual-redirect" style="visibility:hidden" href="/Login" >Перейти на страницу входа</a>
+    <a id="manual-redirect" style="visibility:hidden" href="/Login" class="localizable">Loc.Common.GoToMainPage</a>
 </div>
 <script>if(Cookies.get(currentUserId)) location.assign("/")</script>

@@ -97,7 +97,7 @@ function changeLanguage() {
     }
 }
 
-function getLocals(lang = "RU") {
+function getLocals(lang = "EN") {
     localsUpdating = true;
     let userId = Cookies.get(currentUserId);
     localStorage.removeItem("localizations");
@@ -116,6 +116,8 @@ function getLocals(lang = "RU") {
                 });
         else
             handleRequestErrors(response);
+    }).catch((error) => {
+        setMessage(localStorage.getItem("currentLocal") === "RU" ? "Сервер недоступен." : "Server is inaccessible.");
     });
 }
 

@@ -20,6 +20,26 @@
     "Value": "Пароль"
   },
   {
+    "Id": "Loc.Register.Title",
+    "Language": "RU",
+    "Value": "Регистрация"
+  },
+  {
+    "Id": "Loc.Register.Name",
+    "Language": "RU",
+    "Value": "Имя"
+  },
+  {
+    "Id": "Loc.Register.PasswordConfirmation",
+    "Language": "RU",
+    "Value": "Повторите пароль"
+  },
+  {
+    "Id": "Loc.Register.Register",
+    "Language": "RU",
+    "Value": "Зарегистрироваться"
+  },
+  {
     "Id": "Loc.Common.Title",
     "Language": "RU",
     "Value": "Менеджер собеседований"
@@ -238,6 +258,26 @@
     "Id": "Loc.Login.Password",
     "Language": "EN",
     "Value": "Password"
+  },
+  {
+    "Id": "Loc.Register.Title",
+    "Language": "EN",
+    "Value": "Registration"
+  },
+  {
+    "Id": "Loc.Register.Name",
+    "Language": "EN",
+    "Value": "Name"
+  },
+  {
+    "Id": "Loc.Register.PasswordConfirmation",
+    "Language": "EN",
+    "Value": "Confirm password"
+  },
+  {
+    "Id": "Loc.Register.Register",
+    "Language": "EN",
+    "Value": "Register"
   },
   {
     "Id": "Loc.Common.Title",
