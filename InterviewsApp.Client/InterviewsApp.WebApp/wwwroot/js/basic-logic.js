@@ -1,6 +1,7 @@
 ﻿var tokenKey = "AccessToken";
 var currentUserId = "userId";
 var apihost = "";
+var localsUpdating = false;
 
 function init(host) {
     apihost = host ?? "http://unconfigured-api-host-will-not-work";
@@ -74,26 +75,34 @@ function handleRequestErrors(response) {
     });
 }
 
-function getLocals(isLangSwitched = false) {
+function changeLanguage() {
     let userId = Cookies.get(currentUserId);
-
     let langBtn = document.getElementById("localization-button");
-    let lang = langBtn.innerText;
-    if (isLangSwitched) {
-        langBtn.innerText = (langBtn.innerText === "RU" ? "EN" : "RU");
-        lang = langBtn.innerText;
-        if (userId)
-            fetch(apihost + "/Localization/SetForUser?userId=" + userId + "&langCode=" + lang, {
-                method: "PUT", headers: {
-                    "Accept": "application/json"
-                }
-            }).then((response) => {
-                if (response.ok) { }
-                else
-                    handleRequestErrors(response);
-            });
+    let lang = (langBtn.innerText === "RU" ? "EN" : "RU")
+    if (userId) {
+        fetch(apihost + "/Localization/SetForUser?userId=" + userId + "&langCode=" + lang, {
+            method: "PUT", headers: {
+                "Accept": "application/json"
+            }
+        }).then((response) => {
+            if (response.ok) {
+                getLocals(lang);
+            }
+            else
+                handleRequestErrors(response);
+        });
     }
-    fetch(apihost + "/Localization/" + (isLangSwitched || !userId ? "GetByLang?langCode=" + lang : "GetByUserId?userId=" + userId), {
+    else {
+        getLocals(lang);
+    }
+}
+
+function getLocals(lang = "RU") {
+    localsUpdating = true;
+    let userId = Cookies.get(currentUserId);
+    localStorage.removeItem("localizations");
+    localStorage.removeItem("currentLocal");
+    fetch(apihost + "/Localization/" + (!userId ? "GetByLang?langCode=" + lang : "GetByUserId?userId=" + userId), {
         method: "GET", headers: {
             "Accept": "application/json"
         }
@@ -102,7 +111,8 @@ function getLocals(isLangSwitched = false) {
             response.json()
                 .then(function (data) {
                     localStorage.setItem("localizations", JSON.stringify(data.responseData));
-                    document.dispatchEvent(localsReadyEvent);
+                    localStorage.setItem("currentLocal", data.responseData[0].language);
+                    location.reload();
                 });
         else
             handleRequestErrors(response);
@@ -110,12 +120,14 @@ function getLocals(isLangSwitched = false) {
 }
 
 function setLocals() {
+    if (localsUpdating) return;
+    document.getElementById("localization-button").innerText = localStorage.getItem("currentLocal");
     let locals = JSON.parse(localStorage.getItem("localizations"));
-    let localizableElements = document.getElementsByClassName("loc");
+    let localizableElements = document.getElementsByClassName("localizable");
     for (let elem of localizableElements) {
-        let local = locals.find(loc => elem.innerText === loc.localizationCode);
+        let local = locals.find(loc => elem.innerHTML.includes(loc.localizationCode));
         if (local) {
-            elem.innerText = local.value;
+            elem.innerHTML = elem.innerHTML.replace(local.localizationCode, local.value);
         }
     };
 }
