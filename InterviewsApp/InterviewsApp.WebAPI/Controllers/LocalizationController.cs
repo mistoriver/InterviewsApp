@@ -45,5 +45,20 @@ namespace InterviewsApp.WebAPI.Controllers
                 return Ok(response);
             return StatusCode(500, response);
         }
+
+        /// <summary>
+        /// Установить локаль для пользователя
+        /// </summary>
+        /// <param name="userId">ID пользователя</param>
+        /// <param name="languageCode">Код языка</param>
+        [HttpPut]
+        //Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> SetForUser(Guid userId, string langCode)
+        {
+            var response = await _service.SetLocalizationForUser(userId, langCode);
+            if (response.Ok)
+                return Ok(response);
+            return StatusCode(500, response);
+        }
     }
 }

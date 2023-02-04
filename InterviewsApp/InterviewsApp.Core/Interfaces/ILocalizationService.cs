@@ -1,12 +1,8 @@
-﻿using InterviewsApp.Core.DTOs;
-using InterviewsApp.Core.DTOs.External;
+﻿using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Core.Models;
 using InterviewsApp.Data.Models.Entities;
-using InterviewsApp.WebAPI.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Interfaces
@@ -25,5 +21,12 @@ namespace InterviewsApp.Core.Interfaces
         /// <param name="userId">Код языка</param>
         /// <returns></returns>
         public Task<Response<IEnumerable<LocalizationDto>>> GetByUserId(Guid userId);
+        /// <summary>
+        /// Установить локализацию пользователя
+        /// </summary>
+        /// <param name="userId">ID пользователя</param>
+        /// <param name="langCode">Код языка</param>
+        /// <returns></returns>
+        public Task<Response> SetLocalizationForUser(Guid userId, string langCode);
     }
 }

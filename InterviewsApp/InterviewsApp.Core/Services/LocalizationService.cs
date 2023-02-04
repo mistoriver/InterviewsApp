@@ -29,18 +29,29 @@ namespace InterviewsApp.Core.Services
         }
         public async Task<Response<IEnumerable<LocalizationDto>>> GetByUserId(Guid userId)
         {
-            var lang = (await _userRepository.GetByIdOrDefault(userId))?.Language;
-            if (lang == null) 
+            var user = (await _userRepository.GetByIdOrDefault(userId));
+            if (user == null) 
             { 
                 return new Response<IEnumerable<LocalizationDto>>("Данного пользователя не существует"); 
             }
 
-            return await GetByLanguage(lang);
+            return await GetByLanguage(user.Language ?? "RU");
         }
 
         public async Task AddLocalization(LocalizationDto localizationDto)
         {
             await _repository.Create(_mapper.Map<LocalizationEntity>(localizationDto));
+        }
+        public async Task<Response> SetLocalizationForUser(Guid userId, string langCode)
+        {
+            var user = await _userRepository.GetByIdOrDefault(userId);
+            if (user != null)
+            {
+                user.Language = langCode;
+                await _userRepository.Update(user);
+                return new Response();
+            }
+            return new Response("Пользователь не найден");
         }
     }
 }

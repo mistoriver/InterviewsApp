@@ -2,6 +2,7 @@
 using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
 using InterviewsApp.Data.Repositories;
+using InterviewsApp.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,7 @@ namespace InterviewsApp.Data.Extensions
             services.AddScoped<IRepository<PositionEntity>, GenericRepository<PositionEntity>>();
             services.AddScoped<IRepository<UserEntity>, UserRepository>();
             services.AddScoped<IRepository<LocalizationEntity>, GenericRepository<LocalizationEntity>>();
+            services.AddScoped<IDatabaseSeeder, DatabaseSeeder>();
         }
     }
 }

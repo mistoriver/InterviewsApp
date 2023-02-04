@@ -81,6 +81,17 @@ function getLocals(isLangSwitched = false) {
     let lang = langBtn.innerText;
     if (isLangSwitched) {
         langBtn.innerText = (langBtn.innerText === "RU" ? "EN" : "RU");
+        lang = langBtn.innerText;
+        if (userId)
+            fetch(apihost + "/Localization/SetForUser?userId=" + userId + "&langCode=" + lang, {
+                method: "PUT", headers: {
+                    "Accept": "application/json"
+                }
+            }).then((response) => {
+                if (response.ok) { }
+                else
+                    handleRequestErrors(response);
+            });
     }
     fetch(apihost + "/Localization/" + (isLangSwitched || !userId ? "GetByLang?langCode=" + lang : "GetByUserId?userId=" + userId), {
         method: "GET", headers: {
