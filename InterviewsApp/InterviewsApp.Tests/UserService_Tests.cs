@@ -53,7 +53,7 @@ namespace InterviewsApp.Tests
 
             //Assert
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
-            Assert.Contains("Неправильный логин и/или пароль", res.ErrorMessage);
+            Assert.Contains("Loc.Message.WrongLogPass", res.ErrorMessage);
             passMoq.Verify(passService => passService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Never());
         }
         [Fact]
@@ -74,7 +74,7 @@ namespace InterviewsApp.Tests
 
             //Assert
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
-            Assert.Contains("Неправильный логин и/или пароль", res.ErrorMessage);
+            Assert.Contains("Loc.Message.WrongLogPass", res.ErrorMessage);
             passMoq.Verify();
         }
         [Fact]
@@ -113,7 +113,7 @@ namespace InterviewsApp.Tests
 
             //Assert
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
-            Assert.Contains("Пользователь с данным логином уже существует", res.ErrorMessage);
+            Assert.Contains("Loc.Message.UserNotUnique", res.ErrorMessage);
             passMoq.Verify(passService => passService.HashPassword(It.IsAny<string>()), Times.Never());
             repMock.Verify(userRep => userRep.Create(It.IsAny<UserEntity>()), Times.Never());
         }

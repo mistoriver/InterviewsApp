@@ -51,7 +51,7 @@ namespace InterviewsApp.Tests
 
             var res = await sut.Get(interviewId, userId);
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
-            Assert.Contains("Собеседование не существует", res.ErrorMessage);
+            Assert.Contains("Loc.Message.NoSuchInterview", res.ErrorMessage);
         }
         [Fact]
         public async void InterviewTest_GetSuccess()
@@ -153,7 +153,7 @@ namespace InterviewsApp.Tests
             var res = await sut.GetByPosition(positionId, userId);
 
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
-            Assert.Contains("Собеседование не существует", res.ErrorMessage);
+            Assert.Contains("Loc.Message.NoSuchInterview", res.ErrorMessage);
             repMock.Verify(rep => rep.Create(It.IsAny<InterviewEntity>()), Times.Never);
         }
         [Fact]
@@ -184,7 +184,7 @@ namespace InterviewsApp.Tests
             var res = await sut.CreateInterview(intDto);
 
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
-            Assert.Contains("Позиции не существует", res.ErrorMessage);
+            Assert.Contains("Loc.Message.NoSuchPosition", res.ErrorMessage);
             repMock.Verify(rep => rep.Update(It.IsAny<InterviewEntity>()), Times.Never);
         }
         [Fact]
@@ -216,7 +216,7 @@ namespace InterviewsApp.Tests
             var res = await sut.UpdateComment(commentDto);
 
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
-            Assert.Contains("Собеседование, которое вы пытаетесь отредактировать, не существует", res.ErrorMessage);
+            Assert.Contains("Loc.Message.NoSuchInterviewForEdit", res.ErrorMessage);
             repMock.Verify(rep => rep.Update(It.IsAny<InterviewEntity>()), Times.Never);
         }
         [Fact]
@@ -249,7 +249,7 @@ namespace InterviewsApp.Tests
             var res = await sut.UpdateDatetime(updateDto);
 
             Assert.False(res.Ok, "Ожидалось что запрос НЕ БУДЕТ успешен, но он почему-то выполнился");
-            Assert.Contains("Собеседование, которое вы пытаетесь отредактировать, не существует", res.ErrorMessage);
+            Assert.Contains("Loc.Message.NoSuchInterviewForEdit", res.ErrorMessage);
             repMock.Verify(rep => rep.Update(It.IsAny<InterviewEntity>()), Times.Never);
         }
     }
