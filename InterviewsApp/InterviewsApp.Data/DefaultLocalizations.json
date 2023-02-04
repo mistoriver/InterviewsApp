@@ -1,0 +1,792 @@
+[
+  {
+    "Id": "Loc.Login.SignIn",
+    "Language": "RU",
+    "Value": "Войти"
+  },
+  {
+    "Id": "Loc.Login.SignUp",
+    "Language": "RU",
+    "Value": "Зарегистрироваться"
+  },
+  {
+    "Id": "Loc.Login.Login",
+    "Language": "RU",
+    "Value": "Логин"
+  },
+  {
+    "Id": "Loc.Login.Password",
+    "Language": "RU",
+    "Value": "Пароль"
+  },
+  {
+    "Id": "Loc.Register.Title",
+    "Language": "RU",
+    "Value": "Регистрация"
+  },
+  {
+    "Id": "Loc.Register.Name",
+    "Language": "RU",
+    "Value": "Имя"
+  },
+  {
+    "Id": "Loc.Register.PasswordConfirmation",
+    "Language": "RU",
+    "Value": "Повторите пароль"
+  },
+  {
+    "Id": "Loc.Register.Register",
+    "Language": "RU",
+    "Value": "Зарегистрироваться"
+  },
+  {
+    "Id": "Loc.Common.Title",
+    "Language": "RU",
+    "Value": "Менеджер собеседований"
+  },
+  {
+    "Id": "Loc.Common.MyInterviews",
+    "Language": "RU",
+    "Value": "Мои собеседования"
+  },
+  {
+    "Id": "Loc.Common.MyPositions",
+    "Language": "RU",
+    "Value": "Мои вакансии"
+  },
+  {
+    "Id": "Loc.Common.Logout",
+    "Language": "RU",
+    "Value": "Выйти из системы"
+  },
+  {
+    "Id": "Loc.MainPage.AddNewInterview",
+    "Language": "RU",
+    "Value": "Добавить новое собеседование"
+  },
+  {
+    "Id": "Loc.PositionPage.AddNewPosition",
+    "Language": "RU",
+    "Value": "Добавить новую вакансию"
+  },
+  {
+    "Id": "Loc.MainPage.OnlyFutureFlag",
+    "Language": "RU",
+    "Value": "Показать только будущие собеседования"
+  },
+  {
+    "Id": "Loc.MainPage.Table.InterviewName",
+    "Language": "RU",
+    "Value": "Название собеседования"
+  },
+  {
+    "Id": "Loc.MainPage.Table.InterviewDate",
+    "Language": "RU",
+    "Value": "Дата собеседования"
+  },
+  {
+    "Id": "Loc.MainPage.Table.PositionName",
+    "Language": "RU",
+    "Value": "Вакансия"
+  },
+  {
+    "Id": "Loc.MainPage.Table.CompanyName",
+    "Language": "RU",
+    "Value": "Компания"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.Title",
+    "Language": "RU",
+    "Value": "Добавление компании"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.CompanyName",
+    "Language": "RU",
+    "Value": "Название компании"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.AddCompany",
+    "Language": "RU",
+    "Value": "Добавить компанию"
+  },
+  {
+    "Id": "Loc.Common.GoToMainPage",
+    "Language": "RU",
+    "Value": "Вернуться на главную страницу"
+  },
+  {
+    "Id": "Loc.AddPositionPage.Title",
+    "Language": "RU",
+    "Value": "Добавление вакансии"
+  },
+  {
+    "Id": "Loc.AddPositionPage.PositionName",
+    "Language": "RU",
+    "Value": "Название вакансии"
+  },
+  {
+    "Id": "Loc.AddPositionPage.CityName",
+    "Language": "RU",
+    "Value": "Город вакансии (или \"Удалёнка\")"
+  },
+  {
+    "Id": "Loc.AddPositionPage.CompanyName",
+    "Language": "RU",
+    "Value": "Компания"
+  },
+  {
+    "Id": "Loc.AddPositionPage.NoCompanyImLookingFor",
+    "Language": "RU",
+    "Value": "Нужной компании нет в списке"
+  },
+  {
+    "Id": "Loc.AddPositionPage.AddPosition",
+    "Language": "RU",
+    "Value": "Добавить вакансию"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.Title",
+    "Language": "RU",
+    "Value": "Создание собеседования"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.InterviewName",
+    "Language": "RU",
+    "Value": "Название собеседования"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.InterviewTime",
+    "Language": "RU",
+    "Value": "Время собеседования"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.PositionName",
+    "Language": "RU",
+    "Value": "Вакансия"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.AddPosition",
+    "Language": "RU",
+    "Value": "Добавить вакансию"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.CreateInterview",
+    "Language": "RU",
+    "Value": "Создать собеседование"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.Title",
+    "Language": "RU",
+    "Value": "Просмотр компании"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.CompanyRating",
+    "Language": "RU",
+    "Value": "Общий рейтинг"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.YourRating",
+    "Language": "RU",
+    "Value": "Ваша оценка"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.Title",
+    "Language": "RU",
+    "Value": "Просмотр собеседования"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.Comment",
+    "Language": "RU",
+    "Value": "Комментарий"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.DeleteThisInterview",
+    "Language": "RU",
+    "Value": "Удалить данное собеседование"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.Title",
+    "Language": "RU",
+    "Value": "Просмотр вакансии"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.CityName",
+    "Language": "RU",
+    "Value": "Город"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.SalaryRange",
+    "Language": "RU",
+    "Value": "Зарплатная вилка"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.OfferReceived",
+    "Language": "RU",
+    "Value": "Получен оффер"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.DenialReceived",
+    "Language": "RU",
+    "Value": "Получен отказ"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.DeleteThisPosition",
+    "Language": "RU",
+    "Value": "Удалить данную вакансию"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.InterviewsForPosition",
+    "Language": "RU",
+    "Value": "Собеседования по этой вакансии"
+  },
+  {
+    "Id": "Loc.Login.SignIn",
+    "Language": "EN",
+    "Value": "Sign in"
+  },
+  {
+    "Id": "Loc.Login.SignUp",
+    "Language": "EN",
+    "Value": "Sign up"
+  },
+  {
+    "Id": "Loc.Login.Login",
+    "Language": "EN",
+    "Value": "Login"
+  },
+  {
+    "Id": "Loc.Login.Password",
+    "Language": "EN",
+    "Value": "Password"
+  },
+  {
+    "Id": "Loc.Register.Title",
+    "Language": "EN",
+    "Value": "Registration"
+  },
+  {
+    "Id": "Loc.Register.Name",
+    "Language": "EN",
+    "Value": "Name"
+  },
+  {
+    "Id": "Loc.Register.PasswordConfirmation",
+    "Language": "EN",
+    "Value": "Confirm password"
+  },
+  {
+    "Id": "Loc.Register.Register",
+    "Language": "EN",
+    "Value": "Register"
+  },
+  {
+    "Id": "Loc.Common.Title",
+    "Language": "EN",
+    "Value": "Interview Manager"
+  },
+  {
+    "Id": "Loc.Common.MyInterviews",
+    "Language": "EN",
+    "Value": "My interviews"
+  },
+  {
+    "Id": "Loc.Common.MyPositions",
+    "Language": "EN",
+    "Value": "My positions"
+  },
+  {
+    "Id": "Loc.Common.Logout",
+    "Language": "EN",
+    "Value": "Logout"
+  },
+  {
+    "Id": "Loc.MainPage.AddNewInterview",
+    "Language": "EN",
+    "Value": "Add new interview"
+  },
+  {
+    "Id": "Loc.PositionPage.AddNewPosition",
+    "Language": "EN",
+    "Value": "Add new position"
+  },
+  {
+    "Id": "Loc.MainPage.OnlyFutureFlag",
+    "Language": "EN",
+    "Value": "Show only future interviews"
+  },
+  {
+    "Id": "Loc.MainPage.Table.InterviewName",
+    "Language": "EN",
+    "Value": "Interview name"
+  },
+  {
+    "Id": "Loc.MainPage.Table.InterviewDate",
+    "Language": "EN",
+    "Value": "Interview date"
+  },
+  {
+    "Id": "Loc.MainPage.Table.PositionName",
+    "Language": "EN",
+    "Value": "Position"
+  },
+  {
+    "Id": "Loc.MainPage.Table.CompanyName",
+    "Language": "EN",
+    "Value": "Company"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.Title",
+    "Language": "EN",
+    "Value": "Company registration"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.CompanyName",
+    "Language": "EN",
+    "Value": "Company name"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.AddCompany",
+    "Language": "EN",
+    "Value": "Add company"
+  },
+  {
+    "Id": "Loc.Common.GoToMainPage",
+    "Language": "EN",
+    "Value": "Go to the main page"
+  },
+  {
+    "Id": "Loc.AddPositionPage.Title",
+    "Language": "EN",
+    "Value": "Position creation"
+  },
+  {
+    "Id": "Loc.AddPositionPage.PositionName",
+    "Language": "EN",
+    "Value": "Position name"
+  },
+  {
+    "Id": "Loc.AddPositionPage.CityName",
+    "Language": "EN",
+    "Value": "Position city (or \"Remote\")"
+  },
+  {
+    "Id": "Loc.AddPositionPage.CompanyName",
+    "Language": "EN",
+    "Value": "Company"
+  },
+  {
+    "Id": "Loc.AddPositionPage.NoCompanyImLookingFor",
+    "Language": "EN",
+    "Value": "My company is not in the list"
+  },
+  {
+    "Id": "Loc.AddPositionPage.AddPosition",
+    "Language": "EN",
+    "Value": "Create position"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.Title",
+    "Language": "EN",
+    "Value": "Interview creation"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.InterviewName",
+    "Language": "EN",
+    "Value": "Interview name"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.InterviewTime",
+    "Language": "EN",
+    "Value": "Interview time"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.PositionName",
+    "Language": "EN",
+    "Value": "Position"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.AddPosition",
+    "Language": "EN",
+    "Value": "Add position"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.CreateInterview",
+    "Language": "EN",
+    "Value": "Create interview"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.Title",
+    "Language": "EN",
+    "Value": "Company "
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.CompanyRating",
+    "Language": "EN",
+    "Value": "Total rating"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.YourRating",
+    "Language": "EN",
+    "Value": "Your rating"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.Title",
+    "Language": "EN",
+    "Value": "Interview "
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.Comment",
+    "Language": "EN",
+    "Value": "Comment"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.DeleteThisInterview",
+    "Language": "EN",
+    "Value": "Delete this interview"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.Title",
+    "Language": "EN",
+    "Value": "Position "
+  },
+  {
+    "Id": "Loc.ViewPositionPage.CityName",
+    "Language": "EN",
+    "Value": "City"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.SalaryRange",
+    "Language": "EN",
+    "Value": "Salary range"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.OfferReceived",
+    "Language": "EN",
+    "Value": "I've got offer"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.DenialReceived",
+    "Language": "EN",
+    "Value": "I was denied"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.DeleteThisPosition",
+    "Language": "EN",
+    "Value": "Delete this position"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.InterviewsForPosition",
+    "Language": "EN",
+    "Value": "Interviews for this position"
+  },
+  {
+    "Id": "Loc.Message.NoSuchForDelete",
+    "Language": "RU",
+    "Value": "Сущность, которую вы пытаетесь удалить, не существует."
+  },
+  {
+    "Id": "Loc.Message.NoSuchForDelete",
+    "Language": "EN",
+    "Value": "Entity you're trying to delete doesn't exist."
+  },
+  {
+    "Id": "Loc.Message.NoSuchCompanyToRate",
+    "Language": "RU",
+    "Value": "Компании, которую вы пытаетесь оценить, не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchCompanyToRate",
+    "Language": "EN",
+    "Value": "Company you're trying to rate doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchCompany",
+    "Language": "RU",
+    "Value": "Компании не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchCompany",
+    "Language": "EN",
+    "Value": "Company doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchInterview",
+    "Language": "RU",
+    "Value": "Собеседование не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchInterview",
+    "Language": "EN",
+    "Value": "Interview doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchInterviewForEdit",
+    "Language": "RU",
+    "Value": "Собеседование, которое вы пытаетесь отредактировать, не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchInterviewForEdit",
+    "Language": "EN",
+    "Value": "Interview you're trying to edit doesn't exists"
+  },
+  {
+    "Id": "Loc.Message.NoSuchPosition",
+    "Language": "RU",
+    "Value": "Вакансии не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchPosition",
+    "Language": "EN",
+    "Value": "Position doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchPositionForUpdate",
+    "Language": "RU",
+    "Value": "Вакансии, которую вы пытаетесь обновить, не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchPositionForUpdate",
+    "Language": "EN",
+    "Value": "Position you're trying to update doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchUser",
+    "Language": "RU",
+    "Value": "Пользователь не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchUser",
+    "Language": "EN",
+    "Value": "User doesn't exists"
+  },
+  {
+    "Id": "Loc.Message.UserNotUnique",
+    "Language": "RU",
+    "Value": "Пользователь с данным логином уже существует"
+  },
+  {
+    "Id": "Loc.Message.UserNotUnique",
+    "Language": "EN",
+    "Value": "User with this login already exists"
+  },
+  {
+    "Id": "Loc.Message.WrongLogPass",
+    "Language": "RU",
+    "Value": "Неправильный логин и/или пароль"
+  },
+  {
+    "Id": "Loc.Message.WrongLogPass",
+    "Language": "EN",
+    "Value": "Wrong login and/or password"
+  },
+  {
+    "Id": "Loc.Message.NameIsRequired",
+    "Language": "RU",
+    "Value": "Поле Имя является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.NameIsRequired",
+    "Language": "EN",
+    "Value": "Field Name is required"
+  },
+  {
+    "Id": "Loc.Message.LoginIsRequired",
+    "Language": "RU",
+    "Value": "Поле Логин является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.LoginIsRequired",
+    "Language": "EN",
+    "Value": "Field Login is required"
+  },
+  {
+    "Id": "Loc.Message.PasswordIsRequired",
+    "Language": "RU",
+    "Value": "Поле Пароль является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.PasswordIsRequired",
+    "Language": "EN",
+    "Value": "Field Password is required"
+  },
+  {
+    "Id": "Loc.Message.NameSize",
+    "Language": "RU",
+    "Value": "Длина имени должна быть в пределах от 3 до 50 символов"
+  },
+  {
+    "Id": "Loc.Message.NameSize",
+    "Language": "EN",
+    "Value": "Name length must be between 3 and 50 symbols"
+  },
+  {
+    "Id": "Loc.Message.LoginSize",
+    "Language": "RU",
+    "Value": "Длина логина должна быть в пределах от 5 до 20 символов"
+  },
+  {
+    "Id": "Loc.Message.LoginSize",
+    "Language": "EN",
+    "Value": "Login length must be between 5 and 20 symbols"
+  },
+  {
+    "Id": "Loc.Message.PasswordSize",
+    "Language": "RU",
+    "Value": "Длина пароля должна быть не меньше 8 символов"
+  },
+  {
+    "Id": "Loc.Message.PasswordSize",
+    "Language": "EN",
+    "Value": "Password length must be atleast 8 symbols"
+  },
+  {
+    "Id": "Loc.Message.CompanyNameRequired",
+    "Language": "RU",
+    "Value": "Поле Название компании является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.CompanyNameRequired",
+    "Language": "EN",
+    "Value": "Field Company name is required"
+  },
+  {
+    "Id": "Loc.Message.CompanyNameSize",
+    "Language": "RU",
+    "Value": "Длина названия компании должна быть в пределах от 1 до 50 символов"
+  },
+  {
+    "Id": "Loc.Message.CompanyNameSize",
+    "Language": "EN",
+    "Value": "Company name length must be between 1 and 50 symbols"
+  },
+  {
+    "Id": "Loc.Message.InterviewNameRequired",
+    "Language": "RU",
+    "Value": "Поле Название собеседования является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.InterviewNameRequired",
+    "Language": "EN",
+    "Value": "Field Interview name is required"
+  },
+  {
+    "Id": "Loc.Message.InterviewDateRequired",
+    "Language": "RU",
+    "Value": "Поле Дата собеседования является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.InterviewDateRequired",
+    "Language": "EN",
+    "Value": "Field Interview date is required"
+  },
+  {
+    "Id": "Loc.Message.InterviewNameSize",
+    "Language": "RU",
+    "Value": "Длина названия собеседования не должна превышать 100 символов"
+  },
+  {
+    "Id": "Loc.Message.InterviewNameSize",
+    "Language": "EN",
+    "Value": "Maximum interview length is 100 symbols"
+  },
+  {
+    "Id": "Loc.Message.InterviewDateInFuture",
+    "Language": "RU",
+    "Value": "Дата собеседования должна быть в будущем"
+  },
+  {
+    "Id": "Loc.Message.InterviewDateInFuture",
+    "Language": "EN",
+    "Value": "Interview date must be in the future"
+  },
+  {
+    "Id": "Loc.Message.PositionNameRequired",
+    "Language": "RU",
+    "Value": "Поле Название позиции является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.PositionNameRequired",
+    "Language": "EN",
+    "Value": "Field Position name is required"
+  },
+  {
+    "Id": "Loc.Message.PositionCityRequired",
+    "Language": "RU",
+    "Value": "Поле Город является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.PositionCityRequired",
+    "Language": "EN",
+    "Value": "Field City is required"
+  },
+  {
+    "Id": "Loc.Message.PositionNameSize",
+    "Language": "RU",
+    "Value": "Длина названия позиции должна быть в пределах от 1 до 50 символов"
+  },
+  {
+    "Id": "Loc.Message.PositionNameSize",
+    "Language": "EN",
+    "Value": "Position name length must be between 1 and 50 symbols"
+  },
+  {
+    "Id": "Loc.Message.PositionCitySize",
+    "Language": "RU",
+    "Value": "Длина названия города должна быть в пределах от 1 до 50 символов"
+  },
+  {
+    "Id": "Loc.Message.PositionCitySize",
+    "Language": "EN",
+    "Value": "City name length must be between 1 and 50 symbols"
+  },
+  {
+    "Id": "Loc.Message.Login.LoginIsRequired",
+    "Language": "RU",
+    "Value": "Не указан логин"
+  },
+  {
+    "Id": "Loc.Message.Login.LoginIsRequired",
+    "Language": "EN",
+    "Value": "Login is required"
+  },
+  {
+    "Id": "Loc.Message.Login.PasswordIsRequired",
+    "Language": "RU",
+    "Value": "Не указан пароль"
+  },
+  {
+    "Id": "Loc.Message.Login.PasswordIsRequired",
+    "Language": "EN",
+    "Value": "Password is required"
+  },
+  {
+    "Id": "Loc.Message.CommentSize",
+    "Language": "RU",
+    "Value": "Длина комментария превышает допустимую!"
+  },
+  {
+    "Id": "Loc.Message.CommentSize",
+    "Language": "EN",
+    "Value": "Comment maximum size exceeded"
+  },
+  {
+    "Id": "Loc.Message.MoneyLower",
+    "Language": "RU",
+    "Value": "Нижняя граница зарплатной вилки должна быть в пределах от 0 до 10 миллионов."
+  },
+  {
+    "Id": "Loc.Message.MoneyLower",
+    "Language": "EN",
+    "Value": "Minimal salary value must be between 0 and 10 millions"
+  },
+  {
+    "Id": "Loc.Message.MoneyUpper",
+    "Language": "RU",
+    "Value": "Верхняя граница зарплатной вилки должна быть в пределах от 0 до 10 миллионов."
+  },
+  {
+    "Id": "Loc.Message.MoneyUpper",
+    "Language": "EN",
+    "Value": "Maximum salary value must be between 0 and 10 millions"
+  }
+]

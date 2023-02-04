@@ -9,21 +9,21 @@
     }
 </style>
 <script src="/js/login-page.js"></script>
-<script>document.getElementById("logout-button").style = "visibility:hidden";</script>
+<script>document.getElementById("logout-button").hidden = true;</script>
 <div class="text-center">
     <table style="margin:auto">
         <tr>
-            <td>Логин: </td> 
+            <td class="localizable">Loc.Login.Login: </td>
             <td><input id="login" type="text"/></td>
         </tr>
         <tr>
-            <td>Пароль: </td> 
-            <td><input id="password" type="password" /></td>
+            <td class="localizable">Loc.Login.Password: </td>
+            <td><input id="password" type="password" onkeydown="loginIfEnter(event)" /></td>
         </tr>
     </table>
-    <button id="login-button" onclick="login()">Войти</button>
-    <button id="register-button" onclick="location.assign('/Register')">Зарегистрироваться</button>
+    <button class="localizable" id="login-button" onclick="login()">Loc.Login.SignIn</button>
+    <button class="localizable" id="register-button" onclick="location.assign('/Register')">Loc.Login.SignUp</button>
     
-    <p id="message" style="margin:20px;"></p>
+    <p class="localizable" id="message" style="margin:20px;"></p>
 </div>
 <script>if(Cookies.get(currentUserId)) location.assign("/")</script>

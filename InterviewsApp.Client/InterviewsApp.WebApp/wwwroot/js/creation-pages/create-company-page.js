@@ -17,7 +17,9 @@
                 if (response.ok) {
                     response.json().then((data) => {
                         document.getElementById("manual-redirect").style = "";
-                        setMessage("Компания успешно добавлена. Переадресация на страницу создания вакансии...");
+                        setMessage(localStorage.getItem("currentLocal") === "RU" ?
+                            "Компания успешно добавлена. Переадресация на страницу создания вакансии..."
+                            : "Company created successfully. Redirecting to the position creation page...");
                         redirectTimeoutToken = setTimeout(() => {
                             location.assign("/Create/Position?CreatedCompany=" + data.responseData);
                         }, 1000);

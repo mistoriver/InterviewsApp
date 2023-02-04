@@ -25,27 +25,27 @@ namespace InterviewsApp.Core.Services
             _mapper = mapper;
 
         }
-        public virtual Response<TExternalDto> Get(Guid id)
+        public virtual async Task<Response<TExternalDto>> Get(Guid id)
         {
-            var entity = _repository.GetByIdOrDefault(id);
+            var entity = await _repository.GetByIdOrDefault(id);
             return new Response<TExternalDto>(_mapper.Map<TExternalDto>(entity));
         }
 
-        public virtual Response<IEnumerable<TExternalDto>> Get()
+        public virtual async Task<Response<IEnumerable<TExternalDto>>> Get()
         { 
-            var entityList = _repository.Get(e => true);
+            var entityList = await _repository.Get(e => true);
             entityList.Select(entity => _mapper.Map<TExternalDto>(entity));
             return new Response<IEnumerable<TExternalDto>>(entityList.Select(entity => _mapper.Map<TExternalDto>(entity)));
         }
 
-        protected Response Delete(TEntity entity)
+        protected async Task<Response> Delete(TEntity entity)
         {
             if (entity != null)
             {
-                _repository.Delete(entity);
+                await _repository.Delete(entity);
                 return new Response();
             }
-            return new Response("Сущность, которую вы пытаетесь удалить, не существует");
+            return new Response("Loc.Message.NoSuchForDelete");
         }
     }
 }

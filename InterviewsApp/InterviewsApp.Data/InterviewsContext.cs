@@ -1,6 +1,8 @@
 ﻿using InterviewsApp.Data.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 using System.Reflection;
+using System.Text.Json;
 
 namespace InterviewsApp.Data
 {
@@ -10,6 +12,7 @@ namespace InterviewsApp.Data
         public DbSet<CompanyEntity> Companies => Set<CompanyEntity>();
         public DbSet<PositionEntity> Positions => Set<PositionEntity>();
         public DbSet<InterviewEntity> Interviews => Set<InterviewEntity>();
+        public DbSet<LocalizationEntity> Localizations => Set<LocalizationEntity>();
 
 
         public InterviewsContext(DbContextOptions<InterviewsContext> options) : base(options)
@@ -18,8 +21,10 @@ namespace InterviewsApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<LocalizationEntity>().HasKey(l => new { l.Id, l.Language });
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         }
     }
 }

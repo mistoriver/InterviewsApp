@@ -9,25 +9,25 @@
     <p>Здесь отображаются собеседования, которые Вам предстоят.</p>
 </div>*@
 <div style="display: flex;justify-content: space-between;">
-    <button id="add-interview-button" onclick="location.assign('/Create/Interview');" style="margin-bottom:15px">Добавить новое собеседование</button>
+    <button class="localizable" id="add-interview-button" onclick="location.assign('/Create/Interview');" style="margin-bottom:15px">Loc.MainPage.AddNewInterview</button>
     <div>
         <input type="checkbox" id="showOnlyFuture" name="showOnlyFuture" onchange="updateFuture()">
-        <label for="showOnlyFuture">Показать только будущие собеседования</label>
+        <label class="localizable" for="showOnlyFuture">Loc.MainPage.OnlyFutureFlag</label>
         <script>setCheckbox("@Model.OnlyFuture")</script>
     </div>
 </div>
 <table id="interviews-table" data-toggle="table" data-ajax="getInterviews" data-sort-name="date" data-sort-order="asc" data-row-style="rowStyle">
     <thead>
         <tr>
-            <th data-field="interviewId" data-visible="false">ID Интервью (не должен отображаться)</th>
-            <th data-field="name" data-sortable="true" data-formatter="interviewFormatter">Название собеседования</th>
-            <th data-field="date" data-sortable="true" data-formatter="dateFormatter">Дата собеседования</th>
-            <th data-field="positionId" data-visible="false">ID вакансии (не должен отображаться)</th>
-            <th data-field="positionName" data-sortable="true" data-formatter="positionFormatter">Вакансия</th>
-            <th data-field="companyId" data-visible="false">ID компании (не должен отображаться)</th>
-            <th data-field="companyName" data-sortable="true" data-formatter="companyFormatter">Компания</th>
-            <th data-field="offerReceived" data-visible="false">Получен оффер</th>
-            <th data-field="denialReceived" data-visible="false">Получен отказ</th>
+            <th class="localizable" data-field="interviewId" data-visible="false"></th>
+            <th class="localizable" data-field="name" data-sortable="true" data-formatter="interviewFormatter">Loc.MainPage.Table.InterviewName</th>
+            <th class="localizable" data-field="date" data-sortable="true" data-formatter="dateFormatter">Loc.MainPage.Table.InterviewDate</th>
+            <th class="localizable" data-field="positionId" data-visible="false"></th>
+            <th class="localizable" data-field="positionName" data-sortable="true" data-formatter="positionFormatter">Loc.MainPage.Table.PositionName</th>
+            <th class="localizable" data-field="companyId" data-visible="false"></th>
+            <th class="localizable" data-field="companyName" data-sortable="true" data-formatter="companyFormatter">Loc.MainPage.Table.CompanyName</th>
+            <th class="localizable" data-field="offerReceived" data-visible="false"></th>
+            <th class="localizable" data-field="denialReceived" data-visible="false"></th>
         </tr>
     </thead>
 </table>

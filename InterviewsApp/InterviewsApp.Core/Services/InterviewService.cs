@@ -8,6 +8,7 @@ using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Services
 {
@@ -21,96 +22,98 @@ namespace InterviewsApp.Core.Services
             _positionRepository = positionRepository;
             _companyRepository = companyRepository;
         }
-        public override Response<IEnumerable<InterviewDto>> Get()
+        public override async Task<Response<IEnumerable<InterviewDto>>> Get()
         {
             return new Response<IEnumerable<InterviewDto>>("Для получения списка собеседований необходима информация о пользователе");
         }
-        public override Response<InterviewDto> Get(Guid id)
+        public override async Task<Response<InterviewDto>> Get(Guid id)
         {
             return new Response<InterviewDto>("Для получения собеседования необходима информация о пользователе");
         }
-        public Response<InterviewDto> Get(Guid id, Guid userId)
+        public async Task<Response<InterviewDto>> Get(Guid id, Guid userId)
         {
-            var interviewDto = GetByUserId(userId).ResponseData.FirstOrDefault(i => i.Id == id);
+            var interviewDto = (await GetByUserId(userId)).ResponseData.FirstOrDefault(i => i.Id == id);
             if (interviewDto != null)
             {
                 return new Response<InterviewDto>(interviewDto);
             }
-            return new Response<InterviewDto>("Собеседование не существует");
+            return new Response<InterviewDto>("Loc.Message.NoSuchInterview");
         }
-        public Response<IEnumerable<InterviewDto>> GetByUserId(Guid userId, bool showOnlyFuture = false)
+        public async Task<Response<IEnumerable<InterviewDto>>> GetByUserId(Guid userId, bool showOnlyFuture = false)
         {
-            var positions = _positionRepository.Get(p => p.UserId == userId)?.Select(p => p.Id);
-            var ints = _repository.Get(i => positions.Any(p => i.PositionId == p));
+            var positions = (await _positionRepository.Get(p => p.UserId == userId))?.Select(p => p.Id);
+            var ints = await _repository.Get(i => positions.Any(p => i.PositionId == p));
             if (showOnlyFuture)
             {
                 var dt = DateTime.Now;
                 ints = ints.Where(i => i.Date > dt);
             }
             var res = new List<InterviewDto>();
-            ints.ToList().ForEach(i => 
+            foreach (var i in ints)
             {
                 var interview = _mapper.Map<InterviewDto>(i);
-                var position = _positionRepository.GetByIdOrDefault(i.PositionId);
+                var position = await _positionRepository.GetByIdOrDefault(i.PositionId);
                 interview.PositionName = position.Name;
                 interview.OfferReceived = position.OfferReceived;
                 interview.DenialReceived = position.DenialReceived;
-                var company = _companyRepository.GetByIdOrDefault(position.CompanyId);
+                var company = await _companyRepository.GetByIdOrDefault(position.CompanyId);
                 interview.CompanyName = company.Name;
                 interview.CompanyId = company.Id;
                 res.Add(interview);
-            });
+            }
             return new Response<IEnumerable<InterviewDto>>(res);
         }
-        public Response<IEnumerable<InterviewDto>> GetByPosition(Guid positionId, Guid userId)
+        public async Task<Response<IEnumerable<InterviewDto>>> GetByPosition(Guid positionId, Guid userId)
         {
-            var interviewDtoList = GetByUserId(userId).ResponseData.Where(i => i.PositionId == positionId);
+            var interviewDtoList = (await GetByUserId(userId)).ResponseData.Where(i => i.PositionId == positionId);
             if (interviewDtoList.Count() > 0)
             {
                 return new Response<IEnumerable<InterviewDto>>(interviewDtoList);
             }
-            return new ("Собеседование не существует");
+            return new ("Loc.Message.NoSuchInterview");
         }
 
-        public Response<Guid> CreateInterview(CreateInterviewDto dto)
+        public async Task<Response<Guid>> CreateInterview(CreateInterviewDto dto)
         {
-            var position = _positionRepository.GetByIdOrDefault(dto.PositionId);
+            var position = await _positionRepository.GetByIdOrDefault(dto.PositionId);
+            if (position == null)
+                return new("Loc.Message.NoSuchPosition");
             var interview = _mapper.Map<InterviewEntity>(dto);
             interview.Position = position;
             if (interview.Date.Kind == DateTimeKind.Unspecified)
                 interview.Date = new DateTime(dto.Date.Ticks, DateTimeKind.Utc);
-            return new Response<Guid>(_repository.Create(interview));
+            return new Response<Guid>(await _repository.Create(interview));
         }
-        public Response UpdateComment(UpdateCommentDto dto)
+        public async Task<Response> UpdateComment(UpdateCommentDto dto)
         {
-            var interview = GetInterviewOrDefault(dto.Id, dto.UserId);
+            var interview = await GetInterviewOrDefault(dto.Id, dto.UserId);
             if (interview != null)
             {
                 interview.Comment = dto.Comment;
-                _repository.Update(interview);
+                await _repository.Update(interview);
                 return new Response();
             }
-            return new Response("Собеседование, которое вы пытаетесь отредактировать, не существует");
+            return new Response("Loc.Message.NoSuchInterviewForEdit");
         }
-        public Response UpdateDatetime(UpdateInterviewDto dto)
+        public async Task<Response> UpdateDatetime(UpdateInterviewDto dto)
         {
-            var interview = GetInterviewOrDefault(dto.Id, dto.UserId); 
+            var interview = await GetInterviewOrDefault(dto.Id, dto.UserId); 
             if (interview != null)
             {
                 interview.Date = dto.Date;
-                _repository.Update(interview);
+                await _repository.Update(interview);
                 return new Response();
             }
-            return new Response("Собеседование, которое вы пытаетесь отредактировать, не существует");
+            return new Response("Loc.Message.NoSuchInterviewForEdit");
         }
-        public Response Delete(Guid id, Guid userId)
+        public async Task<Response> Delete(Guid id, Guid userId)
         {
-            return base.Delete(GetInterviewOrDefault(id, userId));
+            return await base.Delete(await GetInterviewOrDefault(id, userId));
         }
-        private InterviewEntity GetInterviewOrDefault(Guid id, Guid userId)
+        private async Task<InterviewEntity> GetInterviewOrDefault(Guid id, Guid userId)
         {
-            var positionIds = _positionRepository.Get(p => p.UserId == userId).Select(p => p.Id);
-            return _repository.Get(e => e.Id == id && positionIds.Contains(e.PositionId)).FirstOrDefault();
+            var positionIds = (await _positionRepository.Get(p => p.UserId == userId)).Select(p => p.Id);
+            return (await _repository.Get(e => e.Id == id && positionIds.Contains(e.PositionId))).FirstOrDefault();
         }
     }
 }

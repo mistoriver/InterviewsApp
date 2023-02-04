@@ -1,9 +1,11 @@
 ﻿using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.Data.Abstractions
 {
@@ -20,42 +22,42 @@ namespace InterviewsApp.Data.Abstractions
             AppContext = context;
         }
 
-        public TEntity? GetByIdOrDefault(Guid entityId)
+        public async Task<TEntity?> GetByIdOrDefault(Guid entityId)
         {
-            return AppContext.Set<TEntity>().Find(entityId);
+            return await AppContext.Set<TEntity>().FindAsync(entityId);
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate)
         {
-            return AppContext.Set<TEntity>().Where(predicate).ToList();
+            return await AppContext.Set<TEntity>().Where(predicate).ToListAsync();
         }
 
-        public void Update(TEntity entity)
+        public async Task Update(TEntity entity)
         {
             AppContext.Set<TEntity>().Update(entity);
-            AppContext.SaveChanges();
+            await AppContext.SaveChangesAsync();
         }
-        public void UpdateRange(params TEntity[] entities)
+        public async Task UpdateRange(params TEntity[] entities)
         {
             AppContext.Set<TEntity>().UpdateRange(entities);
-            AppContext.SaveChanges();
+            await AppContext.SaveChangesAsync();
         }
 
-        public Guid Create(TEntity entity)
+        public async Task<Guid> Create(TEntity entity)
         {
             AppContext.Add(entity);
-            AppContext.SaveChanges();
+            await AppContext.SaveChangesAsync();
             return entity.Id;
         }
 
-        public void Delete(TEntity entity)
+        public async Task Delete(TEntity entity)
         {
             AppContext.Remove(entity);
-            AppContext.SaveChanges();
+            await AppContext.SaveChangesAsync();
         }
-        public bool Exists(Expression<Func<TEntity, bool>> predicate)
+        public async Task<bool> Exists(Expression<Func<TEntity, bool>> predicate)
         {
-            return AppContext.Set<TEntity>().Any(predicate);
+            return await AppContext.Set<TEntity>().AnyAsync(predicate);
         }
         [Obsolete]
         public void SaveChanges()

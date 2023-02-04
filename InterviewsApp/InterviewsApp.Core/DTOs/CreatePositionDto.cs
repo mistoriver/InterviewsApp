@@ -8,15 +8,15 @@ namespace InterviewsApp.Core.DTOs
         /// <summary>
         /// Наименование
         /// </summary>
-        [Required(ErrorMessage = "Поле Название позиции является обязательным для заполнения")]
-        [StringLength(50, MinimumLength = 1, ErrorMessage = "Длина названия позиции должна быть в пределах от 1 до 50 символов")]
+        [Required(ErrorMessage = "Loc.Message.PositionNameRequired")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Loc.Message.PositionNameSize")]
         public string Name { get; set; }
 
         /// <summary>
         /// Город
         /// </summary>
-        [Required(ErrorMessage = "Поле Город является обязательным для заполнения")]
-        [StringLength(50, MinimumLength = 1, ErrorMessage = "Длина названия города должна быть в пределах от 1 до 50 символов")]
+        [Required(ErrorMessage = "Loc.Message.PositionCityRequired")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Loc.Message.PositionCitySize")]
         public string City { get; set; }
 
         /// <summary>

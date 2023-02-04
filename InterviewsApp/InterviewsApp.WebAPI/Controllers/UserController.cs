@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace InterviewsApp.WebAPI.Controllers
 {
@@ -25,9 +26,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns>Информация о пользователе</returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
-            var response = _service.Get(id);
+            var response = await _service.Get(id);
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -38,9 +39,9 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns>Список пользователей системы</returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
-            var response = _service.Get();
+            var response = await _service.Get();
             if (response.Ok)
                 return Ok(response);
             return StatusCode(500, response);
@@ -52,11 +53,11 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Register(CreateUserDto newUser)
+        public async Task<IActionResult> Register(CreateUserDto newUser)
         {
             if (ModelState.IsValid)
             {
-                var response = _service.CreateUser(newUser);
+                var response = await _service.CreateUser(newUser);
                 if (response.Ok)
                     return Ok(response);
                 return StatusCode(500, response);
@@ -70,11 +71,11 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login(LoginUserDto loginDto)
+        public async Task<IActionResult> Login(LoginUserDto loginDto)
         {
             if (ModelState.IsValid)
             {
-                var response = _service.Login(loginDto);
+                var response = await _service.Login(loginDto);
                 if (response.Ok)
                     return Ok(response);
                 return Unauthorized(response);
@@ -88,7 +89,7 @@ namespace InterviewsApp.WebAPI.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             //var response = _service.Delete(id);
             //if (response.Ok)

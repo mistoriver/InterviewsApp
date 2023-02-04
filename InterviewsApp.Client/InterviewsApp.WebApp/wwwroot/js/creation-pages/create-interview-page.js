@@ -22,7 +22,9 @@
                     }
                     else {
                         let opt = document.createElement("option");
-                        opt.text = "У вас нет вакансий, для которых можно добавить собеседование.";
+                        opt.text = localStorage.getItem("currentLocal") === "RU" ?
+                            "У вас нет вакансий, для которых можно добавить собеседование."
+                            :"You don't have any positions for interview creation.";
                         sel.appendChild(opt);
                         sel.disabled = true;
                         document.getElementById("create-button").disabled = true;
@@ -55,10 +57,12 @@ function createInterview() {
             }).then((response) => {
                 if (response.ok) {
                     document.getElementById("manual-redirect").style = "";
-                    setMessage("Собеседование добавлено. Переадресация на страницу входа через 5 секунд...");
+                    setMessage(localStorage.getItem("currentLocal") === "RU" ?
+                        "Собеседование добавлено. Переадресация на главную страницу..."
+                        :"Interview added. Redirecting to the main page...");
                     redirectTimeoutToken = setTimeout(() => {
                         location.assign("/");
-                    }, 5000);
+                    }, 1000);
                 }
                 else
                     handleRequestErrors(response);

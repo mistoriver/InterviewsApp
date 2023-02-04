@@ -66,6 +66,22 @@ namespace InterviewsApp.Data.Migrations
                     b.ToTable("Interviews", (string)null);
                 });
 
+            modelBuilder.Entity("InterviewsApp.Data.Models.Entities.LocalizationEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id", "Language");
+
+                    b.ToTable("Localizations");
+                });
+
             modelBuilder.Entity("InterviewsApp.Data.Models.Entities.PositionEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -121,6 +137,9 @@ namespace InterviewsApp.Data.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("text");
 
                     b.Property<string>("Login")
                         .IsRequired()

@@ -9,7 +9,7 @@ namespace InterviewsApp.Core.DTOs
         public Guid Id { get; set; }
         [Required]
         public Guid UserId { get; set; }
-        [StringLength(200, ErrorMessage = "Длина комментария превышает допустимую!")]
+        [StringLength(200, ErrorMessage = "Loc.Message.CommentSize")]
         public string Comment { get; set; }
     }
 }

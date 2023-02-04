@@ -17,6 +17,7 @@
                 response.json().then((data) => {
                     Cookies.set(tokenKey, data.responseData.token, {expires: 1});
                     Cookies.set(currentUserId, data.responseData.userId, { expires: 1 });
+                    getLocals();
                     location.replace("/");
                 });
             }
@@ -24,7 +25,9 @@
                 handleRequestErrors(response);
             }
         }).catch((error) => {
-            setMessage("Аутентификация неуспешна. Сервер недоступен.");
+            setMessage((localStorage.getItem("currentLocal") === "RU" ?
+                "Аутентификация неуспешна. Сервер недоступен."
+                : "Authentication failed. Server is inaccessible."));
             document.getElementById("login-button").disabled = false;
             document.getElementById("register-button").disabled = false;
         })
@@ -32,4 +35,8 @@
             document.getElementById("login-button").disabled = false;
             document.getElementById("register-button").disabled = false;
         });
+}
+function loginIfEnter(e) {
+    if (e.key === "Enter")
+        login();
 }

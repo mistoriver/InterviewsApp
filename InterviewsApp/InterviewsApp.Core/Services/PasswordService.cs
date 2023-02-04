@@ -1,4 +1,5 @@
-﻿using InterviewsApp.Core.Interfaces;
+﻿using BCrypt.Net;
+using InterviewsApp.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Services
 {
-    internal class PasswordService : IPasswordService
+    public class PasswordService : IPasswordService
     {
         public string HashPassword(string password)
         {
@@ -16,7 +17,14 @@ namespace InterviewsApp.Core.Services
 
         public bool VerifyPassword(string password, string passHash)
         {
-            return BCrypt.Net.BCrypt.Verify(password, passHash);
+            try
+            {
+                return BCrypt.Net.BCrypt.Verify(password, passHash);
+            }
+            catch(SaltParseException ex)
+            {
+                return false;
+            }
         }
     }
 }

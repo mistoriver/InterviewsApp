@@ -27,6 +27,8 @@ namespace InterviewsApp.Data.Models.Entities
         /// </summary>
         public bool IsActive { get; set; }
 
+        public string Language { get; set; } = null!;
+
         /// <summary>
         /// Навигационное свойство для связи с сущностью <see cref="PositionEntity"/>
         /// </summary>
