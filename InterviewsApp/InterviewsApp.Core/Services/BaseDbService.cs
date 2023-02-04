@@ -45,7 +45,7 @@ namespace InterviewsApp.Core.Services
                 await _repository.Delete(entity);
                 return new Response();
             }
-            return new Response("Сущность, которую вы пытаетесь удалить, не существует");
+            return new Response("Loc.Message.NoSuchForDelete");
         }
     }
 }

@@ -10,22 +10,22 @@ namespace InterviewsApp.Core.DTOs
         /// <summary>
         /// Имя пользователя
         /// </summary>
-        [Required(ErrorMessage = "Поле Имя является обязательным для заполнения")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина имени должна быть в пределах от 3 до 50 символов")]
+        [Required(ErrorMessage = "Loc.Message.NameIsRequired")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Loc.Message.NameSize")]
         public string Name { get; set; }
 
         /// <summary>
         /// Логин
         /// </summary>
-        [Required(ErrorMessage = "Поле Логин является обязательным для заполнения")]
-        [StringLength(20, MinimumLength = 5, ErrorMessage = "Длина логина должна быть в пределах от 5 до 20 символов")]
+        [Required(ErrorMessage = "Loc.Message.LoginIsRequired")]
+        [StringLength(20, MinimumLength = 5, ErrorMessage = "Loc.Message.LoginSize")]
         public string Login { get; set; }
 
         /// <summary>
         /// Пароль
         /// </summary>
-        [Required(ErrorMessage = "Поле Пароль является обязательным для заполнения")]
-        [MinLength(8, ErrorMessage = "Длина пароля должна быть не меньше 8 символов")]
+        [Required(ErrorMessage = "Loc.Message.PasswordIsRequired")]
+        [MinLength(8, ErrorMessage = "Loc.Message.PasswordSize")]
         public string Password { get; set; }
     }
 }

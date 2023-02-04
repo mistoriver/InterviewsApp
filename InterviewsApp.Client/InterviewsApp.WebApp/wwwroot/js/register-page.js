@@ -40,7 +40,7 @@ function register() {
                     }
                     else {
                         handleRequestErrors(response);
-                        document.getElementById("register-button").disabled = true;
+                        document.getElementById("register-button").disabled = false;
                     }
                 }).catch((error) => {
                     setMessage(currentLocal === "RU" ?

@@ -478,5 +478,315 @@
     "Id": "Loc.ViewPositionPage.InterviewsForPosition",
     "Language": "EN",
     "Value": "Interviews for this position"
+  },
+  {
+    "Id": "Loc.Message.NoSuchForDelete",
+    "Language": "RU",
+    "Value": "Сущность, которую вы пытаетесь удалить, не существует."
+  },
+  {
+    "Id": "Loc.Message.NoSuchForDelete",
+    "Language": "EN",
+    "Value": "Entity you're trying to delete doesn't exist."
+  },
+  {
+    "Id": "Loc.Message.NoSuchCompanyToRate",
+    "Language": "RU",
+    "Value": "Компании, которую вы пытаетесь оценить, не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchCompanyToRate",
+    "Language": "EN",
+    "Value": "Company you're trying to rate doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchCompany",
+    "Language": "RU",
+    "Value": "Компании не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchCompany",
+    "Language": "EN",
+    "Value": "Company doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchInterview",
+    "Language": "RU",
+    "Value": "Собеседование не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchInterview",
+    "Language": "EN",
+    "Value": "Interview doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchInterviewForEdit",
+    "Language": "RU",
+    "Value": "Собеседование, которое вы пытаетесь отредактировать, не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchInterviewForEdit",
+    "Language": "EN",
+    "Value": "Interview you're trying to edit doesn't exists"
+  },
+  {
+    "Id": "Loc.Message.NoSuchPosition",
+    "Language": "RU",
+    "Value": "Вакансии не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchPosition",
+    "Language": "EN",
+    "Value": "Position doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchPositionForUpdate",
+    "Language": "RU",
+    "Value": "Вакансии, которую вы пытаетесь обновить, не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchPositionForUpdate",
+    "Language": "EN",
+    "Value": "Position you're trying to update doesn't exist"
+  },
+  {
+    "Id": "Loc.Message.NoSuchUser",
+    "Language": "RU",
+    "Value": "Пользователь не существует"
+  },
+  {
+    "Id": "Loc.Message.NoSuchUser",
+    "Language": "EN",
+    "Value": "User doesn't exists"
+  },
+  {
+    "Id": "Loc.Message.UserNotUnique",
+    "Language": "RU",
+    "Value": "Пользователь с данным логином уже существует"
+  },
+  {
+    "Id": "Loc.Message.UserNotUnique",
+    "Language": "EN",
+    "Value": "User with this login already exists"
+  },
+  {
+    "Id": "Loc.Message.WrongLogPass",
+    "Language": "RU",
+    "Value": "Неправильный логин и/или пароль"
+  },
+  {
+    "Id": "Loc.Message.WrongLogPass",
+    "Language": "EN",
+    "Value": "Wrong login and/or password"
+  },
+  {
+    "Id": "Loc.Message.NameIsRequired",
+    "Language": "RU",
+    "Value": "Поле Имя является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.NameIsRequired",
+    "Language": "EN",
+    "Value": "Field Name is required"
+  },
+  {
+    "Id": "Loc.Message.LoginIsRequired",
+    "Language": "RU",
+    "Value": "Поле Логин является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.LoginIsRequired",
+    "Language": "EN",
+    "Value": "Field Login is required"
+  },
+  {
+    "Id": "Loc.Message.PasswordIsRequired",
+    "Language": "RU",
+    "Value": "Поле Пароль является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.PasswordIsRequired",
+    "Language": "EN",
+    "Value": "Field Password is required"
+  },
+  {
+    "Id": "Loc.Message.NameSize",
+    "Language": "RU",
+    "Value": "Длина имени должна быть в пределах от 3 до 50 символов"
+  },
+  {
+    "Id": "Loc.Message.NameSize",
+    "Language": "EN",
+    "Value": "Name length must be between 3 and 50 symbols"
+  },
+  {
+    "Id": "Loc.Message.LoginSize",
+    "Language": "RU",
+    "Value": "Длина логина должна быть в пределах от 5 до 20 символов"
+  },
+  {
+    "Id": "Loc.Message.LoginSize",
+    "Language": "EN",
+    "Value": "Login length must be between 5 and 20 symbols"
+  },
+  {
+    "Id": "Loc.Message.PasswordSize",
+    "Language": "RU",
+    "Value": "Длина пароля должна быть не меньше 8 символов"
+  },
+  {
+    "Id": "Loc.Message.PasswordSize",
+    "Language": "EN",
+    "Value": "Password length must be atleast 8 symbols"
+  },
+  {
+    "Id": "Loc.Message.CompanyNameRequired",
+    "Language": "RU",
+    "Value": "Поле Название компании является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.CompanyNameRequired",
+    "Language": "EN",
+    "Value": "Field Company name is required"
+  },
+  {
+    "Id": "Loc.Message.CompanyNameSize",
+    "Language": "RU",
+    "Value": "Длина названия компании должна быть в пределах от 1 до 50 символов"
+  },
+  {
+    "Id": "Loc.Message.CompanyNameSize",
+    "Language": "EN",
+    "Value": "Company name length must be between 1 and 50 symbols"
+  },
+  {
+    "Id": "Loc.Message.InterviewNameRequired",
+    "Language": "RU",
+    "Value": "Поле Название собеседования является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.InterviewNameRequired",
+    "Language": "EN",
+    "Value": "Field Interview name is required"
+  },
+  {
+    "Id": "Loc.Message.InterviewDateRequired",
+    "Language": "RU",
+    "Value": "Поле Дата собеседования является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.InterviewDateRequired",
+    "Language": "EN",
+    "Value": "Field Interview date is required"
+  },
+  {
+    "Id": "Loc.Message.InterviewNameSize",
+    "Language": "RU",
+    "Value": "Длина названия собеседования не должна превышать 100 символов"
+  },
+  {
+    "Id": "Loc.Message.InterviewNameSize",
+    "Language": "EN",
+    "Value": "Maximum interview length is 100 symbols"
+  },
+  {
+    "Id": "Loc.Message.InterviewDateInFuture",
+    "Language": "RU",
+    "Value": "Дата собеседования должна быть в будущем"
+  },
+  {
+    "Id": "Loc.Message.InterviewDateInFuture",
+    "Language": "EN",
+    "Value": "Interview date must be in the future"
+  },
+  {
+    "Id": "Loc.Message.PositionNameRequired",
+    "Language": "RU",
+    "Value": "Поле Название позиции является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.PositionNameRequired",
+    "Language": "EN",
+    "Value": "Field Position name is required"
+  },
+  {
+    "Id": "Loc.Message.PositionCityRequired",
+    "Language": "RU",
+    "Value": "Поле Город является обязательным для заполнения"
+  },
+  {
+    "Id": "Loc.Message.PositionCityRequired",
+    "Language": "EN",
+    "Value": "Field City is required"
+  },
+  {
+    "Id": "Loc.Message.PositionNameSize",
+    "Language": "RU",
+    "Value": "Длина названия позиции должна быть в пределах от 1 до 50 символов"
+  },
+  {
+    "Id": "Loc.Message.PositionNameSize",
+    "Language": "EN",
+    "Value": "Position name length must be between 1 and 50 symbols"
+  },
+  {
+    "Id": "Loc.Message.PositionCitySize",
+    "Language": "RU",
+    "Value": "Длина названия города должна быть в пределах от 1 до 50 символов"
+  },
+  {
+    "Id": "Loc.Message.PositionCitySize",
+    "Language": "EN",
+    "Value": "City name length must be between 1 and 50 symbols"
+  },
+  {
+    "Id": "Loc.Message.Login.LoginIsRequired",
+    "Language": "RU",
+    "Value": "Не указан логин"
+  },
+  {
+    "Id": "Loc.Message.Login.LoginIsRequired",
+    "Language": "EN",
+    "Value": "Login is required"
+  },
+  {
+    "Id": "Loc.Message.Login.PasswordIsRequired",
+    "Language": "RU",
+    "Value": "Не указан пароль"
+  },
+  {
+    "Id": "Loc.Message.Login.PasswordIsRequired",
+    "Language": "EN",
+    "Value": "Password is required"
+  },
+  {
+    "Id": "Loc.Message.CommentSize",
+    "Language": "RU",
+    "Value": "Длина комментария превышает допустимую!"
+  },
+  {
+    "Id": "Loc.Message.CommentSize",
+    "Language": "EN",
+    "Value": "Comment maximum size exceeded"
+  },
+  {
+    "Id": "Loc.Message.MoneyLower",
+    "Language": "RU",
+    "Value": "Нижняя граница зарплатной вилки должна быть в пределах от 0 до 10 миллионов."
+  },
+  {
+    "Id": "Loc.Message.MoneyLower",
+    "Language": "EN",
+    "Value": "Minimal salary value must be between 0 and 10 millions"
+  },
+  {
+    "Id": "Loc.Message.MoneyUpper",
+    "Language": "RU",
+    "Value": "Верхняя граница зарплатной вилки должна быть в пределах от 0 до 10 миллионов."
+  },
+  {
+    "Id": "Loc.Message.MoneyUpper",
+    "Language": "EN",
+    "Value": "Maximum salary value must be between 0 and 10 millions"
   }
 ]

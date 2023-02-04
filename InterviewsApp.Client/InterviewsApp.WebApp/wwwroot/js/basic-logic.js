@@ -23,37 +23,47 @@ function checkEmpty() {
     }
     return false;
 }
-
-function setMessage(message, messageElement) {
+function checkMessageElement(messageElement) {
     if (messageElement === "" || !messageElement)
         messageElement = document.getElementById("message");
-    if (messageElement)
+    return messageElement;
+}
+
+function setMessage(message, messageElement) {
+    messageElement = checkMessageElement(messageElement);
+    if (messageElement) {
         messageElement.innerText = message;
+        setLocals();
+    }
 }
 function setMessageHtml(messageHtml, messageElement) {
-    if (messageElement === "")
-        messageElement = document.getElementById("message");
-    if (messageElement)
+    messageElement = checkMessageElement(messageElement);
+    if (messageElement) {
         messageElement.innerHTML = messageHtml;
+        setLocals();
+    }
 }
 function addMessageHtml(messageHtml, messageElement) {
-    if (messageElement === "")
-        messageElement = document.getElementById("message");
-    if (messageElement)
+    messageElement = checkMessageElement(messageElement);
+    if (messageElement) {
         messageElement.innerHTML += messageHtml + "<br/>";
+        setLocals();
+    }
 }
 function addMultipleMessageHtml(msgArray, messageElement) {
     for (let i = 0; i < msgArray.length; i++) {
         if (messageElement)
-            addMessageHtml(msgArray[i], messageElement)
+            addMessageHtml(msgArray[i], messageElement);
     }
+    setLocals();
 }
 function addRequestErrorsToMessage(requestData, messageElement) {
     let errorArr = Object.values(requestData.errors);
-    if (messageElement === "" || !messageElement)
-        messageElement = document.getElementById("message");
-    if (messageElement)
+    messageElement = checkMessageElement(messageElement);
+    if (messageElement) {
         addMultipleMessageHtml(errorArr, messageElement);
+        setLocals();
+    }
 }
 
 function handleRequestErrors(response) {
@@ -71,7 +81,10 @@ function handleRequestErrors(response) {
             if (data.errorMessage)
                 //обработка ошибок сервера
                 setMessage(data.errorMessage);
-            else setMessage("Произошла ошибка. Код ошибки: " + response.status);
+            else setMessage((localStorage.getItem("currentLocal") === "RU" ?
+                "Произошла ошибка. Код ошибки: " :
+                "An error occured. Error code: ")
+                + response.status);
     });
 }
 
@@ -127,9 +140,11 @@ function setLocals() {
     let locals = JSON.parse(localStorage.getItem("localizations"));
     let localizableElements = document.getElementsByClassName("localizable");
     for (let elem of localizableElements) {
-        let local = locals.find(loc => elem.innerHTML.includes(loc.localizationCode));
-        if (local) {
-            elem.innerHTML = elem.innerHTML.replace(local.localizationCode, local.value);
+        if (elem.innerHTML.includes("Loc.")) {
+            let local = locals.find(loc => elem.innerHTML.includes(loc.localizationCode));
+            if (local) {
+                elem.innerHTML = elem.innerHTML.replace(local.localizationCode, local.value);
+            }
         }
     };
 }

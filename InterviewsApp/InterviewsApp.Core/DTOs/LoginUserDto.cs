@@ -11,13 +11,13 @@ namespace InterviewsApp.Core.DTOs
         /// <summary>
         /// Логин
         /// </summary>
-        [Required(ErrorMessage = "Не указан логин")]
+        [Required(ErrorMessage = "Loc.Message.Login.LoginIsRequired")]
         public string Login { get; set; }
 
         /// <summary>
         /// Пароль
         /// </summary>
-        [Required(ErrorMessage = "Не указан пароль")]
+        [Required(ErrorMessage = "Loc.Message.Login.PasswordIsRequired")]
         public string Password { get; set; }
     }
 }

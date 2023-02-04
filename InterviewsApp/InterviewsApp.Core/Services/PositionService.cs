@@ -30,7 +30,7 @@ namespace InterviewsApp.Core.Services
                 posDto.CompanyName = (await _companyRepository.GetByIdOrDefault(posDto.CompanyId))?.Name;
                 return new Response<PositionDto>(posDto);
             }
-            return new Response<PositionDto>("Вакансия не существует");
+            return new Response<PositionDto>("Loc.Message.NoSuchPosition");
         }
         public async Task<Response<IEnumerable<PositionDto>>> GetByUserId(Guid userId)
         {
@@ -57,9 +57,9 @@ namespace InterviewsApp.Core.Services
                     position.Company = company;
                     return new Response<Guid>(await _repository.Create(position));
                 }
-                return new Response<Guid>("Компания не существует");
+                return new Response<Guid>("Loc.Message.NoSuchCompany");
             }
-            return new Response<Guid>("Пользователь не существует");
+            return new Response<Guid>("Loc.Message.NoSuchUser");
 
         }
         public async Task<Response> UpdateMoney(UpdatePositionDto dto)
@@ -72,7 +72,7 @@ namespace InterviewsApp.Core.Services
                 await _repository.Update(position);
                 return new Response();
             }
-            return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
+            return new Response("Loc.Message.NoSuchPositionForUpdate");
         }
         public async Task<Response> UpdateSetDenied(Guid id, Guid userId)
         {
@@ -84,7 +84,7 @@ namespace InterviewsApp.Core.Services
                 await _repository.Update(position);
                 return new Response();
             }
-            return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
+            return new Response("Loc.Message.NoSuchPositionForUpdate");
         }
         public async Task<Response> UpdateSetOffered(Guid id, Guid userId)
         {
@@ -96,7 +96,7 @@ namespace InterviewsApp.Core.Services
                 await _repository.Update(position);
                 return new Response();
             }
-            return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
+            return new Response("Loc.Message.NoSuchPositionForUpdate");
         }
         public async Task<Response> UpdateComment(UpdateCommentDto dto)
         {
@@ -107,7 +107,7 @@ namespace InterviewsApp.Core.Services
                 await _repository.Update(position);
                 return new Response();
             }
-            return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
+            return new Response("Loc.Message.NoSuchPositionForUpdate");
         }
         public async Task<Response> UpdateCity(UpdatePositionDto dto)
         {
@@ -118,7 +118,7 @@ namespace InterviewsApp.Core.Services
                 await _repository.Update(position);
                 return new Response();
             }
-            return new Response("Вакансия, которую вы пытаетесь обновить, не существует");
+            return new Response("Loc.Message.NoSuchPositionForUpdate");
         }
         public async Task<Response> Delete(Guid id, Guid userId)
         {
