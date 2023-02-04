@@ -37,7 +37,7 @@ namespace InterviewsApp.Core.Services
             {
                 return new Response<InterviewDto>(interviewDto);
             }
-            return new Response<InterviewDto>("Собеседование не существует");
+            return new Response<InterviewDto>("Loc.Message.NoSuchInterview");
         }
         public async Task<Response<IEnumerable<InterviewDto>>> GetByUserId(Guid userId, bool showOnlyFuture = false)
         {
@@ -49,7 +49,7 @@ namespace InterviewsApp.Core.Services
                 ints = ints.Where(i => i.Date > dt);
             }
             var res = new List<InterviewDto>();
-            ints.ToList().ForEach(async i => 
+            foreach (var i in ints)
             {
                 var interview = _mapper.Map<InterviewDto>(i);
                 var position = await _positionRepository.GetByIdOrDefault(i.PositionId);
@@ -60,7 +60,7 @@ namespace InterviewsApp.Core.Services
                 interview.CompanyName = company.Name;
                 interview.CompanyId = company.Id;
                 res.Add(interview);
-            });
+            }
             return new Response<IEnumerable<InterviewDto>>(res);
         }
         public async Task<Response<IEnumerable<InterviewDto>>> GetByPosition(Guid positionId, Guid userId)
@@ -70,14 +70,14 @@ namespace InterviewsApp.Core.Services
             {
                 return new Response<IEnumerable<InterviewDto>>(interviewDtoList);
             }
-            return new ("Собеседование не существует");
+            return new ("Loc.Message.NoSuchInterview");
         }
 
         public async Task<Response<Guid>> CreateInterview(CreateInterviewDto dto)
         {
             var position = await _positionRepository.GetByIdOrDefault(dto.PositionId);
             if (position == null)
-                return new("Позиции не существует");
+                return new("Loc.Message.NoSuchPosition");
             var interview = _mapper.Map<InterviewEntity>(dto);
             interview.Position = position;
             if (interview.Date.Kind == DateTimeKind.Unspecified)
@@ -93,7 +93,7 @@ namespace InterviewsApp.Core.Services
                 await _repository.Update(interview);
                 return new Response();
             }
-            return new Response("Собеседование, которое вы пытаетесь отредактировать, не существует");
+            return new Response("Loc.Message.NoSuchInterviewForEdit");
         }
         public async Task<Response> UpdateDatetime(UpdateInterviewDto dto)
         {
@@ -104,7 +104,7 @@ namespace InterviewsApp.Core.Services
                 await _repository.Update(interview);
                 return new Response();
             }
-            return new Response("Собеседование, которое вы пытаетесь отредактировать, не существует");
+            return new Response("Loc.Message.NoSuchInterviewForEdit");
         }
         public async Task<Response> Delete(Guid id, Guid userId)
         {

@@ -49,7 +49,7 @@ namespace InterviewsApp.Tests
             var res = await sut.CreatePosition(position);
 
             Assert.False(res.Ok, $"Ожидалось, что запрос НЕ БУДЕТ успешен, но это не так.");
-            Assert.Contains("Пользователь не существует", res.ErrorMessage);
+            Assert.Contains("Loc.Message.NoSuchUser", res.ErrorMessage);
             repMock.Verify(rep => rep.Create(It.IsAny<PositionEntity>()), Times.Never);
         }
         [Fact]
@@ -66,7 +66,7 @@ namespace InterviewsApp.Tests
             var res = await sut.CreatePosition(position);
 
             Assert.False(res.Ok, $"Ожидалось, что запрос НЕ БУДЕТ успешен, но это не так.");
-            Assert.Contains("Компания не существует", res.ErrorMessage);
+            Assert.Contains("Loc.Message.NoSuchCompany", res.ErrorMessage);
             repMock.Verify(rep => rep.Create(It.IsAny<PositionEntity>()), Times.Never);
         }
         [Fact]

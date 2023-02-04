@@ -22,7 +22,9 @@
                     }
                     else {
                         let opt = document.createElement("option");
-                        opt.text = "Компании не найдены.";
+                        opt.text = localStorage.getItem("currentLocal") === "RU" ?
+                            "Компании не найдены."
+                            : "Companies not found";
                         sel.appendChild(opt);
                         sel.disabled = true;
                         document.getElementById("create-button").disabled = true;
@@ -57,7 +59,9 @@ function createPosition() {
                 if (response.ok) {
                     response.json().then((data) => {
                         document.getElementById("manual-redirect").style = "";
-                        setMessage("Позиция успешно создана. Переадресация на страницу создания собеседования...");
+                        setMessage(localStorage.getItem("currentLocal") === "RU" ?
+                            "Вакансия успешно создана. Переадресация на страницу создания собеседования..."
+                            : "Position created successfully. Redirecting to the interview creation page...");
                         redirectTimeoutToken = setTimeout(() => {
                             location.assign("/Create/Interview?CreatedPosition=" + data.responseData);
                         }, 1000);

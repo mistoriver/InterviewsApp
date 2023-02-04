@@ -8,17 +8,17 @@
     <p>Здесь отображаются предложенные Вам вакансии.</p>
 </div>*@
 <div style="display: flex;justify-content: space-between;">
-    <button id="add-position-button" onclick="location.assign('/Create/Position');" style="margin-bottom:15px">Добавить новую вакансию</button>
+    <button class="localizable" id="add-position-button" onclick="location.assign('/Create/Position');" style="margin-bottom:15px">Loc.PositionPage.AddNewPosition</button>
 </div>
 <table id="positions-table" data-toggle="table" data-ajax="getPositions" data-sort-name="denialReceived" data-sort-order="desc" data-row-style="rowStyle">
     <thead>
         <tr>
-            <th data-field="id" data-visible="false">ID вакансии (не должен отображаться)</th>
-            <th data-field="name" data-sortable="true" data-formatter="positionFormatter">Вакансия</th>
-            <th data-field="companyId" data-visible="false">ID компании (не должен отображаться)</th>
-            <th data-field="companyName" data-sortable="true" data-formatter="companyFormatter">Компания</th>
-            <th data-field="offerReceived" data-visible="false">Получен оффер</th>
-            <th data-field="denialReceived" data-visible="false">Получен отказ</th>
+            <th class="localizable"  data-field="id" data-visible="false"></th>
+            <th class="localizable"  data-field="name" data-sortable="true" data-formatter="positionFormatter">Loc.MainPage.Table.PositionName</th>
+            <th class="localizable"  data-field="companyId" data-visible="false"></th>
+            <th class="localizable"  data-field="companyName" data-sortable="true" data-formatter="companyFormatter">Loc.MainPage.Table.CompanyName</th>
+            <th class="localizable"  data-field="offerReceived" data-visible="false"></th>
+            <th class="localizable"  data-field="denialReceived" data-visible="false"></th>
         </tr>
     </thead>
 </table>

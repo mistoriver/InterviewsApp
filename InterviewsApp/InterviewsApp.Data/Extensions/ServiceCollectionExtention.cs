@@ -2,6 +2,7 @@
 using InterviewsApp.Data.Abstractions.Interfaces;
 using InterviewsApp.Data.Models.Entities;
 using InterviewsApp.Data.Repositories;
+using InterviewsApp.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,13 +22,19 @@ namespace InterviewsApp.Data.Extensions
             var connectionString = configuration.GetConnectionString(nameof(InterviewsContext)) ??
                                    throw new Exception("Пустая строка подключения.");
 
-            services.AddDbContext<InterviewsContext>(builder => builder.UseNpgsql(connectionString));
+            services.AddDbContext<InterviewsContext>(builder => {
+                builder.UseNpgsql(connectionString);
+                builder.EnableSensitiveDataLogging();
+                builder.EnableDetailedErrors();
+            });
 
             services.AddScoped<IRepository<CompanyEntity>, CompanyRepository>();
             services.AddScoped<IRepository<UserEntity>, UserRepository>();
             services.AddScoped<IRepository<InterviewEntity>, GenericRepository<InterviewEntity>>();
             services.AddScoped<IRepository<PositionEntity>, GenericRepository<PositionEntity>>();
             services.AddScoped<IRepository<UserEntity>, UserRepository>();
+            services.AddScoped<IRepository<LocalizationEntity>, GenericRepository<LocalizationEntity>>();
+            services.AddScoped<IDatabaseSeeder, DatabaseSeeder>();
         }
     }
 }

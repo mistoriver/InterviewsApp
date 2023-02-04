@@ -7,8 +7,8 @@ namespace InterviewsApp.Core.DTOs
         /// <summary>
         /// Название
         /// </summary>
-        [Required(ErrorMessage = "Поле Название компании является обязательным для заполнения")]
-        [StringLength(50, MinimumLength = 1, ErrorMessage = "Длина названия компании должна быть в пределах от 1 до 50 символов")]
+        [Required(ErrorMessage = "Loc.Message.CompanyNameRequired")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Loc.Message.CompanyNameSize")]
         public string Name { get; set; }
     }
 }

@@ -20,8 +20,8 @@ namespace InterviewsApp.Core.DTOs
         /// <summary>
         /// Дата проведения
         /// </summary>
-        [Required(ErrorMessage = "Поле Дата собеседования является обязательным для заполнения")]
-        [DateInFuture(ErrorMessage = "Дата собеседования должна быть в будущем")]
+        [Required(ErrorMessage = "Loc.Message.InterviewDateRequired")]
+        [DateInFuture(ErrorMessage = "Loc.Message.InterviewDateInFuture")]
         public DateTime Date { get; set; }
     }
 }

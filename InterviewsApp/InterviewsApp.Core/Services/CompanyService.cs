@@ -43,7 +43,7 @@ namespace InterviewsApp.Core.Services
                     return new Response<short>(newRating);
                 }
             }
-            return new Response<short>("Компании, которую вы пытаетесь оценить, не существует");
+            return new Response<short>("Loc.Message.NoSuchCompanyToRate");
         }
 
         public async Task<Response<short>> GetUserCompanyRate(Guid id, Guid userId)
@@ -51,7 +51,7 @@ namespace InterviewsApp.Core.Services
             var comp = (await _positionRepository.Get(p => p.UserId == userId && p.CompanyId == id)).FirstOrDefault();
             if (comp != null)
                 return new Response<short>(comp.CompanyRate);
-            return  new Response<short>("Компании не существует");
+            return  new Response<short>("Loc.Message.NoSuchCompany");
         }
 
         private short CalculateNewRating(CompanyEntity company, short newRate, short oldRate = 0)

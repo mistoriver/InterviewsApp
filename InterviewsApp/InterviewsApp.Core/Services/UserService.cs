@@ -33,7 +33,7 @@ namespace InterviewsApp.Core.Services
                 user.IsActive = true;
                 return new Response<Guid>(await _repository.Create(user));
             }
-            return new Response<Guid>("Пользователь с данным логином уже существует");
+            return new Response<Guid>("Loc.Message.UserNotUnique");
         }
         private async Task<bool> IsUnique(CreateUserDto dto)
         {
@@ -54,7 +54,7 @@ namespace InterviewsApp.Core.Services
                     return new Response<LoginDto>(new LoginDto() { Token = token, UserId = user.Id });
                 }
             }
-            return new Response<LoginDto>("Неправильный логин и/или пароль");
+            return new Response<LoginDto>("Loc.Message.WrongLogPass");
         }
     }
 }

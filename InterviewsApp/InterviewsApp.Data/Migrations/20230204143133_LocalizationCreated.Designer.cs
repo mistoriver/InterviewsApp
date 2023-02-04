@@ -3,6 +3,7 @@ using System;
 using InterviewsApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InterviewsApp.Data.Migrations
 {
     [DbContext(typeof(InterviewsContext))]
-    partial class InterviewsContextModelSnapshot : ModelSnapshot
+    [Migration("20230204143133_LocalizationCreated")]
+    partial class LocalizationCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

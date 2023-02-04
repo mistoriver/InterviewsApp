@@ -10,13 +10,13 @@ namespace InterviewsApp.Core.DTOs
         /// <summary>
         /// Имя пользователя
         /// </summary>
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина имени должна быть в пределах от 3 до 50 символов")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Loc.Message.NameSize")]
         public string Name { get; set; }
 
         /// <summary>
         /// Пароль
         /// </summary>
-        [StringLength(20, MinimumLength = 5, ErrorMessage = "Длина логина должна быть в пределах от 5 до 20 символов")]
+        [StringLength(20, MinimumLength = 5, ErrorMessage = "Loc.Message.PasswordSize")]
         public string Password { get; set; }
 
         /// <summary>
