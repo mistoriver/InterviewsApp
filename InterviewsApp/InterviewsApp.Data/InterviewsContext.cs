@@ -21,6 +21,7 @@ namespace InterviewsApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<LocalizationEntity>().HasKey(l => new { l.Id, l.Language });
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 

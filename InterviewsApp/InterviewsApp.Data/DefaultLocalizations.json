@@ -1,26 +1,142 @@
 [
   {
-    "Id": "09F058AF-F787-4D84-82BE-C80795C07164",
-    "LocalizationCode": "Loc.Login.SignIn",
+    "Id": "Loc.Login.SignIn",
     "Language": "RU",
     "Value": "Войти"
   },
   {
-    "Id": "12FC8B66-E033-4DF9-AF8E-3C59A673BDEF",
-    "LocalizationCode": "Loc.Login.SignUp",
+    "Id": "Loc.Login.SignUp",
     "Language": "RU",
     "Value": "Зарегистрироваться"
   },
   {
-    "Id": "60A80B05-FBED-4C46-AB3D-CFC5D4B783C0",
-    "LocalizationCode": "Loc.Login.SignIn",
+    "Id": "Loc.Login.Login",
+    "Language": "RU",
+    "Value": "Логин"
+  },
+  {
+    "Id": "Loc.Login.Password",
+    "Language": "RU",
+    "Value": "Пароль"
+  },
+  {
+    "Id": "Loc.Common.Title",
+    "Language": "RU",
+    "Value": "Менеджер собеседований"
+  },
+  {
+    "Id": "Loc.Common.MyInterviews",
+    "Language": "RU",
+    "Value": "Мои собеседования"
+  },
+  {
+    "Id": "Loc.Common.MyPositions",
+    "Language": "RU",
+    "Value": "Мои вакансии"
+  },
+  {
+    "Id": "Loc.Common.Logout",
+    "Language": "RU",
+    "Value": "Выйти из системы"
+  },
+  {
+    "Id": "Loc.MainPage.AddNewInterview",
+    "Language": "RU",
+    "Value": "Добавить новое собеседование"
+  },
+  {
+    "Id": "Loc.MainPage.OnlyFutureFlag",
+    "Language": "RU",
+    "Value": "Показать только будущие собеседования"
+  },
+  {
+    "Id": "Loc.MainPage.Table.InterviewName",
+    "Language": "RU",
+    "Value": "Название собеседования"
+  },
+  {
+    "Id": "Loc.MainPage.Table.InterviewDate",
+    "Language": "RU",
+    "Value": "Дата собеседования"
+  },
+  {
+    "Id": "Loc.MainPage.Table.PositionName",
+    "Language": "RU",
+    "Value": "Вакансия"
+  },
+  {
+    "Id": "Loc.MainPage.Table.CompanyName",
+    "Language": "RU",
+    "Value": "Компания"
+  },
+  {
+    "Id": "Loc.Login.SignIn",
     "Language": "EN",
     "Value": "Sign in"
   },
   {
-    "Id": "9AA9C9BC-BAB8-4F4E-B888-28BE51EDB9C1",
-    "LocalizationCode": "Loc.Login.SignUp",
+    "Id": "Loc.Login.SignUp",
     "Language": "EN",
     "Value": "Sign up"
+  },
+  {
+    "Id": "Loc.Login.Login",
+    "Language": "EN",
+    "Value": "Login"
+  },
+  {
+    "Id": "Loc.Login.Password",
+    "Language": "EN",
+    "Value": "Password"
+  },
+  {
+    "Id": "Loc.Common.Title",
+    "Language": "EN",
+    "Value": "Interview Manager"
+  },
+  {
+    "Id": "Loc.Common.MyInterviews",
+    "Language": "EN",
+    "Value": "My interviews"
+  },
+  {
+    "Id": "Loc.Common.MyPositions",
+    "Language": "EN",
+    "Value": "My positions"
+  },
+  {
+    "Id": "Loc.Common.Logout",
+    "Language": "EN",
+    "Value": "Logout"
+  },
+  {
+    "Id": "Loc.MainPage.AddNewInterview",
+    "Language": "EN",
+    "Value": "Add new interview"
+  },
+  {
+    "Id": "Loc.MainPage.OnlyFutureFlag",
+    "Language": "EN",
+    "Value": "Show only future interviews"
+  },
+  {
+    "Id": "Loc.MainPage.Table.InterviewName",
+    "Language": "EN",
+    "Value": "Interview name"
+  },
+  {
+    "Id": "Loc.MainPage.Table.InterviewDate",
+    "Language": "EN",
+    "Value": "Interview date"
+  },
+  {
+    "Id": "Loc.MainPage.Table.PositionName",
+    "Language": "EN",
+    "Value": "Position"
+  },
+  {
+    "Id": "Loc.MainPage.Table.CompanyName",
+    "Language": "EN",
+    "Value": "Company"
   }
 ]

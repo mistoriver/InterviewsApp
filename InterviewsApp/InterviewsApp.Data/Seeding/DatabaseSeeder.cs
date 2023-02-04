@@ -1,4 +1,5 @@
 ﻿using InterviewsApp.Data.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,10 +22,26 @@ namespace InterviewsApp.Data.Seeding
         public void SeedDatabase()
         {
             var locals = GetDefaultLocalsFromJson();
-            _interviewsContext.RemoveRange(locals);
-            _interviewsContext.SaveChanges();
-            _interviewsContext.AddRange(locals);
-            _interviewsContext.SaveChanges();
+
+            foreach (var loc in locals)
+            {
+                var locDb = _interviewsContext.Find(typeof(LocalizationEntity), loc.Id, loc.Language);
+                if (locDb != null)
+                {
+                    _interviewsContext.Remove(locDb);
+                    _interviewsContext.SaveChanges();
+                }
+                _interviewsContext.Add(loc);
+                _interviewsContext.SaveChanges();
+            }
+            //try
+            //{
+            //    _interviewsContext.RemoveRange(locals);
+            //    _interviewsContext.SaveChanges();
+            //}
+            //catch(DbUpdateConcurrencyException ex) { }
+            //_interviewsContext.AddRange(locals);
+            //_interviewsContext.SaveChanges();
         }
         private LocalizationEntity[] GetDefaultLocalsFromJson()
         {

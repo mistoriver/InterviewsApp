@@ -68,20 +68,16 @@ namespace InterviewsApp.Data.Migrations
 
             modelBuilder.Entity("InterviewsApp.Data.Models.Entities.LocalizationEntity", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Language")
+                    b.Property<string>("Id")
                         .HasColumnType("text");
 
-                    b.Property<string>("LocalizationCode")
+                    b.Property<string>("Language")
                         .HasColumnType("text");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "Language");
 
                     b.ToTable("Localizations");
                 });

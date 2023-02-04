@@ -1,4 +1,5 @@
-﻿using InterviewsApp.Core.DTOs.External;
+﻿using AutoMapper;
+using InterviewsApp.Core.DTOs.External;
 using InterviewsApp.Data.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace InterviewsApp.Core.Mappings
     {
         public LocalizationMapping() :base()
         {
+            ReplaceMemberName("Id", "LocalizationCode");
             CreateMap<LocalizationEntity, LocalizationDto>();
             CreateMap<LocalizationDto, LocalizationEntity>();
         }

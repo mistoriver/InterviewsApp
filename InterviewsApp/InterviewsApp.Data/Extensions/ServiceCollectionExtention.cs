@@ -22,7 +22,11 @@ namespace InterviewsApp.Data.Extensions
             var connectionString = configuration.GetConnectionString(nameof(InterviewsContext)) ??
                                    throw new Exception("Пустая строка подключения.");
 
-            services.AddDbContext<InterviewsContext>(builder => builder.UseNpgsql(connectionString));
+            services.AddDbContext<InterviewsContext>(builder => {
+                builder.UseNpgsql(connectionString);
+                builder.EnableSensitiveDataLogging();
+                builder.EnableDetailedErrors();
+            });
 
             services.AddScoped<IRepository<CompanyEntity>, CompanyRepository>();
             services.AddScoped<IRepository<UserEntity>, UserRepository>();

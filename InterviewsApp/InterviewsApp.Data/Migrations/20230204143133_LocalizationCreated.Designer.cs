@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InterviewsApp.Data.Migrations
 {
     [DbContext(typeof(InterviewsContext))]
-    [Migration("20230202235359_LocalizationCreated")]
+    [Migration("20230204143133_LocalizationCreated")]
     partial class LocalizationCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,20 +70,16 @@ namespace InterviewsApp.Data.Migrations
 
             modelBuilder.Entity("InterviewsApp.Data.Models.Entities.LocalizationEntity", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Language")
+                    b.Property<string>("Id")
                         .HasColumnType("text");
 
-                    b.Property<string>("LocalizationCode")
+                    b.Property<string>("Language")
                         .HasColumnType("text");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "Language");
 
                     b.ToTable("Localizations");
                 });
