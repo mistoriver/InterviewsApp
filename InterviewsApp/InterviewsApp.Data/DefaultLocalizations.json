@@ -45,6 +45,11 @@
     "Value": "Добавить новое собеседование"
   },
   {
+    "Id": "Loc.PositionPage.AddNewPosition",
+    "Language": "RU",
+    "Value": "Добавить новую вакансию"
+  },
+  {
     "Id": "Loc.MainPage.OnlyFutureFlag",
     "Language": "RU",
     "Value": "Показать только будущие собеседования"
@@ -68,6 +73,151 @@
     "Id": "Loc.MainPage.Table.CompanyName",
     "Language": "RU",
     "Value": "Компания"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.Title",
+    "Language": "RU",
+    "Value": "Добавление компании"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.CompanyName",
+    "Language": "RU",
+    "Value": "Название компании"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.AddCompany",
+    "Language": "RU",
+    "Value": "Добавить компанию"
+  },
+  {
+    "Id": "Loc.Common.GoToMainPage",
+    "Language": "RU",
+    "Value": "Вернуться на главную страницу"
+  },
+  {
+    "Id": "Loc.AddPositionPage.Title",
+    "Language": "RU",
+    "Value": "Добавление вакансии"
+  },
+  {
+    "Id": "Loc.AddPositionPage.PositionName",
+    "Language": "RU",
+    "Value": "Название вакансии"
+  },
+  {
+    "Id": "Loc.AddPositionPage.CityName",
+    "Language": "RU",
+    "Value": "Город вакансии (или \"Удалёнка\")"
+  },
+  {
+    "Id": "Loc.AddPositionPage.CompanyName",
+    "Language": "RU",
+    "Value": "Компания"
+  },
+  {
+    "Id": "Loc.AddPositionPage.NoCompanyImLookingFor",
+    "Language": "RU",
+    "Value": "Нужной компании нет в списке"
+  },
+  {
+    "Id": "Loc.AddPositionPage.AddPosition",
+    "Language": "RU",
+    "Value": "Добавить вакансию"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.Title",
+    "Language": "RU",
+    "Value": "Создание собеседования"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.InterviewName",
+    "Language": "RU",
+    "Value": "Название собеседования"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.InterviewTime",
+    "Language": "RU",
+    "Value": "Время собеседования"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.PositionName",
+    "Language": "RU",
+    "Value": "Вакансия"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.AddPosition",
+    "Language": "RU",
+    "Value": "Добавить вакансию"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.CreateInterview",
+    "Language": "RU",
+    "Value": "Создать собеседование"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.Title",
+    "Language": "RU",
+    "Value": "Просмотр компании"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.CompanyRating",
+    "Language": "RU",
+    "Value": "Общий рейтинг"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.YourRating",
+    "Language": "RU",
+    "Value": "Ваша оценка"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.Title",
+    "Language": "RU",
+    "Value": "Просмотр собеседования"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.Comment",
+    "Language": "RU",
+    "Value": "Комментарий"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.DeleteThisInterview",
+    "Language": "RU",
+    "Value": "Удалить данное собеседование"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.Title",
+    "Language": "RU",
+    "Value": "Просмотр вакансии"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.CityName",
+    "Language": "RU",
+    "Value": "Город"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.SalaryRange",
+    "Language": "RU",
+    "Value": "Зарплатная вилка"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.OfferReceived",
+    "Language": "RU",
+    "Value": "Получен оффер"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.DenialReceived",
+    "Language": "RU",
+    "Value": "Получен отказ"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.DeleteThisPosition",
+    "Language": "RU",
+    "Value": "Удалить данную вакансию"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.InterviewsForPosition",
+    "Language": "RU",
+    "Value": "Собеседования по этой вакансии"
   },
   {
     "Id": "Loc.Login.SignIn",
@@ -115,6 +265,11 @@
     "Value": "Add new interview"
   },
   {
+    "Id": "Loc.PositionPage.AddNewPosition",
+    "Language": "EN",
+    "Value": "Add new position"
+  },
+  {
     "Id": "Loc.MainPage.OnlyFutureFlag",
     "Language": "EN",
     "Value": "Show only future interviews"
@@ -138,5 +293,150 @@
     "Id": "Loc.MainPage.Table.CompanyName",
     "Language": "EN",
     "Value": "Company"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.Title",
+    "Language": "EN",
+    "Value": "Company registration"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.CompanyName",
+    "Language": "EN",
+    "Value": "Company name"
+  },
+  {
+    "Id": "Loc.AddCompanyPage.AddCompany",
+    "Language": "EN",
+    "Value": "Add company"
+  },
+  {
+    "Id": "Loc.Common.GoToMainPage",
+    "Language": "EN",
+    "Value": "Go to the main page"
+  },
+  {
+    "Id": "Loc.AddPositionPage.Title",
+    "Language": "EN",
+    "Value": "Position creation"
+  },
+  {
+    "Id": "Loc.AddPositionPage.PositionName",
+    "Language": "EN",
+    "Value": "Position name"
+  },
+  {
+    "Id": "Loc.AddPositionPage.CityName",
+    "Language": "EN",
+    "Value": "Position city (or \"Remote\")"
+  },
+  {
+    "Id": "Loc.AddPositionPage.CompanyName",
+    "Language": "EN",
+    "Value": "Company"
+  },
+  {
+    "Id": "Loc.AddPositionPage.NoCompanyImLookingFor",
+    "Language": "EN",
+    "Value": "My company is not in the list"
+  },
+  {
+    "Id": "Loc.AddPositionPage.AddPosition",
+    "Language": "EN",
+    "Value": "Create position"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.Title",
+    "Language": "EN",
+    "Value": "Interview creation"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.InterviewName",
+    "Language": "EN",
+    "Value": "Interview name"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.InterviewTime",
+    "Language": "EN",
+    "Value": "Interview time"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.PositionName",
+    "Language": "EN",
+    "Value": "Position"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.AddPosition",
+    "Language": "EN",
+    "Value": "Add position"
+  },
+  {
+    "Id": "Loc.AddInterviewPage.CreateInterview",
+    "Language": "EN",
+    "Value": "Create interview"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.Title",
+    "Language": "EN",
+    "Value": "Company "
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.CompanyRating",
+    "Language": "EN",
+    "Value": "Total rating"
+  },
+  {
+    "Id": "Loc.ViewCompanyPage.YourRating",
+    "Language": "EN",
+    "Value": "Your rating"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.Title",
+    "Language": "EN",
+    "Value": "Interview "
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.Comment",
+    "Language": "EN",
+    "Value": "Comment"
+  },
+  {
+    "Id": "Loc.ViewInterviewPage.DeleteThisInterview",
+    "Language": "EN",
+    "Value": "Delete this interview"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.Title",
+    "Language": "EN",
+    "Value": "Position "
+  },
+  {
+    "Id": "Loc.ViewPositionPage.CityName",
+    "Language": "EN",
+    "Value": "City"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.SalaryRange",
+    "Language": "EN",
+    "Value": "Salary range"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.OfferReceived",
+    "Language": "EN",
+    "Value": "I've got offer"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.DenialReceived",
+    "Language": "EN",
+    "Value": "I was denied"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.DeleteThisPosition",
+    "Language": "EN",
+    "Value": "Delete this position"
+  },
+  {
+    "Id": "Loc.ViewPositionPage.InterviewsForPosition",
+    "Language": "EN",
+    "Value": "Interviews for this position"
   }
 ]

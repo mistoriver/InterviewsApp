@@ -27,11 +27,11 @@
     }
 </style>
 <div>
-    <h3 id="position-name">Просмотр вакансии</h3>
+    <h3 id="position-name" class="localizable">Loc.ViewPositionPage.Title</h3>
 
     <table style="width:100%">
         <tr class="edit-cell">
-            <td class="content-irrelevant">Город:</td>
+            <td class="content-irrelevant localizable">Loc.ViewPositionPage.CityName:</td>
             <td class="edit-cell">
                 <div id="city-name"></div>
                 <input id="city-edit-input" style="display:none;" maxlength="50" />
@@ -41,7 +41,7 @@
             </td>
         </tr>
         <tr>
-            <td class="content-irrelevant">Зарплатная вилка:</td>
+            <td class="content-irrelevant localizable">Loc.ViewPositionPage.SalaryRange:</td>
             <td class="edit-cell">
                 <div id="money"></div>
                 <input id="money-edit-from" type="number" min="1000" max="10000000" step="1000" style="display:none;" />
@@ -52,11 +52,11 @@
             </td>
         </tr>
         <tr>
-            <td class="content-irrelevant">Компания:</td>
+            <td class="content-irrelevant localizable">Loc.AddPositionPage.CompanyName:</td>
             <td id="company-name"></td>
         </tr>
         <tr>
-            <td class="content-irrelevant">Комментарий:</td>
+            <td class="content-irrelevant localizable">Loc.ViewInterviewPage.Comment:</td>
             <td class="edit-cell" style="width: 70%;">
                 <div id="comment"></div>
                 <textarea id="comment-edit-input" style="display:none;" maxlength="200"></textarea>
@@ -67,24 +67,24 @@
         </tr>
     </table>
     <div style="margin-top:20px">
-        <button id="edit-button" onclick="offer('@Model.PositionId')" style="background:#cee8be">Получен оффер</button>
-        <button id="edit-button" onclick="denial('@Model.PositionId')" style="background:#bf8c8c">Получен отказ</button>
+        <button id="edit-button" class="localizable" onclick="offer('@Model.PositionId')" style="background:#cee8be">Loc.ViewPositionPage.OfferReceived</button>
+        <button id="edit-button" class="localizable" onclick="denial('@Model.PositionId')" style="background:#bf8c8c">Loc.ViewPositionPage.DenialReceived</button>
     </div>
     
-    <button id="delete-position-button" onclick="deletePosition()" style="margin-top:15px; margin-top:15px">Удалить данную вакансию</button>
+    <button id="delete-position-button" class="localizable" onclick="deletePosition()" style="margin-top:15px; margin-top:15px">Loc.ViewPositionPage.DeleteThisPosition</button>
 
     <p id="message"></p>
-    <h4>Собеседования по этой вакансии:</h4>
+    <h4 class="localizable">Loc.ViewPositionPage.InterviewsForPosition:</h4>
     <table id="interviews-table" data-toggle="table" data-ajax="getInterviewsForPosition" data-sort-name="date" data-sort-order="asc" data-row-style="rowStyle" data-locale="ru-RU">
         <thead>
             <tr>
-                <th data-field="interviewId" data-visible="false">ID Интервью (не должен отображаться)</th>
-                <th data-field="name" data-sortable="true" data-formatter="interviewFormatter">Название собеседования</th>
-                <th data-field="date" data-sortable="true" data-formatter="dateFormatter">Дата собеседования</th>
+                <th class="localizable" data-field="interviewId" data-visible="false"></th>
+                <th class="localizable" data-field="name" data-sortable="true" data-formatter="interviewFormatter">Loc.MainPage.Table.InterviewName</th>
+                <th class="localizable" data-field="date" data-sortable="true" data-formatter="dateFormatter">Loc.MainPage.Table.InterviewDate</th>
             </tr>
         </thead>
     </table>
-    <button id="add-interview-button" onclick="goToInterviewCreation()" style="margin-top:15px">Добавить новое собеседование</button>
+    <button id="add-interview-button" class="localizable" onclick="goToInterviewCreation()" style="margin-top:15px">Loc.MainPage.AddNewInterview</button>
 </div>
 <script src="/js/details-pages/position-details.js"></script>
 <script>getPositionInfo('@Model.PositionId')</script>

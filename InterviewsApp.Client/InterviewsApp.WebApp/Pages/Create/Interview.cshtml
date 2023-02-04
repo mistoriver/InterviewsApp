@@ -20,28 +20,28 @@
     }
 </style>
 <div>
-    <h3>Создание собеседования</h3>
+    <h3 class="localizable">Loc.AddInterviewPage.Title</h3>
 
     <table>
         <tr>
-            <td>Название собеседования</td>
+            <td class="localizable">Loc.AddInterviewPage.InterviewName</td>
             <td><input id="interviewName" type="text" style="width:100%"/></td>
         </tr>
         <tr>
-            <td>Время собеседования</td>
+            <td class="localizable">Loc.AddInterviewPage.InterviewTime</td>
             <td><input id="interviewTime" type="datetime-local" /></td>
         </tr>
         <tr>
-            <td>Вакансия</td>
-            <td class="edit-cell"><select id="position-select"></select><button id="hidden-button" style="display:none" onclick="location.assign('/Create/Position')">Добавить вакансию</button></td>
+            <td class="localizable">Loc.AddInterviewPage.PositionName</td>
+            <td class="edit-cell"><select id="position-select"></select><button class="localizable"  id="hidden-button" style="display:none" onclick="location.assign('/Create/Position')">Loc.AddInterviewPage.AddPosition</button></td>
         </tr>
     </table>
     
-    <button id="create-button" onclick="createInterview()">Создать собеседование</button>
+    <button class="localizable" id="create-button" onclick="createInterview()">Loc.AddInterviewPage.CreateInterview</button>
 
     
     <p id="message"></p>
-    <a id="manual-redirect" style="visibility:hidden" href="/" >Вернуться на главную страницу</a>
+    <a class="localizable" id="manual-redirect" style="visibility:hidden" href="/">Loc.Common.GoToMainPage</a>
 </div>
 <script src="/js/creation-pages/create-interview-page.js"></script>
 <script>getPositions('@Model.CreatedPosition')</script>

@@ -18,15 +18,15 @@
     }
 </style>
 <div>
-    <h3 id="company-name">Просмотр компании</h3>
+    <h3 class="localizable" id="company-name">Loc.ViewCompanyPage.Title</h3>
 
     <table>
         <tr>
-            <td>Общий рейтинг:</td>
+            <td class="localizable">Loc.ViewCompanyPage.CompanyRating:</td>
             <td id="company-rating"></td>
         </tr>
         <tr>
-            <td>Ваша оценка:</td>
+            <td class="localizable">Loc.ViewCompanyPage.YourRating:</td>
             <td style="display: flex;flex-direction: row;">
                 <i id="star-0" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)"></i>
                 <i id="star-5" onmouseover="handleHover(event)" onmouseout="clearStar()" onclick="rateCompany('@Model.CompanyId', event)" class="fa-regular fa-star"></i>

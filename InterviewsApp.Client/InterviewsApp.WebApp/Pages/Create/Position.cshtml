@@ -20,26 +20,26 @@
     }
 </style>
 <div>
-    <h3>Добавление вакансии</h3>
+    <h3 class="localizable">Loc.AddPositionPage.Title</h3>
 
     <table>
         <tr>
-            <td>Название вакансии</td>
+            <td class="localizable">Loc.AddPositionPage.PositionName</td>
             <td><input id="position-name" type="text" style="width:100%" /></td>
         </tr>
         <tr>
-            <td>Город вакансии (или "Удалёнка")</td>
+            <td class="localizable">Loc.AddPositionPage.CityName</td>
             <td><input id="city-name" type="text"  style="width:100%"/></td>
         </tr>
         <tr>
-            <td>Компания</td>
-            <td class="edit-cell"><select id="company-select"></select><button id="hidden-button" onclick="location.assign('/Create/Company')">Нужной компании нет в списке</button></td>
+            <td class="localizable">Loc.AddPositionPage.CompanyName</td>
+            <td class="edit-cell"><select id="company-select"></select><button class="localizable" id="hidden-button" onclick="location.assign('/Create/Company')">Loc.AddPositionPage.NoCompanyImLookingFor</button></td>
         </tr>
     </table>
     
-    <button id="create-button" onclick="createPosition()">Добавить вакансию</button>
+    <button class="localizable" id="create-button" onclick="createPosition()">Loc.AddPositionPage.AddPosition</button>
     <p id="message"></p>
-    <a id="manual-redirect" style="visibility:hidden" href="/" >Вернуться на главную страницу</a>
+    <a class="localizable" id="manual-redirect" style="visibility:hidden" href="/">Loc.Common.GoToMainPage</a>
 </div>
 
 <script src="/js/creation-pages/create-position-page.js"></script>

@@ -24,11 +24,11 @@
     }
 </style>
 <div>
-    <h3 id="interview-name">Просмотр собеседования </h3>
+    <h3 id="interview-name" class="localizable">Loc.ViewInterviewPage.Title </h3>
 
     <table style="width:100%">
         <tr>
-            <td class="content-irrelevant">Время собеседования:</td>
+            <td class="content-irrelevant localizable">Loc.AddInterviewPage.InterviewTime:</td>
             <td>
                 <input id="interview-time" type="datetime-local" disabled />
                 <button id="edit-time" onclick="editTime()"><i class="fa-solid fa-pen"></i></button>
@@ -40,15 +40,15 @@
             <td style="display:none;"></td>
         </tr>
         <tr>
-            <td class="content-irrelevant">Вакансия:</td>
+            <td class="content-irrelevant localizable">Loc.AddInterviewPage.PositionName:</td>
             <td id="position-name"></td>
         </tr>
         <tr>
-            <td class="content-irrelevant">Компания:</td>
+            <td class="content-irrelevant localizable">Loc.AddPositionPage.CompanyName:</td>
             <td id="company-name"></td>
         </tr>
         <tr>
-            <td class="first-cell">Комментарий:</td>
+            <td class="first-cell localizable">Loc.ViewInterviewPage.Comment:</td>
             <td class="edit-cell">
                 <div id="comment"></div>
                 <textarea id="comment-edit-input" style="display:none;"></textarea>
@@ -59,7 +59,7 @@
         </tr>
     </table>
     
-    <button id="delete-interview-button" onclick="deleteInterview('@Model.InterviewId')" style="margin-top:15px; margin-top:15px">Удалить данное собеседование</button>
+    <button id="delete-interview-button" class="localizable" onclick="deleteInterview('@Model.InterviewId')" style="margin-top:15px; margin-top:15px">Loc.ViewInterviewPage.DeleteThisInterview</button>
 
     <p id="message"></p>
 </div>

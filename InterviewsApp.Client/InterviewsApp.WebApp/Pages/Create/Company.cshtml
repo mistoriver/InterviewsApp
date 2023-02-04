@@ -9,19 +9,19 @@
     }
 </style>
 <div>
-    <h3>Добавление компании</h3>
+    <h3 class="localizable">Loc.AddCompanyPage.Title</h3>
 
     <table>
         <tr>
-            <td>Название компании</td>
+            <td class="localizable">Loc.AddCompanyPage.CompanyName</td>
             <td><input id="company-name" type="text" width="25em"/></td>
         </tr>
     </table>
     
-    <button id="create-button" onclick="createCompany()">Добавить компанию</button>
+    <button id="create-button" class="localizable" onclick="createCompany()">Loc.AddCompanyPage.AddCompany</button>
     
     <p id="message"></p>
-    <a id="manual-redirect" style="visibility:hidden" href="/" >Вернуться на главную страницу</a>
+    <a class="localizable" id="manual-redirect" style="visibility:hidden" href="/">Loc.Common.GoToMainPage</a>
 </div>
 
 <script src="/js/creation-pages/create-company-page.js"></script>

@@ -34,3 +34,7 @@
             document.getElementById("register-button").disabled = false;
         });
 }
+function loginIfEnter(e) {
+    if (e.key === "Enter")
+        login();
+}

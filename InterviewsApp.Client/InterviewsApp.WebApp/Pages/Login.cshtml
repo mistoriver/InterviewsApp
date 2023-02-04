@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td class="localizable">Loc.Login.Password: </td>
-            <td><input id="password" type="password" /></td>
+            <td><input id="password" type="password" onkeydown="loginIfEnter(event)" /></td>
         </tr>
     </table>
     <button class="localizable" id="login-button" onclick="login()">Loc.Login.SignIn</button>
