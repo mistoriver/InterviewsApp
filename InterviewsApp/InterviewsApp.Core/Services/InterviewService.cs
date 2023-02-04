@@ -49,7 +49,7 @@ namespace InterviewsApp.Core.Services
                 ints = ints.Where(i => i.Date > dt);
             }
             var res = new List<InterviewDto>();
-            ints.ToList().ForEach(async i => 
+            foreach (var i in ints)
             {
                 var interview = _mapper.Map<InterviewDto>(i);
                 var position = await _positionRepository.GetByIdOrDefault(i.PositionId);
@@ -60,7 +60,7 @@ namespace InterviewsApp.Core.Services
                 interview.CompanyName = company.Name;
                 interview.CompanyId = company.Id;
                 res.Add(interview);
-            });
+            }
             return new Response<IEnumerable<InterviewDto>>(res);
         }
         public async Task<Response<IEnumerable<InterviewDto>>> GetByPosition(Guid positionId, Guid userId)

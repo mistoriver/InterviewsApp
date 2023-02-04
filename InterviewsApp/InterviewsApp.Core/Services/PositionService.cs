@@ -36,7 +36,10 @@ namespace InterviewsApp.Core.Services
         {
             var positions = (await _repository.Get(p => p.UserId == userId)).Select(p => _mapper.Map<PositionDto>(p));
             var res = positions.ToList();
-            res.ForEach(async p => p.CompanyName = (await _companyRepository.GetByIdOrDefault(p.CompanyId)).Name);
+            foreach (var position in res)
+            {
+                position.CompanyName = (await _companyRepository.GetByIdOrDefault(position.CompanyId))?.Name;
+            }
             return new Response<IEnumerable<PositionDto>>(res);
         }
         public async Task<Response<Guid>> CreatePosition(CreatePositionDto dto)

@@ -34,14 +34,6 @@ namespace InterviewsApp.Data.Seeding
                 _interviewsContext.Add(loc);
                 _interviewsContext.SaveChanges();
             }
-            //try
-            //{
-            //    _interviewsContext.RemoveRange(locals);
-            //    _interviewsContext.SaveChanges();
-            //}
-            //catch(DbUpdateConcurrencyException ex) { }
-            //_interviewsContext.AddRange(locals);
-            //_interviewsContext.SaveChanges();
         }
         private LocalizationEntity[] GetDefaultLocalsFromJson()
         {
