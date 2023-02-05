@@ -136,6 +136,9 @@ function getLocals(lang = "EN") {
 
 function setLocals() {
     if (localsUpdating) return;
+    let table = document.getElementById('interviews-table') ?? document.getElementById('positions-table');
+    if (table)
+        table.setAttribute("data-locale", localStorage.getItem("currentLocal") === "RU" ? "ru-RU" : "en-US");
     document.getElementById("localization-button").innerText = localStorage.getItem("currentLocal");
     let locals = JSON.parse(localStorage.getItem("localizations"));
     let localizableElements = document.getElementsByClassName("localizable");

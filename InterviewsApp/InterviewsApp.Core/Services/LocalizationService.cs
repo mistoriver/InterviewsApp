@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace InterviewsApp.Core.Services
 {
-    internal class LocalizationService : BaseDbService<LocalizationEntity, LocalizationDto>, ILocalizationService
+    public class LocalizationService : BaseDbService<LocalizationEntity, LocalizationDto>, ILocalizationService
     {
 
         private readonly IRepository<UserEntity> _userRepository;
@@ -32,10 +32,10 @@ namespace InterviewsApp.Core.Services
             var user = (await _userRepository.GetByIdOrDefault(userId));
             if (user == null) 
             { 
-                return new Response<IEnumerable<LocalizationDto>>("Данного пользователя не существует"); 
+                return new Response<IEnumerable<LocalizationDto>>("Loc.Message.NoSuchUser"); 
             }
 
-            return await GetByLanguage(user.Language ?? "RU");
+            return await GetByLanguage(user.Language ?? "EN");
         }
 
         public async Task AddLocalization(LocalizationDto localizationDto)
@@ -51,7 +51,7 @@ namespace InterviewsApp.Core.Services
                 await _userRepository.Update(user);
                 return new Response();
             }
-            return new Response("Пользователь не найден");
+            return new Response("Loc.Message.NoSuchUser");
         }
     }
 }
