@@ -7,6 +7,8 @@ Stack: ASP.NET WebAPI(.NET 6), AutoMapper, Entity Framework and PostgreSQL for b
 
 If you want to run the app, you can use <i>docker-compose up -d </i> from project root folder, and then open http://localhost:7000/ in your browser.
 
+
+![image](https://user-images.githubusercontent.com/31833100/216830636-c312c36f-bed1-43f2-8219-9548233b91c1.png)
 ===
 
 Небольшое приложение, позволяющее пользователю управлять назначенными ему собеседованиями.
