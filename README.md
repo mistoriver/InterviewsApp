@@ -3,7 +3,7 @@
 
 Small app that allows user to manage his job interviews.
 
-Stack: ASP.NET WebAPI(.NET 6), AutoMapper, Entity Framework and PostgreSQL for backend; ASP.NET WebApp (Razor Pages) and vanilla JavaScript for frontend, deploying with Docker. Unit-tested with xUnit, AutoFixture and Moq (in progress).
+Stack: ASP.NET WebAPI(.NET 6), AutoMapper, Entity Framework and PostgreSQL for backend; ASP.NET WebApp (Razor Pages) and vanilla JavaScript for frontend, deploying with Docker. Unit-tested with xUnit, AutoFixture and Moq.
 
 If you want to run the app, you can use <i>docker-compose up -d </i> from project root folder, and then open http://localhost:7000/ in your browser.
 
@@ -13,7 +13,7 @@ If you want to run the app, you can use <i>docker-compose up -d </i> from projec
 
 Небольшое приложение, позволяющее пользователю управлять назначенными ему собеседованиями.
 
-Использованы ASP.NET WebAPI (.NET 6), AutoMapper, Entity Framework, PostgreSQL для бэкенда; ASP.NET WebApp (Razor Pages) + чистый JavaScript для фронтенда, упаковано в Docker. Юнит-тестирование - с  помощью xUnit, AutoFixture и Moq (в процессе написания).
+Использованы ASP.NET WebAPI (.NET 6), AutoMapper, Entity Framework, PostgreSQL для бэкенда; ASP.NET WebApp (Razor Pages) + чистый JavaScript для фронтенда, упаковано в Docker. Юнит-тестирование - с  помощью xUnit, AutoFixture и Moq.
 
 Для запуска приложения необходимо выполнить <i>docker-compose up -d </i>из корневой папки, после завершения развёртывания открыть в браузере http://localhost:7000/
 
